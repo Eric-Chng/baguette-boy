@@ -1,0 +1,19 @@
+
+public class BoxPlatform {
+	private int x, y;
+	private int width, height;
+	
+	/*
+	 * x and y is upper left corner
+	 * width is width from left side to right
+	 * height is from top to bottom
+	 */
+	public BoxPlatform(int x, int y, int width, int height) {
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+	}
+	
+	private boolean collideTest()
+}
