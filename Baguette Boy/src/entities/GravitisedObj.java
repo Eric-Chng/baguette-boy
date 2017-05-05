@@ -1,15 +1,18 @@
 package entities;
+
+import processing.core.PApplet;
+
 /*
  * Properties of this object:
  *   -affected by gravity
  *   -collides with all platforms
  */
-public class GravitisedObj {
-	public static final int GRAVITY_POWER = 10;
+public abstract class GravitisedObj {
+	public static final int GRAVITY_POWER = 2;
 
 	public final int mass;
-	private int x, y;
-	private int width, height;
+	protected int x, y;
+	protected int width, height;
 	protected double xSpeed, ySpeed;
 	public boolean grounded;
 
@@ -30,11 +33,24 @@ public class GravitisedObj {
 	}
 
 	public void posUpdate() {
+		
 		x += xSpeed;
-		y += ySpeed;
+		y -= ySpeed;
+		
 		if (!grounded)
 			y += GRAVITY_POWER * mass;
 	}
+	public abstract void draw(PApplet g);
+	
+	public abstract void act(double ratio);
 
+	public int getX()
+	{
+		return x;
+	}
+	public int getY()
+	{
+		return y;
+	}
 
 }

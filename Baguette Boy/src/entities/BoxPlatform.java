@@ -21,9 +21,14 @@ public class BoxPlatform {
 	 * in collision checking, have bool change to true if obj collides with any platform (given by this method)
 	 * if bool stays false, grounded turns off and gravity re-enabled
 	 */
-	private boolean collideTest(GravitisedObj other) {
+	public boolean collideTest(int otherX, int otherY) {
 		//check collision
 		//check other's location relative to this (ex: y above certain amount and collided:  grounded = true)
+		
+		if(otherX>x&&otherX<x+width&&otherY>y&&otherY<y+height)
+		{
+			return true;
+		}
 		return false;
 	}
 }

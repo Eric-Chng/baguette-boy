@@ -1,19 +1,18 @@
-INDEX VERSION 1.129+C:\Users\echeng213\Desktop\baguette-boy\.metadata\.plugins\org.eclipse.jdt.core
-26514529.index
-2133282975.index
-1075794691.index
-985286902.index
-4184201189.index
-2800558102.index
-618723895.index
-2809250744.index
-2855899100.index
-471236001.index
-781808.index
-2637943071.index
-414978335.index
-3417200662.index
-3407430047.index
-808374113.index
-1644702904.index
-2019903893.index
+INDEX VERSION 1.129+/Users/davidm/baguette-boy/.metadata/.plugins/org.eclipse.jdt.core
+2868163089.index
+3986925568.index
+230271376.index
+3910314713.index
+906371316.index
+1271342938.index
+3545806974.index
+1894128083.index
+1770918486.index
+111838251.index
+1873703457.index
+3521354349.index
+3796755423.index
+3299947704.index
+3871202677.index
+2239375614.index
+3803267749.index

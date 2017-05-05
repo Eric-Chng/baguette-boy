@@ -1,2 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<qualifiedTypeNameHistroy/>
+<qualifiedTypeNameHistroy>
+<fullyQualifiedTypeName name="entities.Player"/>
+<fullyQualifiedTypeName name="entities.GravitisedObj"/>
+<fullyQualifiedTypeName name="processing.core.PApplet"/>
+<fullyQualifiedTypeName name="java.util.ArrayList"/>
+<fullyQualifiedTypeName name="entities.BoxPlatform"/>
+<fullyQualifiedTypeName name="java.awt.event.MouseWheelListener"/>
+<fullyQualifiedTypeName name="java.awt.event.KeyListener"/>
+</qualifiedTypeNameHistroy>

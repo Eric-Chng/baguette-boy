@@ -1,0 +1,34 @@
+import java.util.ArrayList;
+
+import entities.*;
+import processing.core.PApplet;
+
+public class GObjectManager {
+
+	private ArrayList<GravitisedObj> objects;
+	private Player donkey;
+
+	
+	public GObjectManager()
+	{
+		donkey = new Player(100, 100, 5, 100, 100);
+
+	}
+	
+	public void actObjects(double ratio)
+	{
+		for(GravitisedObj obj: objects)
+		{
+			obj.act(ratio);
+		}
+	}
+	
+	public void drawObjects(PApplet g)
+	{
+		for(GravitisedObj obj: objects)
+		{
+			obj.draw(g);
+		}
+	}
+	
+}
