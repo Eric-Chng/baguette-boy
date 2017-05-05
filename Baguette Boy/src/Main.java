@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 
 import processing.awt.PSurfaceAWT;
 
-public class Main implements KeyListener, MouseWheelListener{
+public class Main {
 	
 	DrawingSurface drawing;
 	
@@ -40,40 +40,7 @@ public class Main implements KeyListener, MouseWheelListener{
 		
 	}
 
-	@Override
-	public void keyTyped(KeyEvent e) {
-		// TODO Auto-generated method stub
 		
-	}
-
-	@Override
-	public void keyPressed(KeyEvent e) {
-		System.out.println("hi");
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void keyReleased(KeyEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	@Override
-	public void mouseWheelMoved(MouseWheelEvent e) {
-		// TODO Auto-generated method stub
-		System.out.println("hi");
-		if(e.getWheelRotation()>0)
-		{
-			drawing.getMouseMove(1);
-		}
-		else
-		{
-			drawing.getMouseMove(-1);
-
-		}
-		
-		
-	}
+	
 
 }

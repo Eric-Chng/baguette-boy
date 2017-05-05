@@ -1,0 +1,41 @@
+import java.util.ArrayList;
+
+import entities.*;
+import processing.core.PApplet;
+
+public class PlatformManager {
+
+	private ArrayList<BoxPlatform> platforms;
+	private Manager manager;
+	
+	public PlatformManager(Manager m)
+	{
+		platforms = new ArrayList<BoxPlatform>();
+		manager = m;
+	}
+	
+	public boolean checkCollision(int x, int y)
+	{
+		boolean collides = false;
+		for(BoxPlatform obj: platforms)
+		{
+			if(obj.collideTest(x,y))
+			{
+				return true;
+			}
+		}
+		return false;
+		
+	}
+	
+	public void draw(PApplet g)
+	{
+		for(BoxPlatform obj: platforms)
+		{
+			obj.draw(g);
+		}
+	}
+	
+	
+	
+}

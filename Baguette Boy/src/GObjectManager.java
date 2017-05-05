@@ -7,12 +7,15 @@ public class GObjectManager {
 
 	private ArrayList<GravitisedObj> objects;
 	private ArrayList<GravitisedObj> enemies;
-	private Player donkey;
+	private Manager manager;
+	
+	
 
 	
-	public GObjectManager()
+	public GObjectManager(Manager m)
 	{
 		objects = new ArrayList<GravitisedObj>();
+		manager = m;
 
 	}
 	

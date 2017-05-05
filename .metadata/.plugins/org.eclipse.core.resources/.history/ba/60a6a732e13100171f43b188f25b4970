@@ -1,0 +1,37 @@
+import processing.core.PApplet;
+
+//import entities.*;
+
+public class Manager {
+
+	private GObjectManager gObjects;
+	private PlatformManager platforms;
+	private Player player;
+	
+	public Manager()
+	{
+		gObjects = new GObjectManager(this);
+		platforms = new PlatformManager(this);
+		player = new Player(200, 300, 10, 200, 200, this);
+		
+		
+	}
+	
+	public boolean checkPlatformCollision(int x, int y)
+	{
+		return platforms.checkCollision(x, y);
+	}
+	
+	public void draw(PApplet g)
+	{
+		gObjects.drawObjects(g);
+		player.draw(g);
+		
+	}
+	
+	public void mouseWheelMoved(int i)
+	{
+		player.getWheelMove(i);
+	}
+	
+}

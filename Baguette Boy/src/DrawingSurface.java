@@ -14,17 +14,19 @@ import processing.core.PApplet;
 public class DrawingSurface extends PApplet implements KeyListener, MouseWheelListener{
 
 	//private	RegularPolygon geoff;
-	private DemoObject demo;
-	private BoxPlatform dooder;
-	private GObjectManager objM;
+	//private DemoObject demo;
+	//private BoxPlatform dooder;
+	//private GObjectManager objM;
 	private long lastTime = 0;
-	private Player donkey;
+	//private Player donkey;
+	private Manager m;
 	
 	public DrawingSurface() {
-		demo = new DemoObject();
-		dooder = new BoxPlatform(300, 0, 600, 20);
-		objM = new GObjectManager();
-		donkey = new Player(100, 300, 5, 100, 100);
+		//demo = new DemoObject();
+		//dooder = new BoxPlatform(300, 0, 600, 20);
+		//objM = new GObjectManager();
+		//donkey = new Player(250, 300, 5, 100, 100);
+		m= new Manager();
 		runSketch();
 
 		
@@ -42,15 +44,17 @@ public class DrawingSurface extends PApplet implements KeyListener, MouseWheelLi
 		this.background(30);
 		//Rectangle backRectangle = new Rectangle(0,0,600,600);
 		//backRectangle.draw(this);
-		donkey.draw(this);
+		//donkey.draw(this);
 		//donkey.act(System.currentTimeMillis()-lastTime);
+		m.draw(this);
 		long time = System.currentTimeMillis()-lastTime;
 		double ratio = 16.0/time;
-		demo.act(time);
-		this.objM.actObjects(ratio);
-		donkey.act(ratio);
+		m.act(ratio);
+		//demo.act(time);
+		//this.objM.actObjects(ratio);
+		//donkey.act(ratio);
 		lastTime = System.currentTimeMillis();
-		demo.draw(this);
+		//demo.draw(this);
 		stroke(0);
 		noFill();
 		//geoff = new RegularPolygon(300,300,5,50);
@@ -58,9 +62,9 @@ public class DrawingSurface extends PApplet implements KeyListener, MouseWheelLi
 		//geoff.draw(this);
 		}
 	
-	public void getMouseMove(int move)
+	public void getMouseWheelMove(int move)
 	{
-		donkey.getWheelMove(move);
+		//donkey.getWheelMove(move);
 	}
 
 	public void getKeyPressed(KeyEvent e)
@@ -77,7 +81,15 @@ public class DrawingSurface extends PApplet implements KeyListener, MouseWheelLi
 	@Override
 	public void mouseWheelMoved(MouseWheelEvent e) {
 		// TODO Auto-generated method stub
-		System.out.println("hi");
+		//System.out.println("hi");
+		if(e.getWheelRotation()<0)
+		{
+			m.mouseWheelMoved(1);
+		}
+		else
+		{
+			m.mouseWheelMoved(-1);
+		}
 		
 	}
 
@@ -92,6 +104,8 @@ public class DrawingSurface extends PApplet implements KeyListener, MouseWheelLi
 	@Override
 	public void keyPressed(KeyEvent e) {
 		System.out.println("bonjour");
+		m.sendKeyCode(e);
+		System.out.println("hi");
 		
 	}
 
