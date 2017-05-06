@@ -32,11 +32,12 @@ public class Main {
 		window.addMouseWheelListener(drawing);
 		window.addKeyListener(drawing);
 		window.setResizable(true);
+		
 		//window.add(this);
 		
 
 		window.setVisible(true);
-		
+		window.requestFocus();
 		
 	}
 

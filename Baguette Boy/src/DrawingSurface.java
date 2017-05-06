@@ -27,6 +27,7 @@ public class DrawingSurface extends PApplet implements KeyListener, MouseWheelLi
 		//objM = new GObjectManager();
 		//donkey = new Player(250, 300, 5, 100, 100);
 		m= new Manager();
+		
 		runSketch();
 
 		
@@ -103,9 +104,9 @@ public class DrawingSurface extends PApplet implements KeyListener, MouseWheelLi
 
 	@Override
 	public void keyPressed(KeyEvent e) {
-		System.out.println("bonjour");
+		
 		m.sendKeyCode(e);
-		System.out.println("hi");
+		System.out.println("key pressed");
 		
 	}
 
@@ -113,7 +114,7 @@ public class DrawingSurface extends PApplet implements KeyListener, MouseWheelLi
 	@Override
 	public void keyReleased(KeyEvent e) {
 		// TODO Auto-generated method stub
-		
+		m.releaseKeyCode(e);
 	}
 	
 		

@@ -8,7 +8,7 @@ import processing.core.PApplet;
  *   -collides with all platforms
  */
 public abstract class GravitisedObj {
-	public static final int GRAVITY_POWER = 1;
+	public static final int GRAVITY_POWER = 2;
 
 	public final int mass;
 	protected int x, y;
@@ -34,11 +34,35 @@ public abstract class GravitisedObj {
 		grounded = false;
 	}
 
-	public void posUpdate() {
+	public void posUpdate(double ratio) {
 		
-		x += xSpeed;
+		int horizontalPlatform = 500;
+		if(xSpeed>0)
+		{
+			horizontalPlatform = Math.min(m.checkPlatformCollision(x+width, y+90*height/100,2),m.checkPlatformCollision(x+width, y+5*height/100,2));
+			if(horizontalPlatform<0)
+			{
+				x+=-1;
+			}
+		}
+		else if(xSpeed<0)
+		{
+			horizontalPlatform = -Math.min(m.checkPlatformCollision(x, y+90*height/100,2),m.checkPlatformCollision(x, y+5*height/100,2));
+			if(horizontalPlatform>0)
+			{
+				x+=1;
+			}
+		}
+		if(Math.abs(horizontalPlatform)<Math.abs(xSpeed))
+		{
+			if(horizontalPlatform>5)
+			x+=horizontalPlatform;
+			xSpeed = 0;
+		}
+		else
+		x += xSpeed*ratio;
 		
-		int closestPlatform = m.checkPlatformCollision(x+width/2, y+height/2);
+		int closestPlatform = Math.min(m.checkPlatformCollision(x+5*width/100, y+height,2),m.checkPlatformCollision(x+95*width/100, y+height,2)); //1 - horizontal, 2-vertical
 		if(closestPlatform<0)
 		{
 			ySpeed = 0;
@@ -47,10 +71,9 @@ public abstract class GravitisedObj {
 		else
 		{
 			//System.out.println(ySpeed);
-			if(closestPlatform<ySpeed)
+			if(closestPlatform<ySpeed*ratio)
 			{
-				//System.out.println("Closest" + closestPlatform);
-				System.out.println("yes");
+				
 				y+=closestPlatform;
 				grounded= true;
 				ySpeed = 0;
@@ -59,12 +82,16 @@ public abstract class GravitisedObj {
 			else
 			{
 				//System.out.println(ySpeed);
-				y += ySpeed;
+				y += ySpeed*ratio;
 			}
+		}
+		if(m.checkPlatformCollision(x+width/2, y+height,2)>2)
+		{
+			grounded=false;
 		}
 		
 		if (!grounded)
-			ySpeed += GRAVITY_POWER;
+			ySpeed += GRAVITY_POWER*ratio;
 	}
 	public abstract void draw(PApplet g);
 	

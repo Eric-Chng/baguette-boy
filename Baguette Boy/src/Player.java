@@ -10,6 +10,10 @@ public class Player extends GravitisedObj{
 	private int hp;
 	private int currentInvSpot;
 	private Manager manager;
+	private boolean rightWalkCode;
+	private boolean leftWalkCode;
+	private boolean hasJumped;
+
 
 
 	public Player(int x, int y, int mass, int width, int height, Manager m) {
@@ -17,48 +21,110 @@ public class Player extends GravitisedObj{
 		hp = MAX_HP;
 		currentInvSpot = 0;
 		manager = m;
+		rightWalkCode=false;
+		hasJumped = true;
+		leftWalkCode = false;
 	}
 
 	public void act(double ratio)
 	{
 		//ySpeed+=1;
-		posUpdate();
-
-
-	}
-
-	public void draw(PApplet g)
-	{
-		g.pushStyle();
-		g.fill(255,0,0);
-		g.rect(x, y, width, height);
-		g.text(""+currentInvSpot, x, y-20);
-		g.popStyle();
-	}
-
-	public void sendKeyCode(KeyEvent e)
-	{
-		if(e.getKeyCode()==e.VK_UP)
+		if(grounded)
 		{
-			if(grounded)
+			hasJumped = false;
+		}
+		if(!rightWalkCode&&!leftWalkCode)
+		{
+			if(xSpeed>0)
+
 			{
-				grounded=false;
-				ySpeed-=20;
+				xSpeed-=2;
+			}
+			else if(xSpeed<0)
+			{
+				xSpeed+=2;
 			}
 		}
-	}
-
-
-
-	public void getWheelMove(int move)
+	
+	if(!rightWalkCode||!leftWalkCode)
 	{
-		currentInvSpot+=move;
-	}
-
-	public void posUpdate() {
-		super.posUpdate();
-		if (hp < 0) {
-			//dead
+		if(rightWalkCode&&xSpeed<10)
+		{
+			xSpeed+=2;
+		}
+		else if(leftWalkCode&&xSpeed>-10)
+		{
+			xSpeed-=2;
 		}
 	}
+	else
+	{
+		if(xSpeed>0)
+
+		{
+			xSpeed-=2;
+		}
+		else if(xSpeed<0)
+		{
+			xSpeed+=2;
+		}
+	}
+	posUpdate(ratio);
+
+}
+
+public void draw(PApplet g)
+{
+	g.pushStyle();
+	g.fill(255,0,0);
+	g.rect(x, y, width, height);
+	g.text(""+currentInvSpot, x, y-20);
+	g.popStyle();
+}
+
+public void sendKeyCode(KeyEvent e)
+{
+	if(e.getKeyCode()==e.VK_UP)
+	{
+		if(grounded||!hasJumped)
+		{
+			hasJumped = true;
+			grounded=false;
+			ySpeed=-30;
+		}
+	}
+	else if(e.getKeyCode()==e.VK_LEFT)
+	{
+		this.leftWalkCode = true;
+	}
+	else if(e.getKeyCode()==e.VK_RIGHT)
+	{
+		this.rightWalkCode = true;
+	}
+}
+
+public void releaseKeyCode(KeyEvent e)
+{
+	System.out.println("hi");
+	if(e.getKeyCode()==e.VK_RIGHT)
+	{
+		this.rightWalkCode = false;
+	}
+	else if(e.getKeyCode()==e.VK_LEFT)
+	{
+		this.leftWalkCode = false;
+	}
+
+
+
+}
+
+
+
+public void getWheelMove(int move)
+{
+	currentInvSpot+=move;
+}
+
+
 }

@@ -14,14 +14,14 @@ public class Manager {
 	{
 		gObjects = new GObjectManager(this);
 		platforms = new PlatformManager(this);
-		player = new Player(200, 50, 10, 100, 100, this);
+		player = new Player(150, 50, 10, 100, 100, this);
 		
 		
 	}
 	
-	public int checkPlatformCollision(int x, int y)
+	public int checkPlatformCollision(int x, int y, int side)
 	{
-		return platforms.checkCollision(x, y);
+		return platforms.checkCollision(x, y, side);
 	}
 	
 	public void draw(PApplet g)
@@ -44,6 +44,11 @@ public class Manager {
 	public void sendKeyCode(KeyEvent e)
 	{
 		player.sendKeyCode(e);
+	}
+	
+	public void releaseKeyCode(KeyEvent e)
+	{
+		player.releaseKeyCode(e);
 	}
 	
 }
