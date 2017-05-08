@@ -5,7 +5,7 @@ import processing.core.PApplet;
 public class GObjectManager {
 
 	private ArrayList<GravitisedObj> objects;
-
+	private ArrayList<GravitisedObj> enemies;
 	private Manager manager;
 	
 	
@@ -31,13 +31,6 @@ public class GObjectManager {
 		for(GravitisedObj obj: objects)
 		{
 			obj.draw(g);
-		}
-	}
-	
-	public void destroy(Object a) {
-		for (int i = objects.size(); i >= 0; i--) {
-			if (a == objects.get(i))
-				objects.remove(i);
 		}
 	}
 	

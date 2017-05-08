@@ -4,13 +4,13 @@ import processing.core.PApplet;
 
 //import entities.*;
 
-public class Manager implements DestroyListener{
+public class Manager {
 
 	private GObjectManager gObjects;
 	private PlatformManager platforms;
 	private Player player;
 	
-	public Manager() 
+	public Manager()
 	{
 		gObjects = new GObjectManager(this);
 		platforms = new PlatformManager(this);
@@ -49,13 +49,6 @@ public class Manager implements DestroyListener{
 	public void releaseKeyCode(KeyEvent e)
 	{
 		player.releaseKeyCode(e);
-	}
-
-	@Override
-	public void destroy(Object a) {
-		gObjects.destroy(a);
-		platforms.destroy(a);
-		
 	}
 	
 }

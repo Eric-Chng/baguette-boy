@@ -47,13 +47,6 @@ public class PlatformManager {
 		}
 	}
 	
-	public void destroy(Object a) {
-		for (int i = platforms.size(); i >= 0; i--) {
-			if (a == platforms.get(i))
-				platforms.remove(i);
-		}
-	}
-	
 	
 	
 }

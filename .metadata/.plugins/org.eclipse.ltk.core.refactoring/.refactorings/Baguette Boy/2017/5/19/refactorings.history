@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Rename type &apos;DestroyControl&apos; to &apos;DestroyListener&apos;&#x0A;- Original project: &apos;Baguette Boy&apos;&#x0A;- Original element: &apos;DestroyControl&apos;&#x0A;- Renamed element: &apos;DestroyListener&apos;&#x0A;- Update references to refactored element&#x0A;- Update textual occurrences in comments and strings" description="Rename type &apos;DestroyControl&apos;" flags="589830" id="org.eclipse.jdt.ui.rename.type" input="/src&lt;{DestroyControl.java[DestroyControl" matchStrategy="1" name="DestroyListener" qualified="false" references="true" similarDeclarations="false" stamp="1494204497572" textual="false" version="1.0"/>
+</session>
