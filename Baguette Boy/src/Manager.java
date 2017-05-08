@@ -58,4 +58,9 @@ public class Manager implements DestroyListener{
 		
 	}
 	
+	public int getPlayerX()
+	{
+		return player.getX();
+	}
+	
 }

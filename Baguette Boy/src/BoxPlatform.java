@@ -43,6 +43,7 @@ public class BoxPlatform {
 			{
 				min = current;
 			}
+			//System.out.println(min);
 		}
 		else
 		{
@@ -57,7 +58,7 @@ public class BoxPlatform {
 				min = current;
 			}
 		}
-
+		
 		return min;
 	}
 

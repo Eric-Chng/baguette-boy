@@ -42,15 +42,15 @@ public abstract class GravitisedObj {
 			horizontalPlatform = Math.min(m.checkPlatformCollision(x+width, y+90*height/100,2),m.checkPlatformCollision(x+width, y+5*height/100,2));
 			if(horizontalPlatform<0)
 			{
-				x+=-1;
+				x+=-2;
 			}
 		}
 		else if(xSpeed<0)
 		{
-			horizontalPlatform = -Math.min(m.checkPlatformCollision(x, y+90*height/100,2),m.checkPlatformCollision(x, y+5*height/100,2));
+			horizontalPlatform = -Math.min(m.checkPlatformCollision(x, y+90*height/100,1),m.checkPlatformCollision(x, y+5*height/100,1));
 			if(horizontalPlatform>0)
 			{
-				x+=1;
+				x+=2;
 			}
 		}
 		if(Math.abs(horizontalPlatform)<Math.abs(xSpeed))
