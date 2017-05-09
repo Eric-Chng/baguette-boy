@@ -1,0 +1,37 @@
+
+public class Camera {
+	
+	private float zoom;
+	private int windowWidth, windowHeight;
+	private int x,y;
+	
+	
+	public Camera(int windowWidth, int windowHeight)
+	{
+		zoom = (float)((double)windowHeight/1080.0);
+		System.out.println((float)((double)windowHeight/1080.0));
+		//zoom=1f;
+		x=0;
+		y=0;
+		
+	}
+	
+	public void changeZoom(int i)
+	{
+		zoom += i*0.1*zoom;
+	}
+	
+	public float getZoom()
+	{
+		return zoom;
+	}
+	
+	public void moveCamera(int xChange, int yChange)
+	{
+		x+=xChange;
+		y+=yChange;
+	}
+	
+	
+	
+}

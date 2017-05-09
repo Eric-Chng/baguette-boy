@@ -40,12 +40,12 @@ public abstract class GravitisedObj {
 	public void posUpdate(double ratio) {
 		if(curveTimer<1)
 		{
-		onCurve=false;
+			onCurve=false;
 		}
 		else
 		{
 			curveTimer--;
-			System.out.println("On Curve");
+			//System.out.println("On Curve");
 		}
 		int horizontalPlatform = 500;
 		if(xSpeed>0)
@@ -67,53 +67,71 @@ public abstract class GravitisedObj {
 		if(Math.abs(horizontalPlatform)<Math.abs(xSpeed))
 		{
 			if(horizontalPlatform>5)
-			x+=horizontalPlatform;
+				x+=horizontalPlatform;
 			xSpeed = 0;
 		}
 		else
-		x += xSpeed*ratio;
-		
-		int closestPlatform = Math.min(m.checkPlatformCollision(x+10*width/100, y+height,2),m.checkPlatformCollision(x+90*width/100, y+height,2)); //1 - horizontal, 2-vertical
-		if(closestPlatform<0)
+			x += xSpeed*ratio;
+		int closestPlatform;
+		closestPlatform = Math.min(m.checkPlatformCollision(x+10*width/100, y+height,2),m.checkPlatformCollision(x+90*width/100, y+height,2)); //1 - horizontal, 2-vertical
+		//int closestPlatform2 = Math.max(m.checkPlatformCollision(x+10*width/100, y,2),m.checkPlatformCollision(x+90*width/100, y,2)); //1 - horizontal, 2-vertical
+		//int closer = Math.min(Math.abs(closestPlatform), Math.abs(closestPlatform2));
+		//if(closer==Math.abs(closestPlatform))
 		{
-			onCurve = true;
-			curveTimer = 3;
-			ySpeed = 0;
-			grounded = true;
-
-			if(closestPlatform>-10)
-			{
-			y+=closestPlatform;
 			
-			}
-		}
-		else
-		{
-			//System.out.println(ySpeed);
-			if(closestPlatform<ySpeed*ratio)
+			if(closestPlatform<0)
 			{
-				
-				y+=closestPlatform;
-				grounded= true;
+				onCurve = true;
+				curveTimer = 3;
 				ySpeed = 0;
-				//grounded = true;
+				grounded = true;
+
+				if(closestPlatform>-10)
+				{
+					y+=closestPlatform;
+
+				}
 			}
 			else
 			{
 				//System.out.println(ySpeed);
-				y += ySpeed*ratio;
+				if(closestPlatform<ySpeed*ratio)
+				{
+
+					y+=closestPlatform;
+					grounded= true;
+					ySpeed = 0;
+					//grounded = true;
+				}
+				else
+				{
+					//System.out.println(ySpeed);
+					y += ySpeed*ratio;
+				}
 			}
 		}
+		/*
+		else
+		{
+			//closestPlatform = Math.max(m.checkPlatformCollision(x+10*width/100, y,2),m.checkPlatformCollision(x+90*width/100, y,2)); //1 - horizontal, 2-vertical
+			if(ySpeed<0&&closestPlatform2<ySpeed)
+			{
+				y+=closestPlatform2;
+				grounded= false;
+				ySpeed = 00;
+			}
+		}*/
+
 		if(m.checkPlatformCollision(x+width/2, y+height,2)>2)
 		{
 			grounded=false;
 		}
-		
+
 		if (!grounded)
 			ySpeed += GRAVITY_POWER*ratio;
 	}
 	public abstract void draw(PApplet g);
-	
+
 	public abstract void act(double ratio);
 
 	public int getX()

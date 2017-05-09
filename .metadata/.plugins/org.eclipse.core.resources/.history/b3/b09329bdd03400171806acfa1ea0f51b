@@ -1,0 +1,23 @@
+
+public class Camera {
+	
+	private float zoom;
+	private int windowWidth, windowHeight;
+	private int x,y;
+	
+	
+	public Camera(int windowWidth, int windowHeight)
+	{
+		zoom=1f;
+		
+		
+	}
+	
+	public void changeZoom(int i)
+	{
+		zoom += i*0.1*zoom;
+	}
+	
+	
+	
+}

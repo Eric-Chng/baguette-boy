@@ -4,19 +4,22 @@
 //import davidmc.shapes.RegularPolygon;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseWheelEvent;
+import java.awt.event.MouseWheelListener;
 
 import processing.core.PApplet;
 
 
-public class DrawingSurface extends PApplet{
+public class DrawingSurface extends PApplet implements MouseWheelListener{
 
 	//private	RegularPolygon geoff;
 	//private DemoObject demo;
 	//private BoxPlatform dooder;
 	//private GObjectManager objM;
 	private long lastTime = 0;
+	private Camera cam;
 	//private Player donkey;
 	private Manager m;
+	
 	
 	public DrawingSurface() {
 		//demo = new DemoObject();
@@ -25,13 +28,15 @@ public class DrawingSurface extends PApplet{
 		//donkey = new Player(250, 300, 5, 100, 100);
 		m= new Manager();
 		
+		cam = new Camera(width, height);
 		runSketch();
-
+		
 		
 	}
 	
 
-	public void setup() {
+	public void setup()
+	{
 
 	}
 	
@@ -40,6 +45,10 @@ public class DrawingSurface extends PApplet{
 		noStroke();
 		fill(210);
 		this.background(30);
+		
+		
+		scale(cam.getZoom());
+		this.translate(cam.getX(), cam.getY());
 		//Rectangle backRectangle = new Rectangle(0,0,600,600);
 		//backRectangle.draw(this);
 		//donkey.draw(this);
@@ -47,8 +56,10 @@ public class DrawingSurface extends PApplet{
 		m.draw(this);
 		long time = System.currentTimeMillis()-lastTime;
 		double ratio = 16.0/time;
-		text(""+60.0/ratio,50,20);
+	
+		//text(""+60.0/ratio,20,0);
 		m.act(ratio);
+		cam.act(ratio);
 		//demo.act(time);
 		//this.objM.actObjects(ratio);
 		//donkey.act(ratio);
@@ -61,7 +72,11 @@ public class DrawingSurface extends PApplet{
 		//geoff.draw(this);
 		}
 	
-
+	public void sendSize(int width, int height)
+	{
+		cam.setZoom((float)(height/900.0));
+		//size(width, height);
+	}
 
 
 	public void mouseWheelMoved(MouseWheelEvent e) {
@@ -70,10 +85,12 @@ public class DrawingSurface extends PApplet{
 		if(e.getWheelRotation()<0)
 		{
 			m.mouseWheelMoved(1);
+			cam.changeZoom(1);
 		}
 		else
 		{
 			m.mouseWheelMoved(-1);
+			cam.changeZoom(-1);
 		}
 		
 	}
@@ -90,6 +107,22 @@ public class DrawingSurface extends PApplet{
 	public void keyPressed() {
 		//System.out.println("keypressed");
 		m.sendKeyCode(key);
+		if(key=='j')
+		{
+			cam.leftMove(true);;
+		}
+		if(key=='l')
+		{
+			cam.rightMove(true);
+		}
+		if(key=='i')
+		{
+			cam.upMove(true);
+		}
+		if(key=='k')
+		{
+			cam.downMove(true);
+		}
 		//System.out.println("key pressed");
 		
 	}
@@ -99,6 +132,22 @@ public class DrawingSurface extends PApplet{
 	public void keyReleased() {
 		// TODO Auto-generated method stub
 		m.releaseKeyCode(key);
+		if(key=='j')
+		{
+			cam.leftMove(false);;
+		}
+		if(key=='l')
+		{
+			cam.rightMove(false);
+		}
+		if(key=='i')
+		{
+			cam.upMove(false);
+		}
+		if(key=='k')
+		{
+			cam.downMove(false);
+		}
 	}
 	
 		

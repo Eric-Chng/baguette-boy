@@ -2,7 +2,7 @@
 
 import processing.core.PApplet;
 
-public class BoxPlatform {
+public class BoxPlatform implements Comparable{
 	protected int x, y;
 	protected int width, height;
 
@@ -17,6 +17,11 @@ public class BoxPlatform {
 		this.width = width;
 		this.height = height;
 	}
+	
+	public int getMiddleX()
+	{
+		return x+width/2;
+	}
 
 	//boolean is important
 	/*
@@ -29,7 +34,7 @@ public class BoxPlatform {
 		int min = 20000;
 		if(otherX>x&&otherX<x+width&&otherY>y&&otherY<y+height)
 		{
-			if(side==2)
+			if(side==2);
 			return -1;
 		}
 		int current = Math.abs(x-otherX);
@@ -82,6 +87,18 @@ public class BoxPlatform {
 
 		}
 		g.popStyle();
+	}
+
+	public int compareTo(BoxPlatform other) {
+		// TODO Auto-generated method stub
+		
+		return 0;
+	}
+
+	@Override
+	public int compareTo(Object o) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 
