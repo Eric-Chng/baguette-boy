@@ -1,0 +1,51 @@
+
+public class Hitbox {
+
+	private boolean friendly;
+	private int damage;
+	private float x,y;
+	private float width, height;
+	private float xV, yV;
+	private long lastForMs;
+	private long startMS;
+	private DestroyListener destruction;
+	
+	public Hitbox(boolean fromPlayer, int damage, float x, float y, float width, float height, float xVelocity, float yVelocity, long DurationInMS) {
+		this.friendly = fromPlayer;
+		this.damage = damage;
+		this.x = x;
+		this.y = y;
+		this. width = width;
+		this.height = height;
+		xV = xVelocity;
+		yV = yVelocity;
+		lastForMs = DurationInMS;
+		startMS = System.currentTimeMillis();
+	}
+	
+	public Hitbox(boolean fromPlayer, int damage, float x, float y, float width, float height, long DurationInMS) {
+		this.friendly = fromPlayer;
+		this.damage = damage;
+		this.x = x;
+		this.y = y;
+		this. width = width;
+		this.height = height;
+		xV = 0;
+		yV = 0;
+		lastForMs = DurationInMS;
+		startMS = System.currentTimeMillis();
+	}
+	
+	public void addDestroyListener(DestroyListener a) {
+		destruction = a;
+	}
+	
+	public void act() {
+		if (System.currentTimeMillis() - startMS > lastForMs)
+			destruction.destroy(this);
+		x+= xV;
+		y+= yV;
+	}
+	
+	
+}

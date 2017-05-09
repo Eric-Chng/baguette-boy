@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 import processing.core.PApplet;
 
-public class PlatformManager {
+public class PlatformManager implements DestroyListener{
 
 	private ArrayList<BoxPlatform> platforms;
 	private Manager manager;
@@ -30,6 +30,7 @@ public class PlatformManager {
 			tempX+=10;
 			//System.out.println(angle);
 			platforms.add(new BoxPlatform(tempX, (int)(tempY-Math.sin(angle)*height), 20, 32+(int)(Math.sin(angle)*height)));
+
 		}
 
 
@@ -66,7 +67,7 @@ public class PlatformManager {
 	}
 	
 	public void destroy(Object a) {
-		for (int i = platforms.size(); i >= 0; i--) {
+		for (int i = platforms.size()-1; i >= 0; i--) {
 			if (a == platforms.get(i))
 				platforms.remove(i);
 		}

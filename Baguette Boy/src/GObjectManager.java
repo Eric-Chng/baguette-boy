@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 import processing.core.PApplet;
 
-public class GObjectManager {
+public class GObjectManager implements DestroyListener{
 
 	private ArrayList<GravitisedObj> objects;
 
@@ -36,10 +36,27 @@ public class GObjectManager {
 	}
 	
 	public void destroy(Object a) {
-		for (int i = objects.size(); i >= 0; i--) {
+		for (int i = objects.size()-1; i >= 0; i--) {
 			if (a == objects.get(i))
 				objects.remove(i);
 		}
 	}
+	
+	public ArrayList<Damagable> getDmg() {
+		ArrayList<Damagable> d = new ArrayList<Damagable>();
+		
+		for(GravitisedObj obj: objects)
+		{
+			if (obj instanceof Damagable)
+				d.add((Damagable)obj);
+		}
+		
+		//do it for every array it contains
+		
+		
+		
+		return d;
+	}
+	
 	
 }

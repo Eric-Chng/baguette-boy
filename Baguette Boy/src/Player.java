@@ -1,10 +1,11 @@
 
 
+import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
 
 import processing.core.PApplet;
 
-public class Player extends GravitisedObj{
+public class Player extends GravitisedObj implements Damagable{
 
 	public static final int MAX_HP = 100;
 	private int hp;
@@ -136,6 +137,17 @@ public void releaseKeyCode(char e)
 public void getWheelMove(int move)
 {
 	currentInvSpot+=move;
+}
+
+@Override
+public Rectangle getRect() {
+	return new Rectangle(getX(),getY(), getWidth(),getHeight());
+}
+
+@Override
+public void takeDamage(int damage) {
+	hp-= damage;
+	
 }
 
 

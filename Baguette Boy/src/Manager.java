@@ -8,6 +8,7 @@ public class Manager implements DestroyListener{
 
 	private GObjectManager gObjects;
 	private PlatformManager platforms;
+	private CombatManager combat;
 	private Player player;
 	
 	public Manager() 
@@ -15,10 +16,27 @@ public class Manager implements DestroyListener{
 		gObjects = new GObjectManager(this);
 		platforms = new PlatformManager(this);
 		player = new Player(100, 50, 10, 100, 100, this);
+		combat = new CombatManager(this);
 		
 		
 	}
 	
+	public GObjectManager getgObjects() {
+		return gObjects;
+	}
+
+	public PlatformManager getPlatforms() {
+		return platforms;
+	}
+
+	public CombatManager getCombat() {
+		return combat;
+	}
+	
+	public Player getPlayer() {
+		return player;
+	}
+
 	public int checkPlatformCollision(int x, int y, int side)
 	{
 		return platforms.checkCollision(x, y, side);
@@ -29,11 +47,15 @@ public class Manager implements DestroyListener{
 		gObjects.drawObjects(g);
 		player.draw(g);
 		platforms.draw(g);
+		combat.drawObjects(g);
 	}
 	
 	public void act(double ratio)
 	{
 		player.act(ratio);
+		gObjects.actObjects(ratio);
+		combat.actObjects();
+		combat.checkHits();
 	}
 	
 	public void mouseWheelMoved(int i)
@@ -55,6 +77,7 @@ public class Manager implements DestroyListener{
 	public void destroy(Object a) {
 		gObjects.destroy(a);
 		platforms.destroy(a);
+		combat.destroy(a);
 		
 	}
 	

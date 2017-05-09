@@ -1,0 +1,61 @@
+import java.util.ArrayList;
+
+import processing.core.PApplet;
+
+public class CombatManager implements DestroyListener{
+	private ArrayList<Hitbox> hitboxes;
+
+	private Manager manager;
+	
+	
+	
+
+	
+	public CombatManager(Manager m)
+	{
+		hitboxes = new ArrayList<Hitbox>();
+		manager = m;
+		
+		Hitbox test = new Hitbox(true, manager.getPlayer().getX(), manager.getPlayer().getY(), 100, 100, 100, 10000);
+		hitboxes.add(test);
+
+	}
+	
+	public void actObjects()
+	{
+		for(Hitbox obj: hitboxes)
+		{
+			obj.act();
+		}
+	}
+	
+	public void drawObjects(PApplet g)
+	{
+		
+		for(Hitbox obj: hitboxes)
+		{
+			obj.draw(g);
+		}
+	}
+	
+	public void checkHits() {
+		ArrayList<Damagable> list = manager.getgObjects().getDmg();
+		
+		for (Hitbox a:hitboxes) {
+			if (!a.getFriendly()) {
+				a.collide(manager.getPlayer());
+			} else {
+				for (Damagable d: list) {
+					a.collide(d);
+				}
+			}
+		}
+	}
+	
+	public void destroy(Object a) {
+		for (int i = hitboxes.size(); i >= 0; i--) {
+			if (a == hitboxes.get(i))
+				hitboxes.remove(i);
+		}
+	}
+}
