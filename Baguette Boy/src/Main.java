@@ -26,9 +26,11 @@ public class Main {
 		window.setSize(600, 600);
 		window.setMinimumSize(new Dimension(600,600));
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.addMouseWheelListener(drawing);
-		window.addKeyListener(drawing);
+		//window.addMouseWheelListener(drawing);
+		//window.addKeyListener(drawing);
 		window.setResizable(true);
+		window.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+		//window.setUndecorated(true);
 		
 		//window.add(this);
 		

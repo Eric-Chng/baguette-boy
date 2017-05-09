@@ -16,6 +16,8 @@ public abstract class GravitisedObj {
 	protected double xSpeed, ySpeed;
 	public boolean grounded;
 	private Manager m;
+	protected boolean onCurve;
+	private int curveTimer;
 
 	/*
 	 * x and y from top left corner of box
@@ -32,14 +34,23 @@ public abstract class GravitisedObj {
 		xSpeed = 0;
 		ySpeed = 0;
 		grounded = false;
+		curveTimer = 0;
 	}
 
 	public void posUpdate(double ratio) {
-		
+		if(curveTimer<1)
+		{
+		onCurve=false;
+		}
+		else
+		{
+			curveTimer--;
+			System.out.println("On Curve");
+		}
 		int horizontalPlatform = 500;
 		if(xSpeed>0)
 		{
-			horizontalPlatform = Math.min(m.checkPlatformCollision(x+width, y+90*height/100,2),m.checkPlatformCollision(x+width, y+5*height/100,2));
+			horizontalPlatform = Math.min(m.checkPlatformCollision(x+width, y+90*height/100,2),m.checkPlatformCollision(x+width, y+10*height/100,2));
 			if(horizontalPlatform<0)
 			{
 				x+=-2;
@@ -62,11 +73,19 @@ public abstract class GravitisedObj {
 		else
 		x += xSpeed*ratio;
 		
-		int closestPlatform = Math.min(m.checkPlatformCollision(x+5*width/100, y+height,2),m.checkPlatformCollision(x+95*width/100, y+height,2)); //1 - horizontal, 2-vertical
+		int closestPlatform = Math.min(m.checkPlatformCollision(x+10*width/100, y+height,2),m.checkPlatformCollision(x+90*width/100, y+height,2)); //1 - horizontal, 2-vertical
 		if(closestPlatform<0)
 		{
+			onCurve = true;
+			curveTimer = 3;
 			ySpeed = 0;
 			grounded = true;
+
+			if(closestPlatform>-10)
+			{
+			y+=closestPlatform;
+			
+			}
 		}
 		else
 		{

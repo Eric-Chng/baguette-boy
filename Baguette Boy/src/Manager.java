@@ -14,7 +14,7 @@ public class Manager implements DestroyListener{
 	{
 		gObjects = new GObjectManager(this);
 		platforms = new PlatformManager(this);
-		player = new Player(150, 50, 10, 100, 100, this);
+		player = new Player(100, 50, 10, 100, 100, this);
 		
 		
 	}
@@ -41,12 +41,12 @@ public class Manager implements DestroyListener{
 		player.getWheelMove(i);
 	}
 	
-	public void sendKeyCode(KeyEvent e)
+	public void sendKeyCode(char e)
 	{
 		player.sendKeyCode(e);
 	}
 	
-	public void releaseKeyCode(KeyEvent e)
+	public void releaseKeyCode(char e)
 	{
 		player.releaseKeyCode(e);
 	}

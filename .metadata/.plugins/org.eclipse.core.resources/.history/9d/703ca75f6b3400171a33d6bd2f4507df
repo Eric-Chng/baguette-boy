@@ -1,0 +1,17 @@
+
+
+public class RoundedPlatform extends BoxPlatform{
+
+	public RoundedPlatform(int x, int y, int width, int height)
+	{
+		super(x,y,width,height);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+}

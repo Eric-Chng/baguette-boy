@@ -14,11 +14,28 @@ public class PlatformManager {
 		platforms.add(new BoxPlatform(-200, 450, 1000, 50));
 		platforms.add(new BoxPlatform(250, 350, 100, 100));
 		platforms.add(new BoxPlatform(350, 300, 100, 150));
+		//platforms.add(new RoundedPlatform(450, 150, 100, 150));
+
 		platforms.add(new BoxPlatform(-20, 0, 40, 600));
+		
+		int tempY = 470;
+		int x = 430;
+		int tempX = 430;
+		int width = 400;
+		int height = 200;
+		for(int i=0;i<40;i++)
+		{
+			double angle = Math.acos(-1*(x+(double)width/2-tempX)/width);
+			tempX+=10;
+			//System.out.println(angle);
+			platforms.add(new BoxPlatform(tempX, (int)(tempY-Math.sin(angle)*height), 20, 32+(int)(Math.sin(angle)*height)));
+		}
 
 
 	}
 	
+	
+
 	public int checkCollision(int x, int y, int side)
 	{
 		boolean collides = false;

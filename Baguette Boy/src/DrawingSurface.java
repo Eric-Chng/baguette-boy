@@ -3,14 +3,12 @@
 //import davidmc.shapes.Rectangle;
 //import davidmc.shapes.RegularPolygon;
 import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
 import java.awt.event.MouseWheelEvent;
-import java.awt.event.MouseWheelListener;
 
 import processing.core.PApplet;
 
 
-public class DrawingSurface extends PApplet implements KeyListener, MouseWheelListener{
+public class DrawingSurface extends PApplet{
 
 	//private	RegularPolygon geoff;
 	//private DemoObject demo;
@@ -49,6 +47,7 @@ public class DrawingSurface extends PApplet implements KeyListener, MouseWheelLi
 		m.draw(this);
 		long time = System.currentTimeMillis()-lastTime;
 		double ratio = 16.0/time;
+		text(""+60.0/ratio,50,20);
 		m.act(ratio);
 		//demo.act(time);
 		//this.objM.actObjects(ratio);
@@ -62,23 +61,9 @@ public class DrawingSurface extends PApplet implements KeyListener, MouseWheelLi
 		//geoff.draw(this);
 		}
 	
-	public void getMouseWheelMove(int move)
-	{
-		//donkey.getWheelMove(move);
-	}
-
-	public void getKeyPressed(KeyEvent e)
-	{
-		
-	}
-	
-	public void getKeyReleased(KeyEvent e)
-	{
-		
-	}
 
 
-	@Override
+
 	public void mouseWheelMoved(MouseWheelEvent e) {
 		// TODO Auto-generated method stub
 		//System.out.println("hi");
@@ -95,25 +80,25 @@ public class DrawingSurface extends PApplet implements KeyListener, MouseWheelLi
 
 
 	@Override
-	public void keyTyped(KeyEvent e) {
+	public void keyTyped() {
 		// TODO Auto-generated method stub
 		
 	}
 
 
 	@Override
-	public void keyPressed(KeyEvent e) {
-		
-		m.sendKeyCode(e);
-		System.out.println("key pressed");
+	public void keyPressed() {
+		//System.out.println("keypressed");
+		m.sendKeyCode(key);
+		//System.out.println("key pressed");
 		
 	}
 
 
 	@Override
-	public void keyReleased(KeyEvent e) {
+	public void keyReleased() {
 		// TODO Auto-generated method stub
-		m.releaseKeyCode(e);
+		m.releaseKeyCode(key);
 	}
 	
 		

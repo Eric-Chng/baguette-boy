@@ -3,8 +3,8 @@
 import processing.core.PApplet;
 
 public class BoxPlatform {
-	private int x, y;
-	private int width, height;
+	protected int x, y;
+	protected int width, height;
 
 	/*
 	 * x and y is upper left corner
@@ -29,6 +29,7 @@ public class BoxPlatform {
 		int min = 20000;
 		if(otherX>x&&otherX<x+width&&otherY>y&&otherY<y+height)
 		{
+			if(side==2)
 			return -1;
 		}
 		int current = Math.abs(x-otherX);
@@ -67,7 +68,19 @@ public class BoxPlatform {
 	{
 		g.pushStyle();
 		g.fill(0,255,0);
+		if(width<40)
+		{
+			
+			g.fill(139,69,19);
+		}
 		g.rect(x, y, width, height);
+		if(width<40)
+		{
+			g.fill(40);
+			g.rect(x, y, width/4, height);
+			g.rect(x+3*width/4, y, width/4, height);
+
+		}
 		g.popStyle();
 	}
 

@@ -9,6 +9,7 @@ public class GObjectManager {
 	private Manager manager;
 	
 	
+	
 
 	
 	public GObjectManager(Manager m)

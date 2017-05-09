@@ -48,13 +48,21 @@ public class Player extends GravitisedObj{
 	
 	if(!rightWalkCode||!leftWalkCode)
 	{
-		if(rightWalkCode&&xSpeed<10)
+		if(rightWalkCode&&(xSpeed<10))
 		{
+			if(onCurve)
+			{
+				xSpeed+=2;
+			}
 			xSpeed+=2;
 		}
-		else if(leftWalkCode&&xSpeed>-10)
+		else if(leftWalkCode&&(xSpeed>-10))
 		{
 			xSpeed-=2;
+			if(onCurve)
+			{
+				xSpeed-=2;
+			}
 		}
 	}
 	else
@@ -82,35 +90,39 @@ public void draw(PApplet g)
 	g.popStyle();
 }
 
-public void sendKeyCode(KeyEvent e)
+public void sendKeyCode(char e)
 {
-	if(e.getKeyCode()==e.VK_UP)
+	if(e=='w')
 	{
-		if(grounded||!hasJumped)
+		if(grounded||!hasJumped||onCurve)
 		{
 			hasJumped = true;
 			grounded=false;
 			ySpeed=-30;
+			if(onCurve)
+			{
+				y-=10;
+			}
 		}
 	}
-	else if(e.getKeyCode()==e.VK_LEFT)
+	else if(e=='a')
 	{
 		this.leftWalkCode = true;
 	}
-	else if(e.getKeyCode()==e.VK_RIGHT)
+	else if(e=='d')
 	{
 		this.rightWalkCode = true;
 	}
 }
 
-public void releaseKeyCode(KeyEvent e)
+public void releaseKeyCode(char e)
 {
-	System.out.println("hi");
-	if(e.getKeyCode()==e.VK_RIGHT)
+	//System.out.println("hi");
+	if(e=='d')
 	{
 		this.rightWalkCode = false;
 	}
-	else if(e.getKeyCode()==e.VK_LEFT)
+	else if(e=='a')
 	{
 		this.leftWalkCode = false;
 	}
