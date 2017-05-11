@@ -94,6 +94,11 @@ public class BoxPlatform implements Comparable{
 		
 		return 0;
 	}
+	
+	public int getWidth()
+	{
+		return width;
+	}
 
 	@Override
 	public int compareTo(Object o) {

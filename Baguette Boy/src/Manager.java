@@ -10,6 +10,7 @@ public class Manager implements DestroyListener{
 	private PlatformManager platforms;
 	private CombatManager combat;
 	private Player player;
+	private int platformY;
 	
 	public Manager() 
 	{
@@ -84,6 +85,16 @@ public class Manager implements DestroyListener{
 	public int getPlayerX()
 	{
 		return player.getX();
+	}
+	
+	public int getPlayerY()
+	{
+		return platformY;
+	}
+	
+	public void sendPlatformY(int y)
+	{
+		platformY=y;
 	}
 	
 }

@@ -48,6 +48,7 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		
 		
 		scale(cam.getZoom());
+		cam.sendPlayerPos(m.getPlayerX(), m.getPlayerY());
 		this.translate(cam.getX(), cam.getY());
 		//Rectangle backRectangle = new Rectangle(0,0,600,600);
 		//backRectangle.draw(this);
@@ -57,7 +58,7 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		long time = System.currentTimeMillis()-lastTime;
 		double ratio = 16.0/time;
 	
-		//text(""+60.0/ratio,20,0);
+		text(""+60.0/ratio,50,0);
 		m.act(ratio);
 		cam.act(ratio);
 		//demo.act(time);
@@ -85,12 +86,12 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		if(e.getWheelRotation()<0)
 		{
 			m.mouseWheelMoved(1);
-			cam.changeZoom(1);
+			//cam.changeZoom(1);
 		}
 		else
 		{
 			m.mouseWheelMoved(-1);
-			cam.changeZoom(-1);
+			//cam.changeZoom(-1);
 		}
 		
 	}
