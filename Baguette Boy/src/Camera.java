@@ -18,7 +18,7 @@ public class Camera {
 		this.windowHeight=windowHeight;
 		this.windowWidth=windowWidth;
 		cameraLocked=true;
-		System.out.println(windowHeight);
+		//System.out.println(windowHeight);
 		frameCounter = false;
 		x=-20;
 		y=200;
@@ -47,10 +47,11 @@ public class Camera {
 		int difference=this.y+y-600;
 		//System.out.println("this: " + this.y);
 		//System.out.println(y);
+		//System.out.println(y);
 		if(Math.abs(difference)>5)
 		{
 			
-			System.out.println(difference);
+			//System.out.println(difference);
 
 			//if(!frameCounter)
 			{
@@ -68,7 +69,7 @@ public class Camera {
 		}
 		else
 		{
-			System.out.println("hi");
+			//System.out.println("hi");
 			this.y=-y+600;
 			frameCounter = true;
 			//this.y=y-300;

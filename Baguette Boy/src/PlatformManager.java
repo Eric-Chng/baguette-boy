@@ -51,7 +51,7 @@ public class PlatformManager implements DestroyListener{
 
 
 
-	public int checkCollision(int x, int y, int side)
+	public int checkCollision(int x, int y, int side,boolean isPlayer)
 	{
 		boolean collides = false;
 		int min = 20000;
@@ -70,8 +70,9 @@ public class PlatformManager implements DestroyListener{
 				}
 			}
 		}
-		if(side==2&&min<20000)
+		if(side==2&&min<1000&&isPlayer)
 		{
+			//System.out.println(min+y);
 			manager.sendPlatformY(min+y);
 		}
 		return min;

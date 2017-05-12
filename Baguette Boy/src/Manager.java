@@ -12,6 +12,7 @@ public class Manager implements DestroyListener{
 	private Player player;
 	private int platformY;
 	
+	
 	public Manager() 
 	{
 		gObjects = new GObjectManager(this);
@@ -38,9 +39,10 @@ public class Manager implements DestroyListener{
 		return player;
 	}
 
-	public int checkPlatformCollision(int x, int y, int side)
+	public int checkPlatformCollision(int x, int y, int side, boolean isPlayer)
 	{
-		return platforms.checkCollision(x, y, side);
+		//System.out.println(Math.min(platforms.checkCollision(x, y, side),gObjects.checkCollision(x, y, side)));
+		return Math.min(platforms.checkCollision(x, y, side,isPlayer),gObjects.checkCollision(x, y, side, isPlayer));
 	}
 	
 	public void draw(PApplet g)
@@ -95,6 +97,7 @@ public class Manager implements DestroyListener{
 	public void sendPlatformY(int y)
 	{
 		platformY=y;
+		//System.out.println(y);
 	}
 	
 }

@@ -20,7 +20,7 @@ public class Main {
 	{
 		drawing = new DrawingSurface();		
 		PSurfaceAWT surf = (PSurfaceAWT) drawing.getSurface();
-		PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();
+		PSurfaceAWT.SmoothCanvas canvas = (PSurfaceAWT.SmoothCanvas) surf.getNative();                                                                                                         
 		JFrame window = (JFrame)canvas.getFrame();
 		
 		window.setSize(600, 600);
