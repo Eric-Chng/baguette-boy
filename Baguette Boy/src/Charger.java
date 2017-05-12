@@ -10,7 +10,7 @@ public class Charger extends Enemy{
 	public void act(double ratio)
 	{
 		//System.out.println(ratio);
-		xSpeed=-100;
+		xSpeed=-10;
 		//x-=1;
 		super.posUpdate(ratio);
 		

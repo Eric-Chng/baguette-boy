@@ -13,7 +13,7 @@ public class Enemy extends GravitisedObj{
 	public void draw(PApplet g) {
 		g.pushStyle();
 		g.fill(0,0,255);
-		System.out.println(x+", " + y+", "+xSpeed+", "+ySpeed);
+		//System.out.println(x+", " + y+", "+xSpeed+", "+ySpeed);
 		g.rect(x, y, width, height);
 		g.popStyle();	
 	}
