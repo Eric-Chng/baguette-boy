@@ -7,6 +7,7 @@ public class Camera {
 	private int xSpeed, ySpeed;
 	private boolean rightFlag,leftFlag,upFlag,downFlag;
 	private boolean cameraLocked;
+	private boolean frameCounter;
 
 
 	public Camera(int windowWidth, int windowHeight)
@@ -18,13 +19,15 @@ public class Camera {
 		this.windowWidth=windowWidth;
 		cameraLocked=true;
 		System.out.println(windowHeight);
+		frameCounter = false;
 		x=-20;
 		y=200;
 		xSpeed=0;
 		ySpeed=0;
 
 	}
-
+	
+	
 	public void setZoom(float z)
 	{
 		zoom = z;
@@ -46,22 +49,28 @@ public class Camera {
 		//System.out.println(y);
 		if(Math.abs(difference)>5)
 		{
+			
 			System.out.println(difference);
 
-			if(difference>0)
+			//if(!frameCounter)
 			{
-				this.y-=10;
+				frameCounter = false;
+				if(difference>0)
+				{
+					this.y-=6;
+				}
+				else
+				{
+					this.y+=6;
+				}
 			}
-			else
-			{
-				this.y+=10;
-			}
-
+			
 		}
 		else
 		{
 			System.out.println("hi");
 			this.y=-y+600;
+			frameCounter = true;
 			//this.y=y-300;
 		}
 		if(x<420)

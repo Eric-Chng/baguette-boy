@@ -57,8 +57,11 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		m.draw(this);
 		long time = System.currentTimeMillis()-lastTime;
 		double ratio = 16.0/time;
-	
+		pushMatrix();
+		this.translate(-cam.getX(),-cam.getY());
+
 		text(""+60.0/ratio,50,0);
+		popMatrix();
 		m.act(ratio);
 		cam.act(ratio);
 		//demo.act(time);
