@@ -60,7 +60,7 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		pushMatrix();
 		this.translate(-cam.getX(),-cam.getY());
 
-		text(""+60.0/ratio,50,0);
+		//text(""+60.0/ratio,50,0); BREAKS FOR SOME REASON "java.awt.geom.NoninvertibleTransformException: Determinant is 0"
 		popMatrix();
 		m.act(ratio);
 		cam.act(ratio);

@@ -92,6 +92,19 @@ public class Camera {
 				this.x=-x+400;
 
 			}
+			
+//			int xAdjust = x+400;
+//			if (this.x> xAdjust + 200) {
+//				System.out.println(this.x);
+//				this.x -= 5;
+//				if(this.x > xAdjust + 300)
+//					this.x-= 6;
+//			} else if (this.x< xAdjust -100) {
+//				System.out.println(this.x);
+//				this.x+= 5;
+//				if (this.x <xAdjust - 200)
+//					this.x+=6;
+//			}
 
 
 
