@@ -2,7 +2,7 @@
 
 import processing.core.PApplet;
 
-public class BoxPlatform implements Comparable{
+public class BoxPlatform{
 	protected int x, y;
 	protected int width, height;
 
@@ -23,10 +23,12 @@ public class BoxPlatform implements Comparable{
 		return x+width/2;
 	}
 
-	//boolean is important
-	/*
-	 * in collision checking, have bool change to true if obj collides with any platform (given by this method)
-	 * if bool stays false, grounded turns off and gravity re-enabled
+	/**
+	 * Checks a points collision with this object.
+	 * @param otherX - Point's x
+	 * @param otherY - Point's y
+	 * @param side- 1 if horizontal detection, 2 if vertical detection
+	 * @return Distance to nearest side, negative if colliding
 	 */
 	public int collideTest(int otherX, int otherY, int side) {
 		//check collision
@@ -68,7 +70,10 @@ public class BoxPlatform implements Comparable{
 		return min;
 	}
 
-
+	/**
+	 * Draws the box platform.
+	 * @param g
+	 */
 	public void draw(PApplet g)
 	{
 		g.pushStyle();
@@ -89,22 +94,17 @@ public class BoxPlatform implements Comparable{
 		g.popStyle();
 	}
 
-	public int compareTo(BoxPlatform other) {
-		// TODO Auto-generated method stub
-		
-		return 0;
-	}
 	
+	/**
+	 * Returns the pixel width of the platform
+	 * @return width
+	 */
 	public int getWidth()
 	{
 		return width;
 	}
 
-	@Override
-	public int compareTo(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
 
 
 }

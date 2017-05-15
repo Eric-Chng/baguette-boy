@@ -46,109 +46,129 @@ public class Player extends GravitisedObj implements Damagable{
 				xSpeed+=2;
 			}
 		}
-	
-	if(!rightWalkCode||!leftWalkCode)
-	{
-		if(rightWalkCode&&(xSpeed<10))
+
+		if(!rightWalkCode||!leftWalkCode)
 		{
-			if(onCurve)
+			if(rightWalkCode&&(xSpeed<10))
 			{
+				if(onCurve)
+				{
+					xSpeed+=2;
+				}
 				xSpeed+=2;
 			}
-			xSpeed+=2;
+			else if(leftWalkCode&&(xSpeed>-10))
+			{
+				xSpeed-=2;
+				if(onCurve)
+				{
+					xSpeed-=2;
+				}
+			}
 		}
-		else if(leftWalkCode&&(xSpeed>-10))
+		else
 		{
-			xSpeed-=2;
-			if(onCurve)
+			if(xSpeed>0)
+
 			{
 				xSpeed-=2;
 			}
-		}
-	}
-	else
-	{
-		if(xSpeed>0)
-
-		{
-			xSpeed-=2;
-		}
-		else if(xSpeed<0)
-		{
-			xSpeed+=2;
-		}
-	}
-	posUpdate(ratio);
-
-}
-
-public void draw(PApplet g)
-{
-	g.pushStyle();
-	g.fill(255,0,0);
-	g.rect(x, y, width, height);
-	g.text(""+currentInvSpot, x, y-20);
-	g.popStyle();
-}
-
-public void sendKeyCode(char e)
-{
-	if(e=='w')
-	{
-		if(grounded||!hasJumped||onCurve)
-		{
-			hasJumped = true;
-			grounded=false;
-			ySpeed=-30;
-			if(onCurve)
+			else if(xSpeed<0)
 			{
-				y-=10;
+				xSpeed+=2;
 			}
 		}
+		posUpdate(ratio);
+
 	}
-	else if(e=='a')
+
+	/**
+	 * Draws the player object
+	 */
+	public void draw(PApplet g)
 	{
-		this.leftWalkCode = true;
+		g.pushStyle();
+		g.fill(255,0,0);
+		g.rect(x, y, width, height);
+		g.text(""+currentInvSpot, x, y-20);
+		g.popStyle();
 	}
-	else if(e=='d')
+
+	/**
+	 * Updates the current key code
+	 * @param e
+	 */
+	public void sendKeyCode(char e)
 	{
-		this.rightWalkCode = true;
+		if(e=='w')
+		{
+			if(grounded||!hasJumped||onCurve)
+			{
+				hasJumped = true;
+				grounded=false;
+				ySpeed=-30;
+				if(onCurve)
+				{
+					y-=10;
+				}
+			}
+		}
+		else if(e=='a')
+		{
+			this.leftWalkCode = true;
+		}
+		else if(e=='d')
+		{
+			this.rightWalkCode = true;
+		}
 	}
-}
 
-public void releaseKeyCode(char e)
-{
-	//System.out.println("hi");
-	if(e=='d')
+	/**
+	 * Updates the current release key code
+	 * @param e
+	 */
+	public void releaseKeyCode(char e)
 	{
-		this.rightWalkCode = false;
+		//System.out.println("hi");
+		if(e=='d')
+		{
+			this.rightWalkCode = false;
+		}
+		else if(e=='a')
+		{
+			this.leftWalkCode = false;
+		}
+
+
+
 	}
-	else if(e=='a')
+
+
+	/**
+	 * Updates the player with mouse wheel movements
+	 * @param move
+	 */
+	public void getWheelMove(int move)
 	{
-		this.leftWalkCode = false;
+		currentInvSpot+=move;
 	}
-
-
-
-}
-
-
-
-public void getWheelMove(int move)
-{
-	currentInvSpot+=move;
-}
-
-@Override
-public Rectangle getRect() {
-	return new Rectangle(getX(),getY(), getWidth(),getHeight());
-}
-
-@Override
-public void takeDamage(int damage) {
-	hp-= damage;
 	
-}
+	/**
+	 * Returns an object representation of the player object
+	 */
+	@Override
+	public Rectangle getRect() {
+		return new Rectangle(getX(),getY(), getWidth(),getHeight());
+	}
+
+	/**
+	 * Takes damage specified by the parameter
+	 */
+	@Override
+	public void takeDamage(int damage) {
+		hp-= damage;
+
+	}
 
 
 }

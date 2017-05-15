@@ -37,7 +37,11 @@ public abstract class GravitisedObj {
 		curveTimer = 0;
 	}
 
-	public void posUpdate(double ratio) {
+	/**
+	 * To be used by subclasses in the act method.  Updates the position based on the xSpeed and ySpeed, while checking for collision.
+	 * @param ratio - Run speed ratio
+	 */
+	protected void posUpdate(double ratio) {
 		boolean isPlayer = false;
 		if(this instanceof Player)
 		{
@@ -147,27 +151,60 @@ public abstract class GravitisedObj {
 			ySpeed += GRAVITY_POWER*ratio;
 		}
 	}
+	
+	/**
+	 * Draws the gravitised object
+	 * @param g - Initialized PApplet
+	 */
 	public abstract void draw(PApplet g);
 
+	/**
+	 * Acts the gravitised object according to the frame rate ratio.
+	 * @param ratio
+	 */
 	public abstract void act(double ratio);
 
+	/**
+	 * Returns the left x of the object
+	 * @return x
+	 */
 	public int getX()
 	{
 		return x;
 	}
+	
+	/**
+	 * Returns the top y of the object
+	 * @return y
+	 */
 	public int getY()
 	{
 		return y;
 	}
 
+	/**
+	 * Returns the pixel width of the object
+	 * @return width
+	 */
 	public int getWidth() {
 		return width;
 	}
 
+	/**
+	 * Returns the pixel height of the object
+	 * @return height
+	 */
 	public int getHeight() {
 		return height;
 	}
 
+	/**
+	 * Checks a points collision with this object.
+	 * @param otherX - Point's x
+	 * @param otherY - Point's y
+	 * @param side- 1 if horizontal detection, 2 if vertical detection
+	 * @return Distance to nearest side, negative if colliding
+	 */
 	public int collideTest(int otherX, int otherY, int side) {
 		//check collision
 		//check other's location relative to this (ex: y above certain amount and collided:  grounded = true)
@@ -208,6 +245,10 @@ public abstract class GravitisedObj {
 		return min;
 	}
 
+	/**
+	 * Returns the middle x of the gravitised object.
+	 * @return middleX
+	 */
 	public int getMiddleX()
 	{
 		return x+width/2;

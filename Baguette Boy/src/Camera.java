@@ -9,7 +9,11 @@ public class Camera {
 	private boolean cameraLocked;
 	private boolean frameCounter;
 
-
+	/**
+	 * Constructs a new camera that sets a level of zoom based on the window width and height
+	 * @param windowWidth
+	 * @param windowHeight
+	 */
 	public Camera(int windowWidth, int windowHeight)
 	{
 		//zoom = (float)((double)windowHeight/1080.0);
@@ -27,14 +31,21 @@ public class Camera {
 
 	}
 	
-	
+	/**
+	 * Set the level of zoom
+	 * @param z
+	 */
 	public void setZoom(float z)
 	{
 		zoom = z;
 
 		//System.out.println(z);
 	}
-
+	
+	/**
+	 * Changes the level of zoom
+	 * @param i - Positive or negative 1
+	 */
 	public void changeZoom(int i)
 	{
 		zoom += i*1.1*zoom;
@@ -42,6 +53,11 @@ public class Camera {
 		//y=(int) ((1.0-zoom)*windowHeight);
 	}
 
+	/**
+	 * Updates the camera with the most current player position
+	 * @param x - player x
+	 * @param y - player y
+	 */
 	public void sendPlayerPos(int x, int y)
 	{
 		int difference=this.y+y-600;
@@ -105,16 +121,26 @@ public class Camera {
 		//this.y=y-150;
 	}
 
+	/**
+	 * Returns the camera's level of zoom
+	 * @return
+	 */
 	public float getZoom()
 	{
 		return zoom;
 	}
 
+	/**
+	 * Locks the camera in place
+	 */
 	public void lockCamera()
 	{
 		cameraLocked=true;
 	}
 
+	/**
+	 * Unlocks the camera.
+	 */
 	public void unlockCamera()
 	{
 		cameraLocked=false;
@@ -147,33 +173,56 @@ public class Camera {
 		y+=yChange;
 	}
 
+	/**
+	 * Controls the camera's right movement
+	 * @param b
+	 */
 	public void rightMove(boolean b)
 	{
 		rightFlag=b;
 	}
 
+	/**
+	 * Controls the camera's left movement
+	 * @param b
+	 */
 	public void leftMove(boolean b)
 	{
 		leftFlag=b;
 	}
 
+	/**
+	 * Controls the camera's up movement
+	 * @param b
+	 */
 	public void upMove(boolean b)
 	{
 		upFlag=b;
 	}
-
+	
+	/**
+	 * Controls the camera's down movement
+	 * @param b
+	 */
 	public void downMove(boolean b)
 	{
 		downFlag = b;
 	}
 
 
-
+	/**
+	 * Returns the x translation of the camera
+	 * @return
+	 */
 	public int getX()
 	{
 		return x;
 	}
 
+	/**
+	 * Returns the y translation of the camera
+	 * @return
+	 */
 	public int getY()
 	{
 		return y;
