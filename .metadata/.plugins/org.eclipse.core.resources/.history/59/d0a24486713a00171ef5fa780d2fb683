@@ -11,14 +11,11 @@ public class Charger extends Enemy{
 	private int saveY;
 	private PImage star;
 	
-	private final int AttTmr = 30;
-	
 	public Charger(int x, int y, int mass, int width, int height, Manager m) {
 		super(x, y, mass, width, height, m, 100);
 		this.m=m;
 		stunned = true;
 		star=new PImage();
-		
 		
 		//System.out.println(x);
 		//System.out.println(y);
@@ -32,16 +29,9 @@ public class Charger extends Enemy{
 	 */
 	public void act(double ratio)
 	{
-		//ATTACKING WORK
-		if (attackDelay <= 0) {
-			Hitbox test = new Hitbox(false, 1, super.getX(), super.getY()+20, super.width, 10, 1000);
-			test.addDestroyListener(super.getManager().getCombat());
-			super.getManager().getCombat().addHitbox(test);
-			attackDelay = AttTmr;
-		}
-		attackDelay--;
 		
-		//ENEMY BEHAVIOR
+		
+		
 		int playerX=m.getPlayerX();
 		int playerY=m.getPlayerY();
 		

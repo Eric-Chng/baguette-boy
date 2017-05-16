@@ -23,7 +23,12 @@ public class CombatManager implements DestroyListener{
 	}
 	
 	public void actObjects()
-	{	
+	{
+		for(Hitbox obj: hitboxes)
+		{
+			obj.act();
+		}
+		
 		for (int i = hitboxes.size()-1; i>= 0; i--) {
 			hitboxes.get(i).act();
 		}

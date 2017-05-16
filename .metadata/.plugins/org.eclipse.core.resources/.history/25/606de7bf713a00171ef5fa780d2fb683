@@ -34,10 +34,10 @@ public class Charger extends Enemy{
 	{
 		//ATTACKING WORK
 		if (attackDelay <= 0) {
-			Hitbox test = new Hitbox(false, 1, super.getX(), super.getY()+20, super.width, 10, 1000);
+			Hitbox test = new Hitbox(false, 1, super.getX(), super.getY(), 10, 10, 100);
 			test.addDestroyListener(super.getManager().getCombat());
 			super.getManager().getCombat().addHitbox(test);
-			attackDelay = AttTmr;
+			attackDelay = 100;
 		}
 		attackDelay--;
 		
