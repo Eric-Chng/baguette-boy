@@ -39,14 +39,7 @@ public abstract class GravitisedObj {
 
 	public void posUpdate(double ratio) {
 		boolean isPlayer = false;
-		if(this instanceof Player)
-		{
-			isPlayer = true;
-		}
-		else
-		{
-			//System.out.println("updating pos");
-		}
+		
 		if(curveTimer<1)
 		{
 			onCurve=false;

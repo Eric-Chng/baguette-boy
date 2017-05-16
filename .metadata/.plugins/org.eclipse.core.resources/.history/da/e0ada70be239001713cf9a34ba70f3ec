@@ -83,7 +83,13 @@ public class Camera {
 			cameraLocked=false;
 		}
 		if(!cameraLocked)
-		{	
+		{
+			//int difference = x-this.x;
+			//x+=difference/2;
+			//System.out.println(difference);
+			//if(difference<20)
+			
+			
 			if (this.x > -x +500){
 				this.x-=5;
 				if(this.x > -x +600)
@@ -95,8 +101,16 @@ public class Camera {
 					this.x+=6;
 			}
 
+
+
 		}
-		
+		/*
+		if(x>300)
+		this.x=-x+300;
+		else
+			x=-20;
+		 */
+		//this.y=y-150;
 	}
 
 	public float getZoom()

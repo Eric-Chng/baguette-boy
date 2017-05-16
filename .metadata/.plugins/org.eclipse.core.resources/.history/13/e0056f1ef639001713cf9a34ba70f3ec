@@ -38,7 +38,7 @@ public abstract class GravitisedObj {
 	}
 
 	public void posUpdate(double ratio) {
-		boolean isPlayer = false;
+		boolean isPlayer = true;
 		if(this instanceof Player)
 		{
 			isPlayer = true;
@@ -212,7 +212,7 @@ public abstract class GravitisedObj {
 	{
 		return x+width/2;
 	}
-
+	
 	public Manager getManager() {
 		return m;
 	}

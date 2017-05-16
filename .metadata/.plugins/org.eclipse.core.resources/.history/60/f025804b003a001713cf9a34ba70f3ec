@@ -8,7 +8,7 @@ import processing.core.PApplet;
  *   -collides with all platforms
  */
 public abstract class GravitisedObj {
-	public static final int GRAVITY_POWER = 2;
+	public static final int GRAVITY_POWER = 10;
 
 	public final int mass;
 	protected int x, y;

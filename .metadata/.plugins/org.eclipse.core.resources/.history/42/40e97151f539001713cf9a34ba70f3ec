@@ -16,8 +16,11 @@ public class Enemy extends GravitisedObj implements Damagable{
 		g.pushStyle();
 
 		g.fill(100,10,50);
+		g.rect(x, y, width, height);
 		g.text(""+hp, x, y-20);
+		g.popStyle();
 		g.fill(0,0,255);
+		//System.out.println(x+", " + y+", "+xSpeed+", "+ySpeed);
 		g.rect(x, y, width, height);
 		g.popStyle();	
 
@@ -25,7 +28,7 @@ public class Enemy extends GravitisedObj implements Damagable{
 
 	@Override
 	public void act(double ratio) {
-		
+
 		if (Math.abs(getManager().getPlayerX()) - x < 600){
 			if (getManager().getPlayerX() > x)
 				x+= 5;
@@ -36,7 +39,7 @@ public class Enemy extends GravitisedObj implements Damagable{
 					Hitbox test = new Hitbox(false, 1, super.getX(), super.getY(), 100, 100, 10000);
 					test.addDestroyListener(super.getManager().getCombat());
 					super.getManager().getCombat().addHitbox(test);
-					attackDelay = 100;
+					attackDelay = 1000;
 				}
 				attackDelay--;
 			}

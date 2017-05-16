@@ -36,11 +36,12 @@ public class Enemy extends GravitisedObj implements Damagable{
 					Hitbox test = new Hitbox(false, 1, super.getX(), super.getY(), 100, 100, 10000);
 					test.addDestroyListener(super.getManager().getCombat());
 					super.getManager().getCombat().addHitbox(test);
-					attackDelay = 100;
+					attackDelay = 1000;
 				}
 				attackDelay--;
 			}
 		}
+		y+= 2;
 		posUpdate(ratio);
 	}
 

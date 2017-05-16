@@ -212,7 +212,7 @@ public abstract class GravitisedObj {
 	{
 		return x+width/2;
 	}
-
+	
 	public Manager getManager() {
 		return m;
 	}
