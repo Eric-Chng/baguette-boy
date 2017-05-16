@@ -17,10 +17,10 @@ Spacebar to attack
 
 FEATURES LIST:
 Must-haves:
-2D physics - A smooth and functional physics engine that allows for natural jumping, movement, and collisions
-Enemies - Enemies with health for the player to deal with in order to add difficulty
-Player combat - a weapon and health for the player
-Side-scrolling - Screen that only shows a portion of the entire map
+(Done)2D physics - A smooth and functional physics engine that allows for natural jumping, movement, and collisions
+(Done)Enemies - Enemies with health for the player to deal with in order to add difficulty
+(In-Progress)Player combat - a weapon and health for the player
+(Done)Side-scrolling - Screen that only shows a portion of the entire map
 
 Want-to-haves:
 Inventory system - A scroll wheel based inventory system to store items
@@ -33,7 +33,7 @@ Damage indicators - Numbers to show how much damage the player has dealt
 Player/enemy animations - Animations to make the scene seem more alive and interesting
 
 Stretch Features
-Puzzles - Non-combat focused portions to allow for different gameplay
+(In-Progress)Puzzles - Non-combat focused portions to allow for different gameplay
 Multiple levels - Differently designed stages to allow for longer playthroughs
 Dialogue/Cutscenes - Bosses and NPCs would speak to create a more immersive gameplay environment
 Story - A story told through dialogue and cutscenes to explain the background behind the player’s adventure
@@ -51,5 +51,5 @@ DestroyListener(I) - Implemented by Manager and used by objects that need to des
 Health(I) - Implemented by classes with health
 
 RESPONSIBILITIES:
-Eric: Player abilities and inventory system. Menu switching systems.
-David: Enemy design and behaviors. Environment attributes
+Eric: Player abilities and (hopefully) inventory system. Enemy design.
+David: Environment attributes. Physics and collision systems.
