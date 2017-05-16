@@ -1,0 +1,33 @@
+import java.awt.*;
+import javax.swing.*;
+import java.awt.event.*;
+
+
+public class OptionPanel extends JPanel implements ActionListener {
+	
+	Main w;
+	
+	public OptionPanel(Main w) {
+		super();
+		
+		setBackground(Color.WHITE);
+		
+		this.w = w;
+		JButton button = new JButton("Press me!");
+		button.addActionListener(this);
+		add(button);
+	}
+	
+	public void actionPerformed(ActionEvent e) {
+		w.changePanel();
+	}
+	
+	public void paintComponent(Graphics g) {
+		super.paintComponent(g);
+		
+		g.setColor(new Color(200,200,200));
+		
+		g.drawString("You have died", getWidth()/2, getHeight()/2);
+	}
+	
+}

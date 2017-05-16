@@ -20,17 +20,21 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 	//private Player donkey;
 	private Manager m;
 	
+	private Main mainClass;
+	private boolean playerStatus;
 	
-	public DrawingSurface() {
+	
+	public DrawingSurface(Main mainClass) {
 		//demo = new DemoObject();
 		//dooder = new BoxPlatform(300, 0, 600, 20);
 		//objM = new GObjectManager();
 		//donkey = new Player(250, 300, 5, 100, 100);
 		m= new Manager();
+		this.mainClass = mainClass;
 		
 		cam = new Camera(width, height);
 		runSketch();
-		
+		playerStatus = true;
 		
 	}
 	
@@ -74,6 +78,11 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		//geoff = new RegularPolygon(300,300,5,50);
 
 		//geoff.draw(this);
+		
+		if (playerStatus && m.getPlayer().getHP() <= 0) {
+			playerStatus = false;
+			mainClass.changePanelTo("death");
+		}
 		}
 	
 	public void sendSize(int width, int height)

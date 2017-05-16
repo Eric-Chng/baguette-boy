@@ -10,47 +10,49 @@ public class Charger extends Enemy{
 	private int dir;
 	private int saveY;
 	private PImage star;
-	
-	private final int AttTmr = 30;
-	
+
+	private final int AttTmr = 25;
+
 	public Charger(int x, int y, int mass, int width, int height, Manager m) {
 		super(x, y, mass, width, height, m, 100);
 		this.m=m;
 		stunned = true;
 		star=new PImage();
-		
-		
+
+
 		//System.out.println(x);
 		//System.out.println(y);
 		//System.out.println(width);
 		//System.out.println(height);
 		// TODO Auto-generated constructor stub
 	}
-	
+
 	/**
 	 * Performs an action based on the charger AI
 	 */
 	public void act(double ratio)
 	{
 		//ATTACKING WORK
-		if (attackDelay <= 0) {
-			Hitbox test = new Hitbox(false, 1, super.getX(), super.getY()+20, super.width, 10, 1000);
-			test.addDestroyListener(super.getManager().getCombat());
-			super.getManager().getCombat().addHitbox(test);
-			attackDelay = AttTmr;
+		if (Math.abs(m.getPlayerX()-x) < width+5 && Math.abs(m.getPlayerY() - y) < height + 5) {
+			if (attackDelay <= 0) {
+				Hitbox test = new Hitbox(false, 25, super.getX(), super.getY()+20, super.width, 10, AttTmr);
+				test.addDestroyListener(super.getManager().getCombat());
+				super.getManager().getCombat().addHitbox(test);
+				attackDelay = AttTmr;
+			}
 		}
 		attackDelay--;
-		
+
 		//ENEMY BEHAVIOR
 		int playerX=m.getPlayerX();
 		int playerY=m.getPlayerY();
-		
+
 		if(stunned)
 		{
 			//System.out.println("stunned");
 			stunTimer-=ratio;
 			if(stunTimer>2.0)
-			y=saveY;
+				y=saveY;
 			if(stunTimer<1)
 			{
 				stunned =false;
@@ -73,26 +75,26 @@ public class Charger extends Enemy{
 					dir=-1;
 				}
 			}
-			
-			
+
+
 		}
 		if(Math.abs(playerX-x)>800)
 		{
 			stun(2);
 		}
-		
+
 		if(charging)
 		{
 			xSpeed+=dir;
 		}
-		
-		
-		
-		
-		
-		
+
+
+
+
+
+
 		super.posUpdate(ratio);
-		
+
 		if(xSpeed==0&&charging)
 		{
 			dir=0;
@@ -100,16 +102,16 @@ public class Charger extends Enemy{
 			stun(100);
 			saveY=y;
 		}
-		
+
 	}
-	
+
 	private void stun(int time)
 	{
 		stunned = true;
 		stunTimer = time;
-		
+
 	}
-	
+
 	public void draw(PApplet g)
 	{
 		g.pushStyle();
@@ -130,7 +132,7 @@ public class Charger extends Enemy{
 
 		g.popStyle();
 	}
-	
-	
+
+
 
 }

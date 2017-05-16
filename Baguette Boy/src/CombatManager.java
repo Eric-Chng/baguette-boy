@@ -15,10 +15,6 @@ public class CombatManager implements DestroyListener{
 	{
 		hitboxes = new ArrayList<Hitbox>();
 		manager = m;
-		
-		Hitbox test = new Hitbox(false, manager.getPlayer().getX(), manager.getPlayer().getY(), 100, 100, 100, 10000);
-		test.addDestroyListener(this);
-		hitboxes.add(test);
 
 	}
 	

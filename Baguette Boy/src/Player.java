@@ -25,11 +25,11 @@ public class Player extends GravitisedObj implements Damagable{
 		rightWalkCode=false;
 		hasJumped = true;
 		leftWalkCode = false;
+		
 	}
 
 	public void act(double ratio)
 	{
-		//ySpeed+=1;
 		if(grounded)
 		{
 			hasJumped = false;
@@ -87,7 +87,8 @@ public void draw(PApplet g)
 	g.pushStyle();
 	g.fill(255,0,0);
 	g.rect(x, y, width, height);
-	g.text(""+currentInvSpot, x, y-20);
+	//g.text(""+currentInvSpot, x, y-20);
+	g.text("" + hp, x, y-20);
 	g.popStyle();
 }
 
@@ -148,6 +149,10 @@ public Rectangle getRect() {
 public void takeDamage(int damage) {
 	hp-= damage;
 	
+}
+
+public int getHP() {
+	return hp;
 }
 
 
