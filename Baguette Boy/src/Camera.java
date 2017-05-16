@@ -88,23 +88,18 @@ public class Camera {
 			//x+=difference/2;
 			//System.out.println(difference);
 			//if(difference<20)
-			{
-				this.x=-x+400;
-
-			}
 			
-//			int xAdjust = x+400;
-//			if (this.x> xAdjust + 200) {
-//				System.out.println(this.x);
-//				this.x -= 5;
-//				if(this.x > xAdjust + 300)
-//					this.x-= 6;
-//			} else if (this.x< xAdjust -100) {
-//				System.out.println(this.x);
-//				this.x+= 5;
-//				if (this.x <xAdjust - 200)
-//					this.x+=6;
-//			}
+			
+			if (this.x > -x +500){
+				this.x-=5;
+				if(this.x > -x +600)
+					this.x-=6;
+			}
+			else if(this.x < -x+450){
+				this.x+=5;
+				if(this.x < -x +350)
+					this.x+=6;
+			}
 
 
 
