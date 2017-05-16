@@ -16,7 +16,7 @@ public class GObjectManager implements DestroyListener{
 	{
 		objects = new ArrayList<GravitisedObj>();
 		manager = m;
-		objects.add(new Enemy(3000,400,10,100,100, manager, 100));
+		objects.add(new Charger(3000,100,10,100,100, manager));
 
 	}
 	
@@ -43,13 +43,13 @@ public class GObjectManager implements DestroyListener{
 		}
 	}
 	
-	public int checkCollision(int x, int y, int side, boolean isPlayer)
+	public int checkCollision(int x, int y, int side, boolean isPlayer, GravitisedObj other)
 	{
-		boolean collides = false;
+		//boolean collides = false;
 		int min = 20000;
 		for(GravitisedObj obj: objects)
 		{
-			if(Math.abs(x-obj.getMiddleX())<obj.getWidth())
+			if(obj!=other)
 			{
 				int current = obj.collideTest(x, y, side);
 				if(current<min)

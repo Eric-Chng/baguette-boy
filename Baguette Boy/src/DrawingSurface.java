@@ -48,7 +48,7 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		
 		
 		scale(cam.getZoom());
-		cam.sendPlayerPos(m.getPlayerX(), m.getPlayerY());
+		cam.sendPlayerPos(m.getPlayerX(), m.getPlatformY());
 		this.translate(cam.getX(), cam.getY());
 		//Rectangle backRectangle = new Rectangle(0,0,600,600);
 		//backRectangle.draw(this);
@@ -57,11 +57,11 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		m.draw(this);
 		long time = System.currentTimeMillis()-lastTime;
 		double ratio = 16.0/time;
-		pushMatrix();
-		this.translate(-cam.getX(),-cam.getY());
+		//pushMatrix();
+		//this.translate(-cam.getX(),-cam.getY());
 
-		//text(""+60.0/ratio,50,0); BREAKS FOR SOME REASON "java.awt.geom.NoninvertibleTransformException: Determinant is 0"
-		popMatrix();
+		text(""+60.0/ratio,m.getPlayerX()-370, m.getPlayerY()-560);
+		//popMatrix();
 		m.act(ratio);
 		cam.act(ratio);
 		//demo.act(time);

@@ -7,6 +7,11 @@ public class PlatformManager implements DestroyListener{
 	private ArrayList<BoxPlatform> platforms;
 	private Manager manager;
 
+	
+	/**
+	 * Constructs the world built of platforms
+	 * @param m - General manager
+	 */
 	public PlatformManager(Manager m)
 	{
 		platforms = new ArrayList<BoxPlatform>();
@@ -43,6 +48,8 @@ public class PlatformManager implements DestroyListener{
 		
 		//platforms.add(new BoxPlatform(tempX+800, 410, 200,500));
 		platforms.add(new BoxPlatform(tempX+1400, 600, 1000,130));
+		platforms.add(new BoxPlatform(tempX+2390, 330, 600,300));
+
 
 		
 
@@ -50,7 +57,14 @@ public class PlatformManager implements DestroyListener{
 	}
 
 
-
+	/**
+	 * Checks a points collision with all platforms.
+	 * @param otherX - Point's x
+	 * @param otherY - Point's y
+	 * @param side- 1 if horizontal detection, 2 if vertical detection
+	 * @param isPlayer - whether the object calling this method is a player
+	 * @return Distance to nearest side, negative if colliding
+	 */
 	public int checkCollision(int x, int y, int side,boolean isPlayer)
 	{
 		boolean collides = false;
@@ -79,6 +93,10 @@ public class PlatformManager implements DestroyListener{
 
 	}
 
+	/**
+	 * Draws all platforms in the world
+	 * @param g
+	 */
 	public void draw(PApplet g)
 	{
 		for(BoxPlatform obj: platforms)
@@ -87,6 +105,10 @@ public class PlatformManager implements DestroyListener{
 		}
 	}
 
+	
+	/**
+	 * Destroys the platform matching the parameter.
+	 */
 	public void destroy(Object a) {
 		for (int i = platforms.size()-1; i >= 0; i--) {
 			if (a == platforms.get(i))

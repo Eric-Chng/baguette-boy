@@ -36,8 +36,17 @@ public abstract class GravitisedObj {
 		grounded = false;
 		curveTimer = 0;
 	}
+	
+	protected Manager getManager()
+	{
+		return m;
+	}
 
-	public void posUpdate(double ratio) {
+	/**
+	 * To be used by subclasses in the act method.  Updates the position based on the xSpeed and ySpeed, while checking for collision.
+	 * @param ratio - Run speed ratio
+	 */
+	protected void posUpdate(double ratio) {
 		boolean isPlayer = false;
 		if(this instanceof Player)
 		{
@@ -46,6 +55,11 @@ public abstract class GravitisedObj {
 		else
 		{
 			//System.out.println("updating pos");
+		}
+		if(!isPlayer)
+		{
+			//System.out.println("xS: " +xSpeed);
+			//System.out.println("yS: "+ySpeed);
 		}
 		if(curveTimer<1)
 		{
@@ -59,7 +73,11 @@ public abstract class GravitisedObj {
 		int horizontalPlatform = 500;
 		if(xSpeed>0)
 		{
-			horizontalPlatform = Math.min(m.checkPlatformCollision(x+width, y+90*height/100,2,isPlayer),m.checkPlatformCollision(x+width, y+10*height/100,2,isPlayer));
+			horizontalPlatform = Math.min(m.checkPlatformCollision(x+width, y+90*height/100,1,isPlayer,this),m.checkPlatformCollision(x+width, y+10*height/100,1,isPlayer,this));
+			//if(!isPlayer)
+			{
+				//System.out.println(horizontalPlatform);
+			}
 			if(horizontalPlatform<0&&isPlayer)
 			{
 				//System.out.println("bad");
@@ -68,7 +86,8 @@ public abstract class GravitisedObj {
 		}
 		else if(xSpeed<0)
 		{
-			horizontalPlatform = -Math.min(m.checkPlatformCollision(x, y+90*height/100,1,isPlayer),m.checkPlatformCollision(x, y+5*height/100,1,isPlayer));
+			
+			horizontalPlatform = -Math.min(m.checkPlatformCollision(x, y+90*height/100,1,isPlayer,this),m.checkPlatformCollision(x, y+5*height/100,1,isPlayer,this));
 			if(horizontalPlatform>0&&isPlayer)
 			{
 				//System.out.println("bad");
@@ -77,14 +96,21 @@ public abstract class GravitisedObj {
 		}
 		if(Math.abs(horizontalPlatform)<Math.abs(xSpeed))
 		{
+			if(!isPlayer)
+			{
+				//System.out.println(horizontalPlatform);
+			}
 			if(horizontalPlatform>5)
 				x+=horizontalPlatform;
 			xSpeed = 0;
 		}
 		else
+		{
+			
 			x += xSpeed*ratio;
+		}
 		int closestPlatform;
-		closestPlatform = Math.min(m.checkPlatformCollision(x+10*width/100, y+height,2,isPlayer),m.checkPlatformCollision(x+90*width/100, y+height,2,isPlayer)); //1 - horizontal, 2-vertical
+		closestPlatform = Math.min(m.checkPlatformCollision(x+10*width/100, y+height,2,isPlayer,this),m.checkPlatformCollision(x+90*width/100, y+height,2,isPlayer,this)); //1 - horizontal, 2-vertical
 		//int closestPlatform2 = Math.max(m.checkPlatformCollision(x+10*width/100, y,2),m.checkPlatformCollision(x+90*width/100, y,2)); //1 - horizontal, 2-vertical
 		//int closer = Math.min(Math.abs(closestPlatform), Math.abs(closestPlatform2));
 		//if(closer==Math.abs(closestPlatform))
@@ -133,7 +159,7 @@ public abstract class GravitisedObj {
 			}
 		}*/
 
-		if(m.checkPlatformCollision(x+width/2, y+height,2,isPlayer)>2)
+		if(m.checkPlatformCollision(x+width/2, y+height,2,isPlayer,this)>2)
 		{
 			grounded=false;
 		}
@@ -142,32 +168,65 @@ public abstract class GravitisedObj {
 		{
 			if(!isPlayer)
 			{
-				System.out.println("object falling");
+				//System.out.println("object falling");
 			}
 			ySpeed += GRAVITY_POWER*ratio;
 		}
 	}
+	
+	/**
+	 * Draws the gravitised object
+	 * @param g - Initialized PApplet
+	 */
 	public abstract void draw(PApplet g);
 
+	/**
+	 * Acts the gravitised object according to the frame rate ratio.
+	 * @param ratio
+	 */
 	public abstract void act(double ratio);
 
+	/**
+	 * Returns the left x of the object
+	 * @return x
+	 */
 	public int getX()
 	{
 		return x;
 	}
+	
+	/**
+	 * Returns the top y of the object
+	 * @return y
+	 */
 	public int getY()
 	{
 		return y;
 	}
 
+	/**
+	 * Returns the pixel width of the object
+	 * @return width
+	 */
 	public int getWidth() {
 		return width;
 	}
 
+	/**
+	 * Returns the pixel height of the object
+	 * @return height
+	 */
 	public int getHeight() {
 		return height;
 	}
 
+	/**
+	 * Checks a points collision with this object.
+	 * @param otherX - Point's x
+	 * @param otherY - Point's y
+	 * @param side- 1 if horizontal detection, 2 if vertical detection
+	 * @return Distance to nearest side, negative if colliding
+	 */
 	public int collideTest(int otherX, int otherY, int side) {
 		//check collision
 		//check other's location relative to this (ex: y above certain amount and collided:  grounded = true)
@@ -208,13 +267,13 @@ public abstract class GravitisedObj {
 		return min;
 	}
 
+	/**
+	 * Returns the middle x of the gravitised object.
+	 * @return middleX
+	 */
 	public int getMiddleX()
 	{
 		return x+width/2;
-	}
-
-	public Manager getManager() {
-		return m;
 	}
 
 }
