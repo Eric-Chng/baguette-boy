@@ -30,7 +30,7 @@ public class Camera {
 		ySpeed=0;
 
 	}
-	
+
 	/**
 	 * Set the level of zoom
 	 * @param z
@@ -41,7 +41,7 @@ public class Camera {
 
 		//System.out.println(z);
 	}
-	
+
 	/**
 	 * Changes the level of zoom
 	 * @param i - Positive or negative 1
@@ -67,7 +67,7 @@ public class Camera {
 		//System.out.println(y);
 		if(Math.abs(difference)>5)
 		{
-			
+
 			//System.out.println(difference);
 
 			//if(!frameCounter)
@@ -82,9 +82,9 @@ public class Camera {
 					this.y+=6;
 				}
 			}
-			
+
 		}
-	
+
 		else
 		{
 			//System.out.println("hi");
@@ -106,21 +106,28 @@ public class Camera {
 			//x+=difference/2;
 			//System.out.println(difference);
 			//if(difference<20)
-			{
-				this.x=-x+400;
-
+			if (this.x > -x +500){
+				this.x-=5;
+				if(this.x > -x +600)
+					this.x-=6;
 			}
-		if(x>2800&&x<3800)
-		{
-			//lockCamera();
-		}
-		else
-		{
-			//unlockCamera();
+			else if(this.x < -x+450){
+				this.x+=5;
+				if(this.x < -x +350)
+					this.x+=6;
+			}
+
+			if(x>2800&&x<3800)
+			{
+				//lockCamera();
+			}
+			else
+			{
+				//unlockCamera();
+			}
 		}
 
 
-		}
 		/*
 		if(x>300)
 		this.x=-x+300;
@@ -208,7 +215,7 @@ public class Camera {
 	{
 		upFlag=b;
 	}
-	
+
 	/**
 	 * Controls the camera's down movement
 	 * @param b
