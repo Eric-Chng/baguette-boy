@@ -20,10 +20,7 @@ public class DeathPanel extends JPanel implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		System.out.println(e.getActionCommand());
-		if (e.getActionCommand().equals("Play again!"))
-			w = new Main();
-		else
-			w.changePanel();
+		w.changePanel();
 	}
 
 	public void paintComponent(Graphics g) {
@@ -31,15 +28,15 @@ public class DeathPanel extends JPanel implements ActionListener {
 		String text = "You have died";
 
 		Font font = new Font("Verdana", Font.BOLD, 100);
-
+		
 		//TEXT CENTERING
 		FontMetrics metrics = g.getFontMetrics(font);
-		// Determine the X coordinate for the text
-		int x = 0 + (getWidth() - metrics.stringWidth(text)) / 2;
-		// Determine the Y coordinate for the text (note we add the ascent, as in java 2d 0 is top of the screen)
-		int y = 0 + ((getHeight() - metrics.getHeight()) / 2) + metrics.getAscent();
-
-
+	    // Determine the X coordinate for the text
+	    int x = 0 + (getWidth() - metrics.stringWidth(text)) / 2;
+	    // Determine the Y coordinate for the text (note we add the ascent, as in java 2d 0 is top of the screen)
+	    int y = 0 + ((getHeight() - metrics.getHeight()) / 2) + metrics.getAscent();
+	   
+	    
 		g.setFont(font);
 
 		g.setColor(new Color(0,0,0));
