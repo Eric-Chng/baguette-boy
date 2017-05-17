@@ -62,7 +62,6 @@ public class CombatManager implements DestroyListener{
 			itm.collide(manager.getPlayer());
 		}
 	}
-
 	
 	public void destroy(Object a) {
 		for (int i = hitboxes.size()-1; i >= 0; i--) {

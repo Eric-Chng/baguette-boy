@@ -191,10 +191,6 @@ public class Player extends GravitisedObj implements Damagable{
 	public int getInvSpot() {
 		return currentInvSpot;
 	}
-	
-	public ArrayList<Item> getInv() {
-		return inventory;
-	}
 
 	@Override
 	public Rectangle getRect() {

@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import java.util.ArrayList;
 
 import processing.core.PApplet;
 import processing.core.PFont;
@@ -58,16 +59,12 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		scale(cam.getZoom());
 		cam.sendPlayerPos(m.getPlayerX(), m.getPlatformY());
 		this.translate(cam.getX(), cam.getY());
-		//Rectangle backRectangle = new Rectangle(0,0,600,600);
-		//backRectangle.draw(this);
-		//donkey.draw(this);
-		//donkey.act(System.currentTimeMillis()-lastTime);
+
 		m.draw(this);
 		long time = System.currentTimeMillis()-lastTime;
 		double ratio = 16.0/time;
-		//pushMatrix();
-		//this.translate(-cam.getX(),-cam.getY());
 		this.translate(-cam.getX(),-cam.getY());
+
 		text(""+60.0/ratio,20,20);
 		fill(255,0,0);
 		targetHP=m.getHP();
@@ -86,6 +83,11 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		if(currentHP<100)
 			this.text(""+currentHP, 1250+3*currentHP-35, 92);
 		this.popStyle();
+
+		ArrayList<Item> items = m.getPlayer().getInv();
+		if (!items.isEmpty()) {
+			items.get(m.getPlayer().getInvSpot()).display(this, super.displayWidth/2 - 300, 100, 1, 125);;
+		}
 
 
 		//System.out.println(m.getHP());

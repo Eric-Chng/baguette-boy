@@ -187,14 +187,6 @@ public class Player extends GravitisedObj implements Damagable{
 		if (!inventory.isEmpty())
 			currentInvSpot %= inventory.size();
 	}
-	
-	public int getInvSpot() {
-		return currentInvSpot;
-	}
-	
-	public ArrayList<Item> getInv() {
-		return inventory;
-	}
 
 	@Override
 	public Rectangle getRect() {

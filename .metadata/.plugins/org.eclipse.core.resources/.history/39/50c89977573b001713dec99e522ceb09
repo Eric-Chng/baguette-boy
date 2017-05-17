@@ -1,6 +1,5 @@
 import java.awt.Rectangle;
 
-
 import processing.core.PApplet;
 
 public class Item {
@@ -20,14 +19,6 @@ public class Item {
 			g.fill(128, 60, 60, 100);
 			g.rect(x, y + (float)(15*Math.sin(System.currentTimeMillis()/250.0)), 50, 50);
 		}
-	}
-	
-	public void display(PApplet g, int x, int y, float ratio, int fill) {
-		g.fill(fill);
-		g.rect(x, y, ratio * 80, ratio * 80);
-		g.fill(0);
-		
-		g.text(type, x, y+40*ratio);
 	}
 
 	public void collide(Player a) {
