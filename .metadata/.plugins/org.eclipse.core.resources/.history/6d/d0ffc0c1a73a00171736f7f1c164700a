@@ -27,7 +27,7 @@ public class Tutorial {
 		{
 			System.out.println("tut 2");
 			tutorialNumber=2;
-			displayTimer = 700;
+			displayTimer = 400;
 		}
 
 

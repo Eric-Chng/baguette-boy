@@ -86,6 +86,8 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		if(currentHP<100)
 		this.text(""+currentHP, 1250+3*currentHP-35, 92);
 		this.popStyle();
+		
+		
 		//System.out.println(m.getHP());
 
 		//text(""+60.0/ratio,m.getPlayerX()-450, m.getPlatformY()-550);

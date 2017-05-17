@@ -27,7 +27,7 @@ public class Tutorial {
 		{
 			System.out.println("tut 2");
 			tutorialNumber=2;
-			displayTimer = 700;
+			displayTimer = 400;
 		}
 
 
@@ -55,7 +55,7 @@ public class Tutorial {
 			}
 			else if(tutorialNumber==2)
 			{
-				g.text("Use your environment to your advantage", 2900, 300);
+				g.text("Use your environment to your advantage", 2900, 150);
 			}
 		}
 		g.popStyle();

@@ -23,11 +23,11 @@ public class Tutorial {
 			tutorialNumber=1;
 			displayTimer = 400;
 		}
-		else if(m.getPlayerX()>2400&&m.getPlayerX()<3200&&tutorialNumber!=2)
+		else if(m.getPlayerX()>2600&&m.getPlayerX()<3200&&tutorialNumber!=2)
 		{
 			System.out.println("tut 2");
 			tutorialNumber=2;
-			displayTimer = 700;
+			displayTimer = 400;
 		}
 
 
@@ -55,7 +55,7 @@ public class Tutorial {
 			}
 			else if(tutorialNumber==2)
 			{
-				g.text("Use your environment to your advantage", 2900, 300);
+				g.text("Use your environment to your advantage", 3000, 150);
 			}
 		}
 		g.popStyle();

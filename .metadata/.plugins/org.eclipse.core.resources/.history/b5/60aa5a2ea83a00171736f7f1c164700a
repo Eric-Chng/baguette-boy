@@ -13,14 +13,14 @@ public class DeathPanel extends JPanel implements ActionListener {
 		setBackground(Color.WHITE);
 
 		this.w = w;
-		JButton button = new JButton("feels bad");
+		JButton button = new JButton("Play again!");
 		button.addActionListener(this);
 		add(button);
 	}
 
 	public void actionPerformed(ActionEvent e) {
 		System.out.println(e.getActionCommand());
-		if (e.getActionCommand().equals("feels bad"))
+		if (e.getActionCommand().equals("Play again!"))
 			w = new Main();
 		else
 			w.changePanel();

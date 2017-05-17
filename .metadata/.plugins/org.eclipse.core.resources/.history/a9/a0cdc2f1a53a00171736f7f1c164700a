@@ -11,7 +11,6 @@ public class Manager implements DestroyListener{
 	private CombatManager combat;
 	private Player player;
 	private int platformY;
-	private Tutorial tutorial;
 	
 	
 	public Manager() 
@@ -20,7 +19,6 @@ public class Manager implements DestroyListener{
 		platforms = new PlatformManager(this);
 		player = new Player(100, 50, 10, 100, 100, this);
 		combat = new CombatManager(this);
-		tutorial = new Tutorial(this);
 		
 		
 	}
@@ -86,7 +84,6 @@ public class Manager implements DestroyListener{
 		//g.alpha(rgb)
 		platforms.draw(g);
 		combat.drawObjects(g);
-		tutorial.draw(g);
 	}
 	
 	/**
@@ -99,7 +96,6 @@ public class Manager implements DestroyListener{
 		gObjects.actObjects(ratio);
 		combat.actObjects();
 		combat.checkHits();
-		tutorial.act();
 	}
 	
 	/**
