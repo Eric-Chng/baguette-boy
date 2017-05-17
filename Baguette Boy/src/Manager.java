@@ -117,6 +117,15 @@ public class Manager implements DestroyListener{
 	}
 	
 	/**
+	 * Returns the HP of the player
+	 * @return
+	 */
+	public int getHP()
+	{
+		return player.getHP();
+	}
+	
+	/**
 	 * Sends a release key code to the player object
 	 * @param e
 	 */

@@ -148,6 +148,7 @@ public Rectangle getRect() {
 @Override
 public void takeDamage(int damage) {
 	hp-= damage;
+	System.out.println("takes damage");
 	
 }
 

@@ -61,7 +61,7 @@ public class Camera {
 	public void sendPlayerPos(int x, int y)
 	{
 		int difference=this.y+y-600;
-		int difference2=this.x-x+200;
+		//int difference2=this.x-x+200;
 		//System.out.println("this: " + this.y);
 		//System.out.println(y);
 		//System.out.println(y);
@@ -92,14 +92,15 @@ public class Camera {
 			frameCounter = true;
 			//this.y=y-300;
 		}
-		if(x<420)
+		if(x<520)
 		{
 			cameraLocked=true;
 		}
-		else if(x<500)
+		else 
 		{
 			cameraLocked=false;
 		}
+		
 		if(!cameraLocked)
 		{
 			//int difference = x-this.x;
@@ -117,14 +118,6 @@ public class Camera {
 					this.x+=6;
 			}
 
-			if(x>2800&&x<3800)
-			{
-				//lockCamera();
-			}
-			else
-			{
-				//unlockCamera();
-			}
 		}
 
 
@@ -164,7 +157,16 @@ public class Camera {
 
 	public void act(double ratio)
 	{
-
+		if(x>2260&&x<2860)
+		{
+			this.lockCamera();
+		}
+		else if(x>1000)
+		{
+			this.unlockCamera();
+		}
+		
+		
 		if(rightFlag)
 		{
 			x-=(int)(20*ratio);

@@ -28,9 +28,9 @@ public class DeathPanel extends JPanel implements ActionListener {
 
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
-		String text = "You have died";
+		String text = "You have died.";
 
-		Font font = new Font("Verdana", Font.BOLD, 100);
+		Font font = new Font("Times New Roman", Font.PLAIN, 20);
 
 		//TEXT CENTERING
 		FontMetrics metrics = g.getFontMetrics(font);

@@ -2,11 +2,13 @@
 
 //import davidmc.shapes.Rectangle;
 //import davidmc.shapes.RegularPolygon;
+import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
 
 import processing.core.PApplet;
+import processing.core.PFont;
 
 
 public class DrawingSurface extends PApplet implements MouseWheelListener{
@@ -19,7 +21,8 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 	private Camera cam;
 	//private Player donkey;
 	private Manager m;
-	
+	private int targetHP;
+	private int currentHP;
 	private Main mainClass;
 	private boolean playerStatus;
 	
@@ -31,7 +34,8 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		//donkey = new Player(250, 300, 5, 100, 100);
 		m= new Manager();
 		this.mainClass = mainClass;
-		
+		currentHP=100;
+		targetHP=100;
 		cam = new Camera(width, height);
 		runSketch();
 		playerStatus = true;
@@ -63,8 +67,28 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		double ratio = 16.0/time;
 		//pushMatrix();
 		//this.translate(-cam.getX(),-cam.getY());
+		this.translate(-cam.getX(),-cam.getY());
+		text(""+60.0/ratio,20,20);
+		fill(255,0,0);
+		targetHP=m.getHP();
+		if(targetHP<currentHP)
+		{
+			currentHP-=2;
+		}
+		this.rect(1250, 20, 3*currentHP, 80);
+		this.pushStyle();
+		fill(0);
+		PFont pf = new PFont();
+		
+		pf=this.createFont("Arial", 25);
+		textFont(pf);
+		//Font font = new Font("Arial", Font.PLAIN, 60);
+		if(currentHP<100)
+		this.text(""+currentHP, 1250+3*currentHP-35, 92);
+		this.popStyle();
+		//System.out.println(m.getHP());
 
-		text(""+60.0/ratio,m.getPlayerX()-370, m.getPlayerY()-560);
+		//text(""+60.0/ratio,m.getPlayerX()-450, m.getPlatformY()-550);
 		//popMatrix();
 		m.act(ratio);
 		cam.act(ratio);
