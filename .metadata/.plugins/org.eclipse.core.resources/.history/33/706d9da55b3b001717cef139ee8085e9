@@ -157,12 +157,6 @@ public class Player extends GravitisedObj implements Damagable{
 		else if (e == ' ') {
 			this.spacePressed = true;
 		}
-		
-		else if (e == 'f') {
-			for (int i = inventory.size()-1; i >= 0; i--) {
-				//HP POTION CHECK
-			}
-		}
 	}
 
 	public void releaseKeyCode(char e)

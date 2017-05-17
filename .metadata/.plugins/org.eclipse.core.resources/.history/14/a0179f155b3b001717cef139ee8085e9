@@ -30,15 +30,13 @@ public class Item {
 		g.text(type, x, y+40*ratio);
 	}
 
-	public boolean collide(Player a) {
+	public void collide(Player a) {
 		if (!pickedUp) {
 			Rectangle myself = new Rectangle(x, y, 50, 50);
 			if (myself.intersects(a.getRect())) {
 				a.addItem(this);
 				pickedUp = true;
-				return true;
 			}
 		}
-		return false;
 	}
 }

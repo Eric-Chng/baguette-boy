@@ -64,10 +64,8 @@ public class CombatManager implements DestroyListener{
 			}
 		}
 		
-		for (int i = items.size()-1; i>= 0; i--) {
-			if (items.get(i).collide(manager.getPlayer())) {
-				items.remove(i);
-			}
+		for (Item itm: items) {
+			itm.collide(manager.getPlayer());
 		}
 	}
 
