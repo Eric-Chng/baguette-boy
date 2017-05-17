@@ -20,12 +20,6 @@ public class CombatManager implements DestroyListener{
 		
 		Item temp = new Item("sword", 1000, 300);
 		items.add(temp);
-		
-		Item temp1 = new Item("hp", 1200, 300);
-		items.add(temp1);
-		
-		Item temp2 = new Item("mp", 800, 300);
-		items.add(temp2);
 
 	}
 	

@@ -86,7 +86,19 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 
 		ArrayList<Item> items = m.getPlayer().getInv();
 		if (!items.isEmpty()) {
-			items.get(m.getPlayer().getInvSpot()).display(this, super.displayWidth/2 - 300, 100, 1, 125);;
+			if (items.size()==1)
+				items.get(m.getPlayer().getInvSpot()).display(this, super.displayWidth/2 - 300, 100, 1, 175);
+			else if (items.size() == 2) {
+				items.get(m.getPlayer().getInvSpot()).display(this, super.displayWidth/2 - 300, 100, 1, 175);
+				if (m.getPlayer().getInvSpot() == 1)
+					items.get(0).display(this, super.displayWidth/2 - 300 - 200, 80, 0.6f, 95);
+				else
+					items.get(1).display(this, super.displayWidth/2 - 300 - 200, 80, 0.6f, 95);
+			} else {
+				items.get(m.getPlayer().getInvSpot()).display(this, super.displayWidth/2 - 300, 100, 1, 175);
+				items.get((m.getPlayer().getInvSpot() - 1 + items.size()) % items.size()).display(this, super.displayWidth/2 - 300 - 200, 80, 0.6f, 95);
+				items.get((m.getPlayer().getInvSpot() + 1) % items.size()).display(this, super.displayWidth/2 - 300 + 200, 80, 0.6f, 95);
+			}
 		}
 
 
