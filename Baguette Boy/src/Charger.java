@@ -35,7 +35,7 @@ public class Charger extends Enemy{
 		//ATTACKING WORK
 		if (Math.abs(m.getPlayerX()-x) < width+5 && Math.abs(m.getPlayerY() - y) < height + 5) {
 			if (attackDelay <= 0) {
-				Hitbox test = new Hitbox(false, 20, super.getX(), super.getY()+20, super.width, 10, AttTmr);
+				Hitbox test = new Hitbox(false, 20, super.getX(), super.getY()+20, super.width, super.height-20, AttTmr, (float) super.xSpeed, (float)super.ySpeed);
 				test.addDestroyListener(super.getManager().getCombat());
 				super.getManager().getCombat().addHitbox(test);
 				attackDelay = AttTmr;

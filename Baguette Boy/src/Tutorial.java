@@ -19,13 +19,13 @@ public class Tutorial {
 		displayTimer--;
 		if(m.getPlayerX()>10&&m.getPlayerX()<400&&tutorialNumber!=1)
 		{
-			System.out.println("tut 1");
+			//System.out.println("tut 1");
 			tutorialNumber=1;
 			displayTimer = 400;
 		}
 		else if(m.getPlayerX()>2400&&m.getPlayerX()<3200&&tutorialNumber!=2)
 		{
-			System.out.println("tut 2");
+			//System.out.println("tut 2");
 			tutorialNumber=2;
 			displayTimer = 700;
 		}

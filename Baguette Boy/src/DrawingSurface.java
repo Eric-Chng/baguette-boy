@@ -25,8 +25,8 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 	private int currentHP;
 	private Main mainClass;
 	private boolean playerStatus;
-	
-	
+
+
 	public DrawingSurface(Main mainClass) {
 		//demo = new DemoObject();
 		//dooder = new BoxPlatform(300, 0, 600, 20);
@@ -39,22 +39,22 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		cam = new Camera(width, height);
 		runSketch();
 		playerStatus = true;
-		
+
 	}
-	
+
 
 	public void setup()
 	{
 
 	}
-	
+
 
 	public void draw() { 
 		noStroke();
 		fill(210);
 		this.background(30);
-		
-		
+
+
 		scale(cam.getZoom());
 		cam.sendPlayerPos(m.getPlayerX(), m.getPlatformY());
 		this.translate(cam.getX(), cam.getY());
@@ -79,15 +79,15 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		this.pushStyle();
 		fill(0);
 		PFont pf = new PFont();
-		
+
 		pf=this.createFont("Arial", 25);
 		textFont(pf);
 		//Font font = new Font("Arial", Font.PLAIN, 60);
 		if(currentHP<100)
-		this.text(""+currentHP, 1250+3*currentHP-35, 92);
+			this.text(""+currentHP, 1250+3*currentHP-35, 92);
 		this.popStyle();
-		
-		
+
+
 		//System.out.println(m.getHP());
 
 		//text(""+60.0/ratio,m.getPlayerX()-450, m.getPlatformY()-550);
@@ -104,13 +104,17 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		//geoff = new RegularPolygon(300,300,5,50);
 
 		//geoff.draw(this);
-		
+
 		if (playerStatus && m.getPlayer().getHP() <= 0) {
 			playerStatus = false;
 			mainClass.changePanelTo("death");
 		}
+		if (playerStatus && m.getPlayer().getY() >= 2000) {
+			playerStatus = false;
+			mainClass.changePanelTo("death");
 		}
-	
+	}
+
 	public void sendSize(int width, int height)
 	{
 		cam.setZoom((float)(height/900.0));
@@ -131,14 +135,14 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 			m.mouseWheelMoved(-1);
 			//cam.changeZoom(-1);
 		}
-		
+
 	}
 
 
 	@Override
 	public void keyTyped() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
@@ -163,7 +167,7 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 			cam.downMove(true);
 		}
 		//System.out.println("key pressed");
-		
+
 	}
 
 
@@ -188,10 +192,10 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 			cam.downMove(false);
 		}
 	}
-	
-		
-	
-	
+
+
+
+
 }
 
 

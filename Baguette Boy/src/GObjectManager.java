@@ -17,6 +17,7 @@ public class GObjectManager implements DestroyListener{
 		objects = new ArrayList<GravitisedObj>();
 		manager = m;
 		objects.add(new Charger(3000,100,10,100,100, manager));
+		objects.add(new Turret(2000, 0, 10, 100, 100, manager));
 
 	}
 	

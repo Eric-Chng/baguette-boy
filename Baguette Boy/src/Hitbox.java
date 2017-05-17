@@ -14,7 +14,7 @@ public class Hitbox {
 	private long startMS;
 	private DestroyListener destruction;
 	
-	public Hitbox(boolean fromPlayer, int damage, float x, float y, float width, float height, float xVelocity, float yVelocity, long DurationInMS) {
+	public Hitbox(boolean fromPlayer, int damage, float x, float y, float width, float height, long DurationInMS, float xVelocity, float yVelocity) {
 		this.friendly = fromPlayer;
 		this.damage = damage;
 		this.x = x;
