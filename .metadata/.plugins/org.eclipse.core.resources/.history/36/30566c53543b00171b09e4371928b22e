@@ -18,8 +18,7 @@ public class CombatManager implements DestroyListener{
 		items = new ArrayList<Item>();
 		manager = m;
 		
-		Item temp = new Item("sword", 1000, 300);
-		items.add(temp);
+		Item temp = new Item("sword", 1000, 0);
 
 	}
 	
@@ -37,9 +36,6 @@ public class CombatManager implements DestroyListener{
 		{
 			obj.draw(g);
 		}
-		for (Item itm: items) {
-			itm.draw(g);
-		}
 	}
 	
 	public void checkHits() {
@@ -56,10 +52,6 @@ public class CombatManager implements DestroyListener{
 					a.collide(list.get(j));
 				}
 			}
-		}
-		
-		for (Item itm: items) {
-			itm.collide(manager.getPlayer());
 		}
 	}
 	

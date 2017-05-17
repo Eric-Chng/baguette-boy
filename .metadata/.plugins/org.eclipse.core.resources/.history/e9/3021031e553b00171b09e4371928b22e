@@ -114,6 +114,11 @@ public class Player extends GravitisedObj implements Damagable{
 			}
 		}
 		attTmr--;
+
+		
+		for (Item tempI:inventory) {
+			System.out.println(tempI.type);
+		}
 		
 		
 		posUpdate(ratio);

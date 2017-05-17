@@ -4,7 +4,6 @@ import processing.core.PApplet;
 
 public class CombatManager implements DestroyListener{
 	private ArrayList<Hitbox> hitboxes;
-	private ArrayList<Item> items;
 
 	private Manager manager;
 	
@@ -15,11 +14,7 @@ public class CombatManager implements DestroyListener{
 	public CombatManager(Manager m)
 	{
 		hitboxes = new ArrayList<Hitbox>();
-		items = new ArrayList<Item>();
 		manager = m;
-		
-		Item temp = new Item("sword", 1000, 300);
-		items.add(temp);
 
 	}
 	
@@ -37,9 +32,6 @@ public class CombatManager implements DestroyListener{
 		{
 			obj.draw(g);
 		}
-		for (Item itm: items) {
-			itm.draw(g);
-		}
 	}
 	
 	public void checkHits() {
@@ -56,10 +48,6 @@ public class CombatManager implements DestroyListener{
 					a.collide(list.get(j));
 				}
 			}
-		}
-		
-		for (Item itm: items) {
-			itm.collide(manager.getPlayer());
 		}
 	}
 	

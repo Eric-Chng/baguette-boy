@@ -20,7 +20,7 @@ public class Player extends GravitisedObj implements Damagable{
 	private boolean spacePressed;
 	private boolean rightFacing;
 	private int attTmr;
-
+	
 	private ArrayList<Item> inventory;
 
 
@@ -36,7 +36,7 @@ public class Player extends GravitisedObj implements Damagable{
 		spacePressed = false;
 		rightFacing = true;
 		attTmr = 0;
-
+		
 		inventory = new ArrayList<Item>();
 	}
 
@@ -114,8 +114,7 @@ public class Player extends GravitisedObj implements Damagable{
 			}
 		}
 		attTmr--;
-		
-		
+
 		posUpdate(ratio);
 
 	}
@@ -125,7 +124,8 @@ public class Player extends GravitisedObj implements Damagable{
 		g.pushStyle();
 		g.fill(255,0,0);
 		g.rect(x, y, width, height);
-		g.text(""+currentInvSpot, x, y-20);
+		//g.text(""+currentInvSpot, x, y-20);
+		g.text("" + hp, x, y-20);
 		g.popStyle();
 	}
 
@@ -185,7 +185,7 @@ public class Player extends GravitisedObj implements Damagable{
 		//currentInvSpot+=move;
 		currentInvSpot++;
 		if (!inventory.isEmpty())
-			currentInvSpot %= inventory.size();
+		currentInvSpot %= inventory.size();
 	}
 
 	@Override
@@ -202,10 +202,6 @@ public class Player extends GravitisedObj implements Damagable{
 
 	public int getHP() {
 		return hp;
-	}
-	
-	public void addItem (Item a) {
-		inventory.add(a);
 	}
 
 

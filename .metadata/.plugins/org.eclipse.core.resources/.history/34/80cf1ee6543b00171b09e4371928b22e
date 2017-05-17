@@ -57,10 +57,6 @@ public class CombatManager implements DestroyListener{
 				}
 			}
 		}
-		
-		for (Item itm: items) {
-			itm.collide(manager.getPlayer());
-		}
 	}
 	
 	public void destroy(Object a) {

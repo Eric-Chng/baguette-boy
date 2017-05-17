@@ -2,7 +2,6 @@
 
 import java.awt.Rectangle;
 import java.awt.event.KeyEvent;
-import java.util.ArrayList;
 
 import processing.core.PApplet;
 
@@ -21,8 +20,6 @@ public class Player extends GravitisedObj implements Damagable{
 	private boolean rightFacing;
 	private int attTmr;
 
-	private ArrayList<Item> inventory;
-
 
 
 	public Player(int x, int y, int mass, int width, int height, Manager m) {
@@ -36,8 +33,6 @@ public class Player extends GravitisedObj implements Damagable{
 		spacePressed = false;
 		rightFacing = true;
 		attTmr = 0;
-
-		inventory = new ArrayList<Item>();
 	}
 
 	public void act(double ratio)
@@ -114,8 +109,7 @@ public class Player extends GravitisedObj implements Damagable{
 			}
 		}
 		attTmr--;
-		
-		
+
 		posUpdate(ratio);
 
 	}
@@ -125,7 +119,8 @@ public class Player extends GravitisedObj implements Damagable{
 		g.pushStyle();
 		g.fill(255,0,0);
 		g.rect(x, y, width, height);
-		g.text(""+currentInvSpot, x, y-20);
+		//g.text(""+currentInvSpot, x, y-20);
+		g.text("" + hp, x, y-20);
 		g.popStyle();
 	}
 
@@ -182,10 +177,7 @@ public class Player extends GravitisedObj implements Damagable{
 
 	public void getWheelMove(int move)
 	{
-		//currentInvSpot+=move;
-		currentInvSpot++;
-		if (!inventory.isEmpty())
-			currentInvSpot %= inventory.size();
+		currentInvSpot+=move;
 	}
 
 	@Override
@@ -202,10 +194,6 @@ public class Player extends GravitisedObj implements Damagable{
 
 	public int getHP() {
 		return hp;
-	}
-	
-	public void addItem (Item a) {
-		inventory.add(a);
 	}
 
 
