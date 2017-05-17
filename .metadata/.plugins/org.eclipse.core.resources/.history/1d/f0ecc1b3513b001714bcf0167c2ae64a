@@ -8,7 +8,7 @@ import processing.core.PApplet;
 public class Player extends GravitisedObj implements Damagable{
 
 	public static final int MAX_HP = 100;
-	private final int ATT_DELAY = 30;
+	private final int ATT_DELAY = 50;
 	private final int ATT_DMG = 20;
 	private int hp;
 	private int currentInvSpot;
@@ -151,6 +151,8 @@ public class Player extends GravitisedObj implements Damagable{
 		}
 		else if (e == ' ') {
 			this.spacePressed = true;
+			if (attTmr >= ATT_DELAY/2)
+				this.attTmr = this.ATT_DELAY/2;
 		}
 	}
 

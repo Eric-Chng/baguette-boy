@@ -8,7 +8,7 @@ import processing.core.PApplet;
 public class Player extends GravitisedObj implements Damagable{
 
 	public static final int MAX_HP = 100;
-	private final int ATT_DELAY = 30;
+	private final int ATT_DELAY = 250;
 	private final int ATT_DMG = 20;
 	private int hp;
 	private int currentInvSpot;
@@ -89,16 +89,10 @@ public class Player extends GravitisedObj implements Damagable{
 		if(spacePressed) {
 			if(attTmr <= 0) {
 				Hitbox test;
-				float tempProjxV;
-				if (xSpeed >=0) {
-					tempProjxV = (float)Math.sqrt(xSpeed);
-				} else {
-					tempProjxV = -1f * (float)Math.sqrt(-xSpeed);
-				}
 				if (rightFacing)
-					test = new Hitbox(true, ATT_DMG, super.getX() + width, super.getY(), 80, super.height, 250, tempProjxV, 0);
+					test = new Hitbox(true, ATT_DMG, super.getX() + width, super.getY(), 80, super.height, 250, 0, 0);
 				else
-					test = new Hitbox(true, ATT_DMG, super.getX() -80, super.getY(), 80, super.height, 250, tempProjxV, 0);
+					test = new Hitbox(true, ATT_DMG, super.getX() -80, super.getY(), 80, super.height, 250, 0, 0);
 
 
 				test.addDestroyListener(super.getManager().getCombat());
@@ -151,6 +145,7 @@ public class Player extends GravitisedObj implements Damagable{
 		}
 		else if (e == ' ') {
 			this.spacePressed = true;
+			this.attTmr = 2*this.ATT_DELAY/3;
 		}
 	}
 
