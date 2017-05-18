@@ -20,10 +20,9 @@ public class DeathPanel extends JPanel implements ActionListener {
 
 	public void actionPerformed(ActionEvent e) {
 		System.out.println(e.getActionCommand());
-		if (e.getActionCommand().equals("feels bad")) {
+		if (e.getActionCommand().equals("feels bad"))
 			w.getGamePanel().init();
-			w.changePanel();
-		} else
+		else
 			w.changePanel();
 	}
 

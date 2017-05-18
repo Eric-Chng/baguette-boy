@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.event.KeyEvent;
 import java.awt.event.MouseWheelEvent;
 import java.awt.event.MouseWheelListener;
+import java.util.ArrayList;
 
 import processing.core.PApplet;
 import processing.core.PFont;
@@ -26,48 +27,81 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 	private Main mainClass;
 	private boolean playerStatus;
 	
-	
+	private boolean reset;
+
+
 	public DrawingSurface(Main mainClass) {
 		//demo = new DemoObject();
 		//dooder = new BoxPlatform(300, 0, 600, 20);
 		//objM = new GObjectManager();
 		//donkey = new Player(250, 300, 5, 100, 100);
+		
 		m= new Manager();
-		this.mainClass = mainClass;
 		currentHP=100;
 		targetHP=100;
 		cam = new Camera(width, height);
-		runSketch();
 		playerStatus = true;
+		reset = false;
 		
+		this.mainClass = mainClass;
+		runSketch();
+		
+
 	}
 	
+	public void init() {
+		reset = true;
+	}
+
 
 	public void setup()
 	{
 
 	}
 	
+	private void drawSky()
+	{
+		for(int i=0;i<48;i++)
+		{
+			//fill(i*15,255-i*5,255-i*4);
+			fill(100,100,255);
+			//tint(50,50);
+			rect(0,i*25,2000,25);
+		}
+		
+		
+		
+	}
+
 
 	public void draw() { 
-		noStroke();
-		fill(210);
+		
+		if (reset) {
+			m= new Manager();
+			currentHP=100;
+			targetHP=100;
+			cam = new Camera(width, height);
+			playerStatus = true;
+			reset = false;
+		}
+		
 		this.background(30);
+		noStroke();
+		drawSky();
 		
 		
-		scale(cam.getZoom());
+		fill(210);
+
+
+		//scale(cam.getZoom());
 		cam.sendPlayerPos(m.getPlayerX(), m.getPlatformY());
 		this.translate(cam.getX(), cam.getY());
-		//Rectangle backRectangle = new Rectangle(0,0,600,600);
-		//backRectangle.draw(this);
-		//donkey.draw(this);
-		//donkey.act(System.currentTimeMillis()-lastTime);
+		
 		m.draw(this);
 		long time = System.currentTimeMillis()-lastTime;
 		double ratio = 16.0/time;
-		//pushMatrix();
-		//this.translate(-cam.getX(),-cam.getY());
 		this.translate(-cam.getX(),-cam.getY());
+		fill(30);
 		text(""+60.0/ratio,20,20);
 		fill(255,0,0);
 		targetHP=m.getHP();
@@ -79,12 +113,32 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		this.pushStyle();
 		fill(0);
 		PFont pf = new PFont();
-		
-		pf=this.createFont("Arial", 40);
+
+		pf=this.createFont("Arial", 25);
 		textFont(pf);
 		//Font font = new Font("Arial", Font.PLAIN, 60);
-		this.text(""+currentHP, 1250+3*currentHP-80, 80);
+		if(currentHP<100)
+			this.text(""+currentHP, 1250+3*currentHP-35, 92);
 		this.popStyle();
+
+		ArrayList<Item> items = m.getPlayer().getInv();
+		if (!items.isEmpty()) {
+			if (items.size()==1)
+				items.get(m.getPlayer().getInvSpot()).display(this, super.displayWidth/2 - 300, 100, 1, 175);
+			else if (items.size() == 2) {
+				items.get(m.getPlayer().getInvSpot()).display(this, super.displayWidth/2 - 300, 100, 1, 175);
+				if (m.getPlayer().getInvSpot() == 1)
+					items.get(0).display(this, super.displayWidth/2 - 300 - 200, 80, 0.6f, 95);
+				else
+					items.get(1).display(this, super.displayWidth/2 - 300 - 200, 80, 0.6f, 95);
+			} else {
+				items.get(m.getPlayer().getInvSpot()).display(this, super.displayWidth/2 - 300, 100, 1, 175);
+				items.get((m.getPlayer().getInvSpot() - 1 + items.size()) % items.size()).display(this, super.displayWidth/2 - 300 - 200, 80, 0.6f, 95);
+				items.get((m.getPlayer().getInvSpot() + 1) % items.size()).display(this, super.displayWidth/2 - 300 + 200, 80, 0.6f, 95);
+			}
+		}
+
+
 		//System.out.println(m.getHP());
 
 		//text(""+60.0/ratio,m.getPlayerX()-450, m.getPlatformY()-550);
@@ -101,13 +155,17 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		//geoff = new RegularPolygon(300,300,5,50);
 
 		//geoff.draw(this);
-		
+
 		if (playerStatus && m.getPlayer().getHP() <= 0) {
 			playerStatus = false;
 			mainClass.changePanelTo("death");
 		}
+		if (playerStatus && m.getPlayer().getY() >= 2000) {
+			playerStatus = false;
+			mainClass.changePanelTo("death");
 		}
-	
+	}
+
 	public void sendSize(int width, int height)
 	{
 		cam.setZoom((float)(height/900.0));
@@ -128,14 +186,14 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 			m.mouseWheelMoved(-1);
 			//cam.changeZoom(-1);
 		}
-		
+
 	}
 
 
 	@Override
 	public void keyTyped() {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 
@@ -160,7 +218,7 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 			cam.downMove(true);
 		}
 		//System.out.println("key pressed");
-		
+
 	}
 
 
@@ -185,10 +243,10 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 			cam.downMove(false);
 		}
 	}
-	
-		
-	
-	
+
+
+
+
 }
 
 

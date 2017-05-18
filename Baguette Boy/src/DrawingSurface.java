@@ -26,6 +26,8 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 	private int currentHP;
 	private Main mainClass;
 	private boolean playerStatus;
+	
+	private boolean reset;
 
 
 	public DrawingSurface(Main mainClass) {
@@ -33,14 +35,22 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		//dooder = new BoxPlatform(300, 0, 600, 20);
 		//objM = new GObjectManager();
 		//donkey = new Player(250, 300, 5, 100, 100);
+		
 		m= new Manager();
-		this.mainClass = mainClass;
 		currentHP=100;
 		targetHP=100;
 		cam = new Camera(width, height);
-		runSketch();
 		playerStatus = true;
+		reset = false;
+		
+		this.mainClass = mainClass;
+		runSketch();
+		
 
+	}
+	
+	public void init() {
+		reset = true;
 	}
 
 
@@ -65,6 +75,18 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 
 
 	public void draw() { 
+		
+		if (reset) {
+			m= new Manager();
+			currentHP=100;
+			targetHP=100;
+			cam = new Camera(width, height);
+			playerStatus = true;
+			reset = false;
+			
+			sendSize(mainClass.getWindowWidth(), mainClass.getWindowHeight());
+		}
+		
 		this.background(30);
 		noStroke();
 		drawSky();

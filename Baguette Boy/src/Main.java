@@ -60,7 +60,15 @@ public class Main {
 		canvas.requestFocus();
 
 	}
+	
+	public int getWindowWidth() {
+		return window.getWidth();
+	}
 
+	
+	public int getWindowHeight() {
+		return window.getHeight();
+	}
 
 	public void changePanel() {
 		((CardLayout)cardPanel.getLayout()).next(cardPanel);
@@ -70,6 +78,10 @@ public class Main {
 	public void changePanelTo(String name) {
 		((CardLayout)cardPanel.getLayout()).show(cardPanel, name);
 		canvas.requestFocus();
+	}
+	
+	public DrawingSurface getGamePanel() {
+		return drawing;
 	}
 
 
