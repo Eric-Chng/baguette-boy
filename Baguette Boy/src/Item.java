@@ -5,14 +5,17 @@ import processing.core.PApplet;
 
 public class Item {
 	public final String type;
-	private int x, y;
-	private boolean pickedUp;
+	protected int x, y;
+	protected boolean pickedUp;
+	protected int width, height;
 
 	public Item(String property, int x, int y) {
 		type = property;
 		pickedUp = false;
 		this.x = x;
 		this.y = y;
+		width = 50;
+		height = 50;
 	}
 
 	public void draw(PApplet g) { //TURN DRAW INTO AN IMAGE LATER
@@ -32,7 +35,7 @@ public class Item {
 
 	public boolean collide(Player a) {
 		if (!pickedUp) {
-			Rectangle myself = new Rectangle(x, y, 50, 50);
+			Rectangle myself = new Rectangle(x, y, width, height);
 			if (myself.intersects(a.getRect())) {
 				a.addItem(this);
 				pickedUp = true;

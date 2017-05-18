@@ -43,6 +43,7 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		playerStatus = true;
 		reset = false;
 		
+		
 		this.mainClass = mainClass;
 		runSketch();
 		
@@ -56,7 +57,7 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 
 	public void setup()
 	{
-
+		m.setUpSprites(this);
 	}
 	
 	private void drawSky()
@@ -83,6 +84,7 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 			cam = new Camera(width, height);
 			playerStatus = true;
 			reset = false;
+			m.setUpSprites(this);
 			
 			sendSize(mainClass.getWindowWidth(), mainClass.getWindowHeight());
 		}
@@ -104,7 +106,7 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		double ratio = 16.0/time;
 		this.translate(-cam.getX(),-cam.getY());
 		fill(30);
-		text(""+60.0/ratio,20,20);
+		text("FPS: "+60.0/ratio,20,20);
 		fill(255,0,0);
 		targetHP=m.getHP();
 		if(targetHP<currentHP)
@@ -126,15 +128,15 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		ArrayList<Item> items = m.getPlayer().getInv();
 		if (!items.isEmpty()) {
 			if (items.size()==1)
-				items.get(m.getPlayer().getInvSpot()).display(this, super.displayWidth/2 - 300, 100, 1, 175);
+				items.get(m.getPlayer().getInvSpot()).display(this, super.displayWidth/2 - 300, 100, 1, 220);
 			else if (items.size() == 2) {
-				items.get(m.getPlayer().getInvSpot()).display(this, super.displayWidth/2 - 300, 100, 1, 175);
+				items.get(m.getPlayer().getInvSpot()).display(this, super.displayWidth/2 - 300, 100, 1, 220);
 				if (m.getPlayer().getInvSpot() == 1)
 					items.get(0).display(this, super.displayWidth/2 - 300 - 200, 80, 0.6f, 95);
 				else
 					items.get(1).display(this, super.displayWidth/2 - 300 - 200, 80, 0.6f, 95);
 			} else {
-				items.get(m.getPlayer().getInvSpot()).display(this, super.displayWidth/2 - 300, 100, 1, 175);
+				items.get(m.getPlayer().getInvSpot()).display(this, super.displayWidth/2 - 300, 100, 1, 220);
 				items.get((m.getPlayer().getInvSpot() - 1 + items.size()) % items.size()).display(this, super.displayWidth/2 - 300 - 200, 80, 0.6f, 95);
 				items.get((m.getPlayer().getInvSpot() + 1) % items.size()).display(this, super.displayWidth/2 - 300 + 200, 80, 0.6f, 95);
 			}

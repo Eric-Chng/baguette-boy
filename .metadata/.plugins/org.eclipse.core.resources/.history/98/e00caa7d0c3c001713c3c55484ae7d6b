@@ -1,0 +1,33 @@
+import java.awt.Rectangle;
+
+import processing.core.PApplet;
+import processing.core.PImage;
+
+public class Sword extends Item{
+	public static PImage sword;
+	
+	public Sword(int x, int y) {
+		super("sword", x, y);
+		width = 60;
+		height = 105;
+		
+		sword.resize(width, height);
+	}
+	
+	public void display(PApplet g, int x, int y, float ratio, int fill) {
+		g.pushStyle();
+		g.tint(255, fill);
+		sword.resize((int)(ratio*80), (int)(ratio*140));
+		g.image(sword, x, y);
+		g.popStyle();
+		
+		
+		g.text(type, x, y+40*ratio);
+	}
+	
+	public void draw(PApplet g) { 
+		if(!pickedUp) {
+			g.image(sword, x, y + (float)(15*Math.sin(System.currentTimeMillis()/250.0)));
+		}
+	}
+}

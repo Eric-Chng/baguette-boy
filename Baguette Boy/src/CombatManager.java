@@ -18,10 +18,10 @@ public class CombatManager implements DestroyListener{
 		items = new ArrayList<Item>();
 		manager = m;
 		
-		Item temp = new Item("sword", 4660, 200);
+		Sword temp = new Sword(4660, 170);
 		items.add(temp);
 		
-		Item temp1 = new Item("hp", 1200, 300);
+		Potion temp1 = new Potion(1200, 300, 25);
 		items.add(temp1);
 		
 		Item temp2 = new Item("mp", 800, 300);

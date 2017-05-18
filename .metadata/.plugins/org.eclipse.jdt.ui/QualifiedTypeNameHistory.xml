@@ -15,4 +15,5 @@
 <fullyQualifiedTypeName name="java.awt.Rectangle"/>
 <fullyQualifiedTypeName name="java.util.ArrayList"/>
 <fullyQualifiedTypeName name="javax.swing.JPanel"/>
+<fullyQualifiedTypeName name="processing.core.PImage"/>
 </qualifiedTypeNameHistroy>

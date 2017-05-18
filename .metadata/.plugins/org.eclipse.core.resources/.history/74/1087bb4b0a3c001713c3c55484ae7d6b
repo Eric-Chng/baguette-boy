@@ -1,0 +1,29 @@
+import processing.core.PApplet;
+import processing.core.PImage;
+
+public class Potion extends Item{
+
+	private int amt;
+	
+	public Potion(int x, int y, int healAmt) {
+		super("hp", x, y);
+		amt = healAmt;
+	}
+	
+	public int getHeal() {
+		return amt;
+	}
+	
+	public void display(PApplet g, int x, int y, float ratio, int fill) {
+		g.pushStyle();
+		g.tint(255, fill);
+		PImage temp = g.loadImage("Potion Life.png");
+		temp.resize((int)(ratio*80), (int)(ratio*80));
+		g.image(temp, x, y);
+		g.popStyle();
+		
+		
+		g.text(type, x, y+40*ratio);
+	}
+
+}

@@ -1,0 +1,101 @@
+import java.util.ArrayList;
+
+import processing.core.PApplet;
+
+public class GObjectManager implements DestroyListener{
+
+	private ArrayList<GravitisedObj> objects;
+
+	private Manager manager;
+	
+	
+	
+
+	
+	public GObjectManager(Manager m)
+	{
+		objects = new ArrayList<GravitisedObj>();
+		manager = m;
+		objects.add(new Charger(3000,100,10,100,100, manager));
+		objects.add(new Turret(5700, 0, 10, 100, 100, manager));
+
+	}
+	
+	public void setSprites(PApplet g)
+	{
+		for(int i = 0; i < objects.size(); i++)
+		{
+			if (objects.get(i) instanceof Charger) {
+				((Charger)objects.get(i)).setUpStar(g);
+			}
+		}
+	}
+	
+	public void actObjects(double ratio)
+	{
+		for(GravitisedObj obj: objects)
+		{
+			obj.act(ratio);
+		}
+	}
+	
+	public void drawObjects(PApplet g)
+	{
+		for(GravitisedObj obj: objects)
+		{
+			obj.draw(g);
+		}
+	}
+	
+	public void destroy(Object a) {
+		for (int i = objects.size()-1; i >= 0; i--) {
+			if (a == objects.get(i))
+				objects.remove(i);
+		}
+	}
+	
+	public int checkCollision(int x, int y, int side, boolean isPlayer, GravitisedObj other)
+	{
+		//boolean collides = false;
+		int min = 20000;
+		for(GravitisedObj obj: objects)
+		{
+			if(obj!=other)
+			{
+				int current = obj.collideTest(x, y, side);
+				if(current<min)
+				{
+					min=current;
+				}
+				if(current<0)                                                                                                                                                                                       
+				{
+					return -1;
+				}
+			}
+		}
+		if(side==2&&min<20000)
+		{
+			//manager.sendPlatformY(min+y);
+		}
+		return min;
+
+	}
+	
+	public ArrayList<Damagable> getDmg() {
+		ArrayList<Damagable> d = new ArrayList<Damagable>();
+		
+		for(GravitisedObj obj: objects)
+		{
+			if (obj instanceof Damagable)
+				d.add((Damagable)obj);
+		}
+		
+		//do it for every array it contains
+		
+		
+		
+		return d;
+	}
+	
+	
+}

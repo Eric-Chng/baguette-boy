@@ -1,0 +1,21 @@
+import processing.core.PApplet;
+import processing.core.PImage;
+
+public class Potion extends Item{
+
+	private int amt;
+	
+	public Potion(int x, int y, int healAmt) {
+		super("hp", x, y);
+		amt = healAmt;
+		width = 60;
+		height = 105;
+	}
+	
+	public int getHeal() {
+		return amt;
+	}
+	
+	
+
+}

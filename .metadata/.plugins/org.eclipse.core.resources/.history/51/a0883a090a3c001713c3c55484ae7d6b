@@ -26,6 +26,8 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 	private int currentHP;
 	private Main mainClass;
 	private boolean playerStatus;
+	
+	private boolean reset;
 
 
 	public DrawingSurface(Main mainClass) {
@@ -33,38 +35,78 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		//dooder = new BoxPlatform(300, 0, 600, 20);
 		//objM = new GObjectManager();
 		//donkey = new Player(250, 300, 5, 100, 100);
+		
 		m= new Manager();
-		this.mainClass = mainClass;
 		currentHP=100;
 		targetHP=100;
 		cam = new Camera(width, height);
-		runSketch();
 		playerStatus = true;
+		reset = false;
+		
+		
+		this.mainClass = mainClass;
+		runSketch();
+		
 
+	}
+	
+	public void init() {
+		reset = true;
 	}
 
 
 	public void setup()
 	{
-
+		m.setUpSprites(this);
+	}
+	
+	private void drawSky()
+	{
+		for(int i=0;i<48;i++)
+		{
+			//fill(i*15,255-i*5,255-i*4);
+			fill(100,100,255);
+			//tint(50,50);
+			rect(0,i*25,2000,25);
+		}
+		
+		
+		
 	}
 
 
 	public void draw() { 
-		noStroke();
-		fill(210);
+		
+		if (reset) {
+			m= new Manager();
+			currentHP=100;
+			targetHP=100;
+			cam = new Camera(width, height);
+			playerStatus = true;
+			reset = false;
+			m.setUpSprites(this);
+			System.out.println("sprite set up");
+			
+			sendSize(mainClass.getWindowWidth(), mainClass.getWindowHeight());
+		}
+		
 		this.background(30);
+		noStroke();
+		drawSky();
+		
+		
+		fill(210);
 
 
 		scale(cam.getZoom());
 		cam.sendPlayerPos(m.getPlayerX(), m.getPlatformY());
 		this.translate(cam.getX(), cam.getY());
-
+		
 		m.draw(this);
 		long time = System.currentTimeMillis()-lastTime;
 		double ratio = 16.0/time;
 		this.translate(-cam.getX(),-cam.getY());
-
+		fill(30);
 		text(""+60.0/ratio,20,20);
 		fill(255,0,0);
 		targetHP=m.getHP();
@@ -84,9 +126,21 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 			this.text(""+currentHP, 1250+3*currentHP-35, 92);
 		this.popStyle();
 
-		ArrayList<Item> items = m.getCombat().getItems();
+		ArrayList<Item> items = m.getPlayer().getInv();
 		if (!items.isEmpty()) {
-			items.get(m.getPlayer().getInvSpot()).display(this, 1000, 100, 1, 255);;
+			if (items.size()==1)
+				items.get(m.getPlayer().getInvSpot()).display(this, super.displayWidth/2 - 300, 100, 1, 175);
+			else if (items.size() == 2) {
+				items.get(m.getPlayer().getInvSpot()).display(this, super.displayWidth/2 - 300, 100, 1, 175);
+				if (m.getPlayer().getInvSpot() == 1)
+					items.get(0).display(this, super.displayWidth/2 - 300 - 200, 80, 0.6f, 95);
+				else
+					items.get(1).display(this, super.displayWidth/2 - 300 - 200, 80, 0.6f, 95);
+			} else {
+				items.get(m.getPlayer().getInvSpot()).display(this, super.displayWidth/2 - 300, 100, 1, 175);
+				items.get((m.getPlayer().getInvSpot() - 1 + items.size()) % items.size()).display(this, super.displayWidth/2 - 300 - 200, 80, 0.6f, 95);
+				items.get((m.getPlayer().getInvSpot() + 1) % items.size()).display(this, super.displayWidth/2 - 300 + 200, 80, 0.6f, 95);
+			}
 		}
 
 

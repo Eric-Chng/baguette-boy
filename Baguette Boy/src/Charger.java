@@ -17,14 +17,10 @@ public class Charger extends Enemy{
 		super(x, y, 6, width, height, m, 100);
 		this.m=m;
 		stunned = true;
-		star=new PImage();
-
-
-		//System.out.println(x);
-		//System.out.println(y);
-		//System.out.println(width);
-		//System.out.println(height);
-		// TODO Auto-generated constructor stub
+	}
+	
+	public void setUpStar(PApplet g) {
+		star = g.loadImage("star.png");
 	}
 
 	/**
@@ -117,7 +113,7 @@ public class Charger extends Enemy{
 	{
 		g.pushStyle();
 
-		star = g.loadImage("star.png");
+		//star = g.loadImage("star.png");
 		if(stunned)
 		{
 			g.tint(255,(float)stunTimer*2);
