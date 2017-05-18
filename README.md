@@ -25,10 +25,10 @@ Must-haves:
 Want-to-haves:
 (Done)Inventory system - A scroll wheel based inventory system to store items
 Different weapons - Different weapons (slower heavy hitting, multi-shot, etc.) would make gameplay more unique
-(Done)Single use items - Things like health potions or damage increase to give the player more options when fighting
+(Progress)Single use items - Things like health potions or damage increase to give the player more options when fighting
 Boss fights - A boss with lots of health and multiple attack patterns
 Pause menu - a pause menu overlay for the player to temporarily stop the game
-Visual improvements - Features to make the game more aesthetically pleasing
+(Progress)Visual improvements - Features to make the game more aesthetically pleasing
 Damage indicators - Numbers to show how much damage the player has dealt
 Player/enemy animations - Animations to make the scene seem more alive and interesting
 
@@ -43,12 +43,25 @@ Item Descriptions - ability to check items for their various attributes
 CLASS LIST:
 Main - starts program
 DrawingSurface - Draws everything
+DeathPanel - Screen shown upon death
+Tutorial - Stores and controls text used to teach instructions
 Manager - Holds and controls all the objects
+GObjectManager - a type of manager
+PlatformManager - a type of manager
+CombatManager - a type of manager
 GravitisedObject - Superclass for objects affected by gravity and collisions
-Platform - static platforms for things to collide into
+BoxPlatform - static platforms for things to collide into
 Player - represents the player and the actions the player does
+Item - items that can be picked up
+Sword - a type of Item
+Potion - a type of Item
+Hitbox - an entity that can move and damage players or enemies
+Enemy - super class for all enemy types
+Charger - rushes toward player. Get's stunned in between attacks
+Turret - non-moving enemy that rapid-fires ranged attacks at player
+
 DestroyListener(I) - Implemented by Manager and used by objects that need to destroy themselves/other objects
-Health(I) - Implemented by classes with health
+Damagable(I) - Implemented by classes with health
 
 RESPONSIBILITIES:
 Eric: Player abilities and (hopefully) inventory system. Enemy design.
