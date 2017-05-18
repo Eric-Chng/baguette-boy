@@ -7,12 +7,12 @@ public class Hitbox {
 
 	private boolean friendly;
 	private int damage;
-	private float x,y;
+	protected float x,y;
 	private float width, height;
 	private float xV, yV;
 	private long lastForMs;
 	private long startMS;
-	private DestroyListener destruction;
+	protected DestroyListener destruction;
 	
 	public Hitbox(boolean fromPlayer, int damage, float x, float y, float width, float height, long DurationInMS, float xVelocity, float yVelocity) {
 		this.friendly = fromPlayer;

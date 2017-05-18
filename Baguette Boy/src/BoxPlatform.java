@@ -3,8 +3,9 @@
 import processing.core.PApplet;
 
 public class BoxPlatform implements Comparable{
-	protected int x, y;
-	protected int width, height;
+	private int x, y;
+	private int width, height;
+	private int r,g,b;
 
 	/*
 	 * x and y is upper left corner
@@ -16,6 +17,19 @@ public class BoxPlatform implements Comparable{
 		this.y = y;
 		this.width = width;
 		this.height = height;
+		r=0;
+		g=255;
+		b=0;
+	}
+	
+	public BoxPlatform(int x, int y, int width, int height, int r, int g, int b) {
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+		this.r=r;
+		this.g=g;
+		this.b=b;
 	}
 	
 	public int getMiddleX()
@@ -72,7 +86,7 @@ public class BoxPlatform implements Comparable{
 	public void draw(PApplet g)
 	{
 		g.pushStyle();
-		g.fill(0,255,0);
+		g.fill(r,this.g,b);
 		if(width<40)
 		{
 			

@@ -18,7 +18,7 @@ public class CombatManager implements DestroyListener{
 		items = new ArrayList<Item>();
 		manager = m;
 		
-		Item temp = new Item("sword", 1000, 300);
+		Item temp = new Item("sword", 4660, 200);
 		items.add(temp);
 		
 		Item temp1 = new Item("hp", 1200, 300);

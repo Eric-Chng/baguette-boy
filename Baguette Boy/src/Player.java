@@ -9,8 +9,8 @@ import processing.core.PApplet;
 public class Player extends GravitisedObj implements Damagable{
 
 	public static final int MAX_HP = 100;
-	private final int ATT_DELAY = 30;
-	private final int ATT_DMG = 20;
+	private final int ATT_DELAY = 20;
+	private final int ATT_DMG = 18;
 	private int hp;
 	private int currentInvSpot;
 	private Manager manager;

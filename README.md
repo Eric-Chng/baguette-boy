@@ -19,13 +19,13 @@ FEATURES LIST:
 Must-haves:
 (Done)2D physics - A smooth and functional physics engine that allows for natural jumping, movement, and collisions
 (Done)Enemies - Enemies with health for the player to deal with in order to add difficulty
-(In-Progress)Player combat - a weapon and health for the player
+(Done)Player combat - a weapon and health for the player
 (Done)Side-scrolling - Screen that only shows a portion of the entire map
 
 Want-to-haves:
-Inventory system - A scroll wheel based inventory system to store items
+(Done)Inventory system - A scroll wheel based inventory system to store items
 Different weapons - Different weapons (slower heavy hitting, multi-shot, etc.) would make gameplay more unique
-Single use items - Things like health potions or damage increase to give the player more options when fighting
+(Done)Single use items - Things like health potions or damage increase to give the player more options when fighting
 Boss fights - A boss with lots of health and multiple attack patterns
 Pause menu - a pause menu overlay for the player to temporarily stop the game
 Visual improvements - Features to make the game more aesthetically pleasing

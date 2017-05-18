@@ -170,7 +170,7 @@ public abstract class GravitisedObj {
 			{
 				//System.out.println("object falling");
 			}
-			ySpeed += GRAVITY_POWER*ratio;
+			ySpeed += GRAVITY_POWER*ratio*mass/10;
 		}
 	}
 	

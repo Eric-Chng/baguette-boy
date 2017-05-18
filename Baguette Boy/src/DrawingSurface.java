@@ -48,23 +48,40 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 	{
 
 	}
+	
+	private void drawSky()
+	{
+		for(int i=0;i<48;i++)
+		{
+			//fill(i*15,255-i*5,255-i*4);
+			fill(100,100,255);
+			//tint(50,50);
+			rect(0,i*25,2000,25);
+		}
+		
+		
+		
+	}
 
 
 	public void draw() { 
-		noStroke();
-		fill(210);
 		this.background(30);
+		noStroke();
+		drawSky();
+		
+		
+		fill(210);
 
 
 		scale(cam.getZoom());
 		cam.sendPlayerPos(m.getPlayerX(), m.getPlatformY());
 		this.translate(cam.getX(), cam.getY());
-
+		
 		m.draw(this);
 		long time = System.currentTimeMillis()-lastTime;
 		double ratio = 16.0/time;
 		this.translate(-cam.getX(),-cam.getY());
-
+		fill(30);
 		text(""+60.0/ratio,20,20);
 		fill(255,0,0);
 		targetHP=m.getHP();

@@ -29,6 +29,16 @@ public class Tutorial {
 			tutorialNumber=2;
 			displayTimer = 700;
 		}
+		else if(m.getPlayerX()>4600&&m.getPlayerX()<4800&&tutorialNumber==2)
+		{
+			tutorialNumber=3;
+			displayTimer=250;
+		}
+		else if(m.getPlayerX()>5800&&m.getPlayerX()<5900&&tutorialNumber!=4)
+		{
+			tutorialNumber=4;
+			displayTimer=300;
+		}
 
 
 
@@ -38,7 +48,7 @@ public class Tutorial {
 	{
 		g.pushStyle();
 		PFont pf = new PFont();
-
+		g.fill(255);
 		pf=g.createFont("Helvetica Neue", 35);
 		g.textFont(pf);
 		g.textAlign(g.CENTER);
@@ -56,6 +66,14 @@ public class Tutorial {
 			else if(tutorialNumber==2)
 			{
 				g.text("Use your environment to your advantage", 2900, 300);
+			}
+			else if(tutorialNumber==3)
+			{
+				g.text("Press spacebar to wield thy sword!", 4700, 100);
+			}
+			else if(tutorialNumber==4)
+			{
+				g.text("Now set forth and prove yourself in battle!", 6000, 100);
 			}
 		}
 		g.popStyle();

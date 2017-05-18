@@ -14,7 +14,7 @@ public class Charger extends Enemy{
 	private final int AttTmr = 25;
 
 	public Charger(int x, int y, int mass, int width, int height, Manager m) {
-		super(x, y, mass, width, height, m, 100);
+		super(x, y, 6, width, height, m, 100);
 		this.m=m;
 		stunned = true;
 		star=new PImage();
@@ -66,6 +66,7 @@ public class Charger extends Enemy{
 			{
 				//System.out.println("CHARGE");
 				charging = true;
+				ySpeed=-14;
 				if(playerX>x)
 				{
 					dir=1;
