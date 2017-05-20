@@ -21,6 +21,12 @@ public class MeleeWeapon extends Item{
 		g.tint(255, fill);
 		sword.resize((int)(ratio*80), (int)(ratio*140));
 		g.image(sword, x, y);
+		//attack cooldown bar
+		float cooldown = 1.0f - (System.currentTimeMillis() - lastHit)/(float)ATT_DELAY;
+		if (cooldown >0) {
+			g.fill(200, 150);
+			g.rect(x, y, (ratio)*width * cooldown,(ratio)* height);
+		}
 		g.popStyle();
 		
 		

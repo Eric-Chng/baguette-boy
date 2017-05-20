@@ -45,10 +45,23 @@ public class Inventory {
 		if (inventory.size() == 0)
 			return 0;
 		Item a = inventory.get(invPos);
-		if (!(a instanceof MeleeWeapon))
+		if (!(a instanceof MeleeWeapon)) {
 			return 0;
+		}
 		if (((MeleeWeapon)a).attack())
 			return ((MeleeWeapon)a).ATT_DMG;
 		return 0;
+	}
+	
+	public boolean rangedWeapon(Player p) {
+		if (inventory.size() == 0)
+			return false;
+		if (inventory.get(invPos) instanceof RangedWeapon)
+			return true;
+		return false;
+	}
+	
+	public Item getItem() {
+		return inventory.get(invPos);
 	}
 }

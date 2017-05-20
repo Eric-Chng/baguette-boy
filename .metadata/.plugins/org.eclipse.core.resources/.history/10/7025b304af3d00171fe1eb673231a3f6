@@ -1,0 +1,44 @@
+import processing.core.PApplet;
+import processing.core.PImage;
+
+public class RangedWeapon extends Item{
+public static PImage gun;
+	
+	public static final int ATT_DMG = 10;
+	public static final int ATT_DELAY = 1500;
+	private long lastHit;
+	
+	public RangedWeapon(int x, int y, String type) {
+		super(type, x, y);
+		width = 60;
+		height = 105;
+		lastHit = 0;
+		
+	}
+	
+	public void display(PApplet g, int x, int y, float ratio, int fill) {
+		g.pushStyle();
+		g.tint(255, fill);
+		gun.resize((int)(ratio*80), (int)(ratio*140));
+		g.image(gun, x, y);
+		g.popStyle();
+		
+		
+		g.text(type, x, y+40*ratio);
+	}
+	
+	public void draw(PApplet g) { 
+		if(!pickedUp) {
+			gun.resize(width, height);
+			g.image(gun, x, y + (float)(15*Math.sin(System.currentTimeMillis()/250.0)));
+		}
+	}
+	
+	public boolean rangeAttack() {
+		if (lastHit + ATT_DELAY <= System.currentTimeMillis()) {
+			lastHit = System.currentTimeMillis();
+			return true;
+		}
+		return false;
+	}
+}

@@ -21,17 +21,6 @@ public class GObjectManager implements DestroyListener{
 
 	}
 	
-	public void setSprites(PApplet g)
-	{
-		for(int i = 0; i < objects.size(); i++)
-		{
-			if (objects.get(i) instanceof Charger) {
-				Charger temp = (Charger)objects.get(i);
-				temp.setUpStar(g);
-			}
-		}
-	}
-	
 	public void actObjects(double ratio)
 	{
 		for(GravitisedObj obj: objects)

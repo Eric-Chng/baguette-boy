@@ -1,3 +1,4 @@
+import java.awt.Color;
 
 public class Turret extends Enemy{
 
@@ -24,7 +25,7 @@ public class Turret extends Enemy{
 				double yV = (playerY-super.y)/(hyp/bulletSpd);
 
 
-				Bullet test = new Bullet(false, dmg, (float)super.getX(), (float)super.getY()+20f, 10f, 10f, 1000, (float) xV, (float)yV,m);
+				Bullet test = new Bullet(false, dmg, (float)super.getX(), (float)super.getY()+20f, 10f, 10f, 1000, (float) xV, (float)yV,m, Color.BLACK);
 				test.addDestroyListener(super.getManager().getCombat());
 				super.getManager().getCombat().addHitbox(test);
 				attackDelay = AttTmr;

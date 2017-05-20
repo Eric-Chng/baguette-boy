@@ -9,7 +9,7 @@ public class Charger extends Enemy{
 	private boolean charging;
 	private int dir;
 	private int saveY;
-	private PImage star;
+	public static PImage star;
 
 	private final int AttTmr = 25;
 
@@ -17,10 +17,6 @@ public class Charger extends Enemy{
 		super(x, y, 6, width, height, m, 100);
 		this.m=m;
 		stunned = true;
-	}
-	
-	public void setUpStar(PApplet g) {
-		star = g.loadImage("star.png");
 	}
 
 	/**
@@ -112,6 +108,7 @@ public class Charger extends Enemy{
 	public void draw(PApplet g)
 	{
 		g.pushStyle();
+		g.ellipseMode(g.CENTER);
 
 		//star = g.loadImage("star.png");
 		if(stunned)

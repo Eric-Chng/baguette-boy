@@ -1,0 +1,58 @@
+import processing.core.PApplet;
+import processing.core.PImage;
+
+public class RangedWeapon extends Item{
+public static PImage gun;
+	
+	public static final int ATT_DMG = 10;
+	public static final int ATT_DELAY = 1500;
+	public static final int BULLET_SPD = 20;
+	private long lastHit;
+	
+	public RangedWeapon(int x, int y, String type) {
+		super(type, x, y);
+		width = 80;
+		height = 80;
+		lastHit = 0;
+		
+	}
+	
+	public void display(PApplet g, int x, int y, float ratio, int fill) {
+		g.pushStyle();
+		g.tint(255, fill);
+		gun.resize((int)(ratio*80), (int)(ratio*80));
+		g.image(gun, x, y);
+		g.popStyle();
+		
+		
+		g.text(type, x, y+40*ratio);
+	}
+	
+	public void draw(PApplet g) { 
+		if(!pickedUp) {
+			gun.resize(width, height);
+			g.image(gun, x, y + (float)(15*Math.sin(System.currentTimeMillis()/250.0)));
+		}
+	}
+	
+	public boolean rangeAttack(Player p) {
+		if (lastHit + ATT_DELAY <= System.currentTimeMillis()) {
+			lastHit = System.currentTimeMillis();
+			Hitbox test;
+			float tempProjxV;
+			if (p.xSpeed >= 0) {
+				tempProjxV = (float)p.xSpeed + BULLET_SPD;
+			} else {
+				tempProjxV = (float)p.xSpeed - BULLET_SPD;
+			}
+			
+			test = new Hitbox(true, ATT_DMG, p.getX(), p.getY(), 60, p.height * 0.75f, 1000, tempProjxV, 0);
+
+
+			test.addDestroyListener(p.getManager().getCombat());
+			p.getManager().getCombat().addHitbox(test);
+			return true;
+		}
+		return false;
+	}
+}

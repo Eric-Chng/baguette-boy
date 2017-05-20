@@ -1,17 +1,20 @@
+import java.awt.Color;
+
+import processing.core.PApplet;
 
 public class Bullet extends Hitbox{
 
 	private Manager m;
-	
-	public Bullet(boolean fromPlayer, int damage, float x, float y, float width, float height, long DurationInMS, float xVelocity, float yVelocity, Manager man) {
-		
-			//(boolean fromPlayer, int damage, float x, float y, float width, float height, long DurationInMS, float xVelocity, float yVelocity)
-		
-		super(fromPlayer, damage, x, y, width, height, DurationInMS,xVelocity,yVelocity);
+
+	public Bullet(boolean fromPlayer, int damage, float x, float y, float width, float height, long DurationInMS, float xVelocity, float yVelocity, Manager man, Color color) {
+
+		//(boolean fromPlayer, int damage, float x, float y, float width, float height, long DurationInMS, float xVelocity, float yVelocity)
+
+		super(fromPlayer, damage, x, y, width, height, DurationInMS,xVelocity,yVelocity, color);
 		m=man;
 		// TODO Auto-generated constructor stub
-		}
-	
+	}
+
 	public void act()
 	{
 		super.act();
@@ -19,6 +22,12 @@ public class Bullet extends Hitbox{
 		{
 			destruction.destroy(this);
 		}
+	}
+
+	public void draw(PApplet g) {
+		g.ellipseMode(g.CORNER);
+		g.fill(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha());
+		g.ellipse(x, y, width, height);
 	}
 
 }

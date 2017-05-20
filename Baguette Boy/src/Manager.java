@@ -34,9 +34,10 @@ public class Manager implements DestroyListener{
 	}
 	
 	public void setUpSprites(PApplet g) {
-		gObjects.setSprites(g);
+		Charger.star = g.loadImage("star.png");
 		Potion.hpPotion = g.loadImage("Potion Life.png");
 		MeleeWeapon.sword = g.loadImage("rusty sword.png");
+		RangedWeapon.gun = g.loadImage("gun.png");
 	}
 
 	/**
@@ -102,9 +103,9 @@ public class Manager implements DestroyListener{
 	public void act(double ratio)
 	{
 		player.act(ratio);
+		combat.checkHits();
 		gObjects.actObjects(ratio);
 		combat.actObjects();
-		combat.checkHits();
 		tutorial.act();
 	}
 	

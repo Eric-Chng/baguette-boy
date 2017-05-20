@@ -8,11 +8,13 @@ public class Hitbox {
 	private boolean friendly;
 	private int damage;
 	protected float x,y;
-	private float width, height;
+	protected float width, height;
 	private float xV, yV;
 	private long lastForMs;
 	private long startMS;
 	protected DestroyListener destruction;
+	
+	protected Color c;
 	
 	public Hitbox(boolean fromPlayer, int damage, float x, float y, float width, float height, long DurationInMS, float xVelocity, float yVelocity) {
 		this.friendly = fromPlayer;
@@ -39,6 +41,19 @@ public class Hitbox {
 		lastForMs = DurationInMS;
 		startMS = System.currentTimeMillis();
 	}
+	public Hitbox(boolean fromPlayer, int damage, float x, float y, float width, float height, long DurationInMS, float xVelocity, float yVelocity, Color color) {
+		this.friendly = fromPlayer;
+		this.damage = damage;
+		this.x = x;
+		this.y = y;
+		this. width = width;
+		this.height = height;
+		xV = xVelocity;
+		yV = yVelocity;
+		lastForMs = DurationInMS;
+		c = color;
+		startMS = System.currentTimeMillis();
+	}
 	
 	public void addDestroyListener(DestroyListener a) {
 		destruction = a;
@@ -54,7 +69,10 @@ public class Hitbox {
 	}
 	
 	public void draw(PApplet g) {
+		if(c == null)
 		g.fill(240, 128, 128, 100);
+		else
+			g.fill(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha());
 		g.rect(x, y, width, height);
 	}
 	
