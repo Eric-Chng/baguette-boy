@@ -36,7 +36,7 @@ public class Manager implements DestroyListener{
 	public void setUpSprites(PApplet g) {
 		gObjects.setSprites(g);
 		Potion.hpPotion = g.loadImage("Potion Life.png");
-		Sword.sword = g.loadImage("rusty sword.png");
+		MeleeWeapon.sword = g.loadImage("rusty sword.png");
 	}
 
 	/**
@@ -124,6 +124,10 @@ public class Manager implements DestroyListener{
 	public void sendKeyCode(char e)
 	{
 		player.sendKeyCode(e);
+	}
+	
+	public void sendSpecialKeyCode(int code) {
+		player.sendSpecialKeyCode(code);
 	}
 	
 	/**

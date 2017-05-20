@@ -12,7 +12,6 @@ public class Player extends GravitisedObj implements Damagable{
 	private final int ATT_DELAY = 20;
 	private final int ATT_DMG = 18;
 	private int hp;
-	private int currentInvSpot;
 	private Manager manager;
 	private boolean rightWalkCode;
 	private boolean leftWalkCode;
@@ -21,14 +20,13 @@ public class Player extends GravitisedObj implements Damagable{
 	private boolean rightFacing;
 	private int attTmr;
 
-	private ArrayList<Item> inventory;
+	private Inventory inventory;
 
 
 
 	public Player(int x, int y, int mass, int width, int height, Manager m) {
 		super(x, y, mass, width, height,m);
 		hp = MAX_HP;
-		currentInvSpot = 0;
 		manager = m;
 		rightWalkCode=false;
 		hasJumped = true;
@@ -37,7 +35,7 @@ public class Player extends GravitisedObj implements Damagable{
 		rightFacing = true;
 		attTmr = 0;
 
-		inventory = new ArrayList<Item>();
+		inventory = new Inventory();
 	}
 
 	public void act(double ratio)
@@ -92,7 +90,28 @@ public class Player extends GravitisedObj implements Damagable{
 		}
 
 		if(spacePressed) {
-			if(attTmr <= 0) {
+			//			if(attTmr <= 0) {
+			//				Hitbox test;
+			//				float tempProjxV;
+			//				if (xSpeed >=0) {
+			//					tempProjxV = (float)Math.sqrt(xSpeed);
+			//				} else {
+			//					tempProjxV = -1f * (float)Math.sqrt(-xSpeed);
+			//				}
+			//				if (rightFacing)
+			//					test = new Hitbox(true, ATT_DMG, super.getX() + width, super.getY(), 80, super.height, 250, tempProjxV, 0);
+			//				else
+			//					test = new Hitbox(true, ATT_DMG, super.getX() -80, super.getY(), 80, super.height, 250, tempProjxV, 0);
+			//
+			//
+			//				test.addDestroyListener(super.getManager().getCombat());
+			//				super.getManager().getCombat().addHitbox(test);
+			//
+			//
+			//				attTmr = this.ATT_DELAY;
+			//			}
+			int tempAttack = inventory.weaponDamage();
+			if (tempAttack != 0) {
 				Hitbox test;
 				float tempProjxV;
 				if (xSpeed >=0) {
@@ -108,14 +127,11 @@ public class Player extends GravitisedObj implements Damagable{
 
 				test.addDestroyListener(super.getManager().getCombat());
 				super.getManager().getCombat().addHitbox(test);
-
-
-				attTmr = this.ATT_DELAY;
 			}
 		}
-		attTmr--;
-		
-		
+		//attTmr--;
+
+
 		posUpdate(ratio);
 
 	}
@@ -125,7 +141,7 @@ public class Player extends GravitisedObj implements Damagable{
 		g.pushStyle();
 		g.fill(255,0,0);
 		g.rect(x, y, width, height);
-		g.text(""+currentInvSpot, x, y-20);
+		//g.text(""+currentInvSpot, x, y-20);
 		g.popStyle();
 	}
 
@@ -157,17 +173,14 @@ public class Player extends GravitisedObj implements Damagable{
 		else if (e == ' ') {
 			this.spacePressed = true;
 		}
-		
+
 		else if (e == 'f') {
-			for (int i = inventory.size()-1; i >= 0; i--) {
-				//HP POTION CHECK
-			}
+			//HP POTION CHECK
 		}
 	}
 
 	public void releaseKeyCode(char e)
 	{
-		//System.out.println("hi");
 		if(e=='d')
 		{
 			this.rightWalkCode = false;
@@ -184,22 +197,27 @@ public class Player extends GravitisedObj implements Damagable{
 
 	}
 
+	public void sendSpecialKeyCode(int code) {
+		if (code == PApplet.SHIFT) {
+			System.out.println("shift");
+			inventory.moveInventory();
+		}
+	}
+
 
 
 	public void getWheelMove(int move)
 	{
 		//currentInvSpot+=move;
-		currentInvSpot++;
-		if (!inventory.isEmpty())
-			currentInvSpot %= inventory.size();
+		inventory.moveInventory();
 	}
-	
+
 	public int getInvSpot() {
-		return currentInvSpot;
+		return inventory.getCurrentPos();
 	}
-	
+
 	public ArrayList<Item> getInv() {
-		return inventory;
+		return inventory.getInventory();
 	}
 
 	@Override
@@ -217,9 +235,9 @@ public class Player extends GravitisedObj implements Damagable{
 	public int getHP() {
 		return hp;
 	}
-	
+
 	public void addItem (Item a) {
-		inventory.add(a);
+		inventory.addItem(a);
 	}
 
 

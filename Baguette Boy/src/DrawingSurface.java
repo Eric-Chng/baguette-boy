@@ -26,7 +26,7 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 	private int currentHP;
 	private Main mainClass;
 	private boolean playerStatus;
-	
+
 	private boolean reset;
 
 
@@ -35,21 +35,21 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		//dooder = new BoxPlatform(300, 0, 600, 20);
 		//objM = new GObjectManager();
 		//donkey = new Player(250, 300, 5, 100, 100);
-		
+
 		m= new Manager();
 		currentHP=100;
 		targetHP=100;
 		cam = new Camera(width, height);
 		playerStatus = true;
 		reset = false;
-		
-		
+
+
 		this.mainClass = mainClass;
 		runSketch();
-		
+
 
 	}
-	
+
 	public void init() {
 		reset = true;
 	}
@@ -59,7 +59,7 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 	{
 		m.setUpSprites(this);
 	}
-	
+
 	private void drawSky()
 	{
 		for(int i=0;i<48;i++)
@@ -69,14 +69,14 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 			//tint(50,50);
 			rect(0,i*25,2000,25);
 		}
-		
-		
-		
+
+
+
 	}
 
 
 	public void draw() { 
-		
+
 		if (reset) {
 			m= new Manager();
 			currentHP=100;
@@ -85,22 +85,22 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 			playerStatus = true;
 			reset = false;
 			m.setUpSprites(this);
-			
+
 			sendSize(mainClass.getWindowWidth(), mainClass.getWindowHeight());
 		}
-		
+
 		this.background(30);
 		noStroke();
 		drawSky();
-		
-		
+
+
 		fill(210);
 
 
 		scale(cam.getZoom());
 		cam.sendPlayerPos(m.getPlayerX(), m.getPlatformY());
 		this.translate(cam.getX(), cam.getY());
-		
+
 		m.draw(this);
 		long time = System.currentTimeMillis()-lastTime;
 		double ratio = 16.0/time;
@@ -204,24 +204,29 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 	@Override
 	public void keyPressed() {
 		//System.out.println("keypressed");
-		m.sendKeyCode(key);
-		if(key=='j')
-		{
-			cam.leftMove(true);;
+		if (key == CODED) {
+			m.sendSpecialKeyCode(keyCode);
 		}
-		if(key=='l')
-		{
-			cam.rightMove(true);
+		else {
+			m.sendKeyCode(key);
+			if(key=='j')
+			{
+				cam.leftMove(true);;
+			}
+			if(key=='l')
+			{
+				cam.rightMove(true);
+			}
+			if(key=='i')
+			{
+				cam.upMove(true);
+			}
+			if(key=='k')
+			{
+				cam.downMove(true);
+			}
+			//System.out.println("key pressed");
 		}
-		if(key=='i')
-		{
-			cam.upMove(true);
-		}
-		if(key=='k')
-		{
-			cam.downMove(true);
-		}
-		//System.out.println("key pressed");
 
 	}
 
