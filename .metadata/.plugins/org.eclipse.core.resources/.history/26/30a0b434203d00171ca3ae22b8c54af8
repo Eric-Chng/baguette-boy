@@ -40,8 +40,6 @@ public class Player extends GravitisedObj implements Damagable{
 
 	public void act(double ratio)
 	{
-		System.out.println("Grounded: " + grounded);
-		System.out.println("hasJumped: " + hasJumped);
 		if(grounded)
 		{
 			hasJumped = false;
@@ -146,7 +144,6 @@ public class Player extends GravitisedObj implements Damagable{
 				hasJumped = true;
 				grounded=false;
 				ySpeed=-30;
-				System.out.println("jump");
 				if(onCurve)
 				{
 					y-=10;

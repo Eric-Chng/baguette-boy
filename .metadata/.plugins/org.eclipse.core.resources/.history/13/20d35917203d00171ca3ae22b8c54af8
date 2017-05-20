@@ -40,8 +40,6 @@ public class Player extends GravitisedObj implements Damagable{
 
 	public void act(double ratio)
 	{
-		System.out.println("Grounded: " + grounded);
-		System.out.println("hasJumped: " + hasJumped);
 		if(grounded)
 		{
 			hasJumped = false;
@@ -92,6 +90,26 @@ public class Player extends GravitisedObj implements Damagable{
 		}
 
 		if(spacePressed) {
+			//			if(attTmr <= 0) {
+			//				Hitbox test;
+			//				float tempProjxV;
+			//				if (xSpeed >=0) {
+			//					tempProjxV = (float)Math.sqrt(xSpeed);
+			//				} else {
+			//					tempProjxV = -1f * (float)Math.sqrt(-xSpeed);
+			//				}
+			//				if (rightFacing)
+			//					test = new Hitbox(true, ATT_DMG, super.getX() + width, super.getY(), 80, super.height, 250, tempProjxV, 0);
+			//				else
+			//					test = new Hitbox(true, ATT_DMG, super.getX() -80, super.getY(), 80, super.height, 250, tempProjxV, 0);
+			//
+			//
+			//				test.addDestroyListener(super.getManager().getCombat());
+			//				super.getManager().getCombat().addHitbox(test);
+			//
+			//
+			//				attTmr = this.ATT_DELAY;
+			//			}
 			int tempAttack = inventory.weaponDamage();
 			if (tempAttack != 0) {
 				Hitbox test;
@@ -146,7 +164,6 @@ public class Player extends GravitisedObj implements Damagable{
 				hasJumped = true;
 				grounded=false;
 				ySpeed=-30;
-				System.out.println("jump");
 				if(onCurve)
 				{
 					y-=10;

@@ -37,7 +37,6 @@ public class Inventory {
 		if (!(a instanceof Potion))
 			return 0;
 		inventory.remove(invPos);
-		invPos--;
 		return ((Potion)a).getHeal();
 	}
 

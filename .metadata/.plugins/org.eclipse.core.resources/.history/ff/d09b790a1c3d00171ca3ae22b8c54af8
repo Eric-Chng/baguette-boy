@@ -29,17 +29,6 @@ public class Inventory {
 		if (!inventory.isEmpty())
 			invPos %= inventory.size();
 	}
-	
-	public int useItem() {
-		if (inventory.size() == 0)
-			return 0;
-		Item a = inventory.get(invPos);
-		if (!(a instanceof Potion))
-			return 0;
-		inventory.remove(invPos);
-		invPos--;
-		return ((Potion)a).getHeal();
-	}
 
 	public int weaponDamage() {
 		if (inventory.size() == 0)

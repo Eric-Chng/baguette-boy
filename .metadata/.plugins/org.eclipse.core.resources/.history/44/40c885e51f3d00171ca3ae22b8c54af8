@@ -111,10 +111,10 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		targetHP=m.getHP();
 		if(targetHP<currentHP)
 		{
-			currentHP--;
+			currentHP-=2;
 		}
 		else if (targetHP > currentHP) {
-			currentHP++;
+			currentHP += 2;
 		}
 		this.rect(1250, 20, 3*currentHP, 80);
 		this.pushStyle();

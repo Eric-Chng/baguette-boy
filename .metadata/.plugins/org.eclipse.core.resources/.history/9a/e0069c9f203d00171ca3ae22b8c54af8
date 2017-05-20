@@ -146,7 +146,6 @@ public class Player extends GravitisedObj implements Damagable{
 				hasJumped = true;
 				grounded=false;
 				ySpeed=-30;
-				System.out.println("jump");
 				if(onCurve)
 				{
 					y-=10;

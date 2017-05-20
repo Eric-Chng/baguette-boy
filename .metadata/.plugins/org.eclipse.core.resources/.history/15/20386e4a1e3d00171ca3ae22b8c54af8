@@ -111,10 +111,10 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		targetHP=m.getHP();
 		if(targetHP<currentHP)
 		{
-			currentHP--;
+			currentHP-=2;
 		}
 		else if (targetHP > currentHP) {
-			currentHP++;
+			currentHP += 2;
 		}
 		this.rect(1250, 20, 3*currentHP, 80);
 		this.pushStyle();
@@ -125,7 +125,7 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		textFont(pf);
 		//Font font = new Font("Arial", Font.PLAIN, 60);
 		//if(currentHP<100)
-			this.text(""+currentHP, 1240+3*currentHP-35, 92);
+			this.text(""+currentHP, 1250+3*currentHP-35, 92);
 		this.popStyle();
 
 		ArrayList<Item> items = m.getPlayer().getInv();

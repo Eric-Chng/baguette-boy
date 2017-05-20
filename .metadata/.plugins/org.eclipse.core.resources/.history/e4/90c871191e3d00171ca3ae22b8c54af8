@@ -5,7 +5,7 @@ public class MeleeWeapon extends Item{
 	public static PImage sword;
 	
 	public static final int ATT_DMG = 18;
-	public static final int ATT_DELAY = 500;
+	public static final int ATT_DELAY = 200;
 	private long lastHit;
 	
 	public MeleeWeapon(int x, int y, String type) {
