@@ -18,6 +18,7 @@ public class GObjectManager implements DestroyListener{
 		manager = m;
 		objects.add(new Charger(3000,100,10,100,100, manager));
 		objects.add(new Turret(5700, 0, 10, 100, 100, manager));
+		//objects.add(new FinalBoss(m));
 
 	}
 	

@@ -1,0 +1,18 @@
+
+public class FinalBoss{
+	
+	private Manager m;
+	private Player player;
+	
+	public FinalBoss(Manager man)
+	{
+		m=man;
+		player=new Player(10000, 0, 10,140*3/4, 260*3/4, man);
+		
+		
+	}
+	
+	
+	
+
+}

@@ -61,7 +61,7 @@ public class Tutorial {
 		{
 			if(tutorialNumber==1)
 			{
-				g.text("Use WASD keys to move", 800, 150);
+				g.text("Use WASD keys to move, Spacebar To Use Items, Scroll to Change Items", 800, 150);
 			}
 			else if(tutorialNumber==2)
 			{

@@ -14,6 +14,7 @@ public class Manager implements DestroyListener{
 	private Player player;
 	private int platformY;
 	private Tutorial tutorial;
+	private FinalBoss finalBoss;
 	
 	public Manager() 
 	{
@@ -22,7 +23,7 @@ public class Manager implements DestroyListener{
 		player = new Player(100, 50, 10, 140*3/4, 260*3/4, this);
 		combat = new CombatManager(this);
 		tutorial = new Tutorial(this);
-		
+		finalBoss = new FinalBoss(10000, 0, 10,140*3/4, 260*3/4, this);
 		
 	}
 	
@@ -45,17 +46,20 @@ public class Manager implements DestroyListener{
 		Player.idle = new PImage[12];
 		Player.running = new PImage[5];
 		Player.slashing = new PImage[3];
+		
 		for(int i=1;i<13;i++)
 		{
 			Player.idle[i-1] = g.loadImage("Idle"+ tempPathHelp + "idle"+i+".png");
+			//finalBoss.idle[i-1] = g.loadImage("Idle"+ tempPathHelp + "idle"+i+".png");
 		}
 		for(int i=1;i<6;i++)
 		{
 			Player.running[i-1] = g.loadImage("Running" + tempPathHelp + "running"+i+".png");
+			//finalBoss.running[i-1] = g.loadImage("Running" + tempPathHelp + "running"+i+".png");
 		}
 		for(int i=1;i<4;i++)
 		{
-			Player.slashing[i-1] = g.loadImage("Slashing" + tempPathHelp + "slashing"+i+".png");
+			//finalBoss.slashing[i-1] = g.loadImage("Slashing" + tempPathHelp + "slashing"+i+".png");
 		}
 
 
@@ -119,6 +123,7 @@ public class Manager implements DestroyListener{
 		platforms.draw(g);
 		combat.drawObjects(g);
 		tutorial.draw(g);
+		finalBoss.draw(g);
 	}
 	
 	/**
@@ -132,6 +137,7 @@ public class Manager implements DestroyListener{
 		gObjects.actObjects(ratio);
 		combat.actObjects();
 		tutorial.act();
+		//finalBoss.act(ratio);
 	}
 	
 	/**

@@ -26,6 +26,11 @@ public class CombatManager implements DestroyListener{
 		
 		RangedWeapon temp2 = new RangedWeapon(800, 300, "gun");
 		items.add(temp2);
+		
+		Potion potion2 = new Potion(6800, 350, 100);
+		items.add(potion2);
+		
+		
 
 	}
 	

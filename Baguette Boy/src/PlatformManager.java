@@ -57,7 +57,7 @@ public class PlatformManager implements DestroyListener{
 		platforms.add(new BoxPlatform(6500, 500, 600,30));
 		platforms.add(new BoxPlatform(7300, 700, 600,30));
 		platforms.add(new BoxPlatform(8100, 900, 600,30));
-		platforms.add(new BoxPlatform(8900, 1100, 600,30));
+		platforms.add(new BoxPlatform(9000, 1150, 2000,30));
 
 
 
