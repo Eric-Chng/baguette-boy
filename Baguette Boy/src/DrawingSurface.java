@@ -147,8 +147,8 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 					items.get(1).display(this, super.displayWidth/2 - 300 - 200, 80, 0.6f, 95);
 			} else {
 				items.get(m.getPlayer().getInvSpot()).display(this, super.displayWidth/2 - 300, 100, 1, 220);
-				items.get((m.getPlayer().getInvSpot() - 1 + items.size()) % items.size()).display(this, super.displayWidth/2 - 300 - 200, 80, 0.6f, 95);
-				items.get((m.getPlayer().getInvSpot() + 1) % items.size()).display(this, super.displayWidth/2 - 300 + 200, 80, 0.6f, 95);
+				items.get((m.getPlayer().getInvSpot() + 1) % items.size()).display(this, super.displayWidth/2 - 300 - 200, 80, 0.6f, 95);
+				items.get((m.getPlayer().getInvSpot() - 1 + items.size()) % items.size()).display(this, super.displayWidth/2 - 300 + 200, 80, 0.6f, 95);
 			}
 		}
 
@@ -213,31 +213,29 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 
 	@Override
 	public void keyPressed() {
-		//System.out.println("keypressed");
-		if (key == CODED) {
-			m.sendSpecialKeyCode(keyCode);
-		}
-		else {
-			m.sendKeyCode(key);
-			if(key=='j')
-			{
-				cam.leftMove(true);;
-			}
-			if(key=='l')
-			{
-				cam.rightMove(true);
-			}
-			if(key=='i')
-			{
-				cam.upMove(true);
-			}
-			if(key=='k')
-			{
-				cam.downMove(true);
-			}
-			//System.out.println("key pressed");
-		}
-
+//		if (key == CODED) {
+//			m.sendSpecialKeyCode(keyCode);
+//		}
+//		else {
+//			m.sendKeyCode(key);
+//			if(key=='j')
+//			{
+//				cam.leftMove(true);;
+//			}
+//			if(key=='l')
+//			{
+//				cam.rightMove(true);
+//			}
+//			if(key=='i')
+//			{
+//				cam.upMove(true);
+//			}
+//			if(key=='k')
+//			{
+//				cam.downMove(true);
+//			}
+//		}
+		m.sendSpecialKeyCode(keyCode);
 	}
 
 

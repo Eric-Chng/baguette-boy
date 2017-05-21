@@ -34,7 +34,6 @@ public class CombatManager implements DestroyListener{
 		for (int i = hitboxes.size()-1; i>= 0; i--) {
 			hitboxes.get(i).act();
 		}
-		System.out.println(hitboxes.size());
 	}
 	
 	public void drawObjects(PApplet g)

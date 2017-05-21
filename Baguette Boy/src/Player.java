@@ -10,7 +10,7 @@ import processing.event.Event;
 
 public class Player extends GravitisedObj implements Damagable{
 
-	
+
 	public static final int MAX_HP = 100;
 	private final int ATT_DELAY = 20;
 	private final int ATT_DMG = 18;
@@ -28,7 +28,7 @@ public class Player extends GravitisedObj implements Damagable{
 	private int slashTimer;
 	private int animationTimer;
 	private int state; //1=idle, 2=running, 3=slashing
-	
+
 
 
 	private Inventory inventory;
@@ -60,10 +60,8 @@ public class Player extends GravitisedObj implements Damagable{
 		{
 			state=1;
 			if(state!=1)
-			animationTimer=0;
+				animationTimer=0;
 		}
-		//System.out.println("Grounded: " + grounded);
-		//System.out.println("hasJumped: " + hasJumped);
 		if(grounded)
 		{
 			hasJumped = false;
@@ -84,7 +82,7 @@ public class Player extends GravitisedObj implements Damagable{
 		{
 			state=2;
 			if(state!=2)
-			animationTimer=0;
+				animationTimer=0;
 		}
 
 		if(!rightWalkCode||!leftWalkCode)
@@ -132,9 +130,9 @@ public class Player extends GravitisedObj implements Damagable{
 					tempProjxV = -1f * (float)Math.sqrt(-xSpeed);
 				}
 				if (rightFacing)
-					test = new Hitbox(true, ATT_DMG, super.getX() + width, super.getY(), 80, super.height, 250, tempProjxV, 0);
+					test = new Hitbox(true, ATT_DMG, super.getX() + width, super.getY()+super.height/4, 40, super.height/2, 250, tempProjxV, 0);
 				else
-					test = new Hitbox(true, ATT_DMG, super.getX() -80, super.getY(), 80, super.height, 250, tempProjxV, 0);
+					test = new Hitbox(true, ATT_DMG, super.getX() -80, super.getY()+super.height/4, 40, super.height/2, 250, tempProjxV, 0);
 
 
 				test.addDestroyListener(super.getManager().getCombat());
@@ -153,7 +151,7 @@ public class Player extends GravitisedObj implements Damagable{
 						hp = MAX_HP;
 				}
 			}
-			
+
 			//System.out.println(hp);
 		}
 		//attTmr--;
@@ -175,20 +173,20 @@ public class Player extends GravitisedObj implements Damagable{
 		{
 			g.scale(-1,1);
 		}
-			
-			
+
+
 		if(slashTimer>0)
 		{
 			if(animationTimer==36)
 			{
-				
+
 				animationTimer=0;
 			}
 			if(animationTimer<3)
 			{
 				//System.out.println(slashing[0]);
 				if(rightFacing)
-				g.image(slashing[0], x, y, width,height);
+					g.image(slashing[0], x, y, width,height);
 				else
 					g.image(slashing[0], -x, y, -width,height);
 
@@ -199,8 +197,8 @@ public class Player extends GravitisedObj implements Damagable{
 
 				if(rightFacing)
 					g.image(slashing[1], x, y, width,height);
-					else
-						g.image(slashing[1], -x+15, y, -width,height);
+				else
+					g.image(slashing[1], -x+15, y, -width,height);
 				width-=15;
 			}
 			else
@@ -209,8 +207,8 @@ public class Player extends GravitisedObj implements Damagable{
 
 				if(rightFacing)
 					g.image(slashing[2], x, y, width,height);
-					else
-						g.image(slashing[2],-x+15,y, -width,height);
+				else
+					g.image(slashing[2],-x+15,y, -width,height);
 				width-=15;
 
 			}
@@ -218,18 +216,18 @@ public class Player extends GravitisedObj implements Damagable{
 		}
 		else if(state==2)
 		{
-			
+
 			if(rightFacing)
 				g.image(running[(animationTimer%20)/4], x, y, width,height);
-				else
-					g.image(running[(animationTimer%20)/4],-x,y, -width,height);
+			else
+				g.image(running[(animationTimer%20)/4],-x,y, -width,height);
 		}
 		else
 		{
 			if(rightFacing)
 				g.image(idle[(animationTimer%60)/6], x, y, width,height);
-				else
-					g.image(idle[(animationTimer%60)/6],-x,y, -width,height);
+			else
+				g.image(idle[(animationTimer%60)/6],-x,y, -width,height);
 		}
 		g.popMatrix();
 		animationTimer++;
@@ -244,7 +242,6 @@ public class Player extends GravitisedObj implements Damagable{
 				hasJumped = true;
 				grounded=false;
 				ySpeed=-30;
-				System.out.println("jump");
 				if(onCurve)
 				{
 					y-=10;
@@ -286,9 +283,38 @@ public class Player extends GravitisedObj implements Damagable{
 
 	public void sendSpecialKeyCode(int code) {
 		if (code == PApplet.SHIFT) {
-			System.out.println("shift");
 			inventory.moveInventory();
+		} else {
+			System.out.println(code);
+			code += 32;
+			if(code =='w')
+			{
+				if(grounded||!hasJumped||onCurve)
+				{
+					hasJumped = true;
+					grounded=false;
+					ySpeed=-30;
+					if(onCurve)
+					{
+						y-=10;
+					}
+				}
+			}
+			else if(code=='a')
+			{
+				this.leftWalkCode = true;
+				rightFacing = false;
+			}
+			else if(code=='d')
+			{
+				this.rightWalkCode = true;
+				rightFacing = true;
+			}
+			else if (code == ' ' + 32) {
+				this.spacePressed = true;
+			}
 		}
+
 	}
 
 
@@ -322,7 +348,7 @@ public class Player extends GravitisedObj implements Damagable{
 	public int getHP() {
 		return hp;
 	}
-	
+
 	public boolean getRightFacing() {
 		return rightFacing;
 	}

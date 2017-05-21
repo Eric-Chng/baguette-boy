@@ -1,4 +1,5 @@
 import java.awt.event.KeyEvent;
+import java.io.File;
 
 import processing.core.PApplet;
 import processing.core.PImage;
@@ -13,7 +14,6 @@ public class Manager implements DestroyListener{
 	private Player player;
 	private int platformY;
 	private Tutorial tutorial;
-	
 	
 	public Manager() 
 	{
@@ -35,6 +35,9 @@ public class Manager implements DestroyListener{
 	}
 	
 	public void setUpSprites(PApplet g) {
+		String tempPathHelp = File.separator + File.separator;
+		
+		
 		Charger.star = g.loadImage("star.png");
 		Potion.hpPotion = g.loadImage("Potion Life.png");
 		MeleeWeapon.sword = g.loadImage("rusty sword.png");
@@ -44,15 +47,15 @@ public class Manager implements DestroyListener{
 		Player.slashing = new PImage[3];
 		for(int i=1;i<13;i++)
 		{
-			Player.idle[i-1] = g.loadImage("Idle\\idle"+i+".png");
+			Player.idle[i-1] = g.loadImage("Idle"+ tempPathHelp + "idle"+i+".png");
 		}
 		for(int i=1;i<6;i++)
 		{
-			Player.running[i-1] = g.loadImage("Running\\running"+i+".png");
+			Player.running[i-1] = g.loadImage("Running" + tempPathHelp + "running"+i+".png");
 		}
 		for(int i=1;i<4;i++)
 		{
-			Player.slashing[i-1] = g.loadImage("Slashing\\slashing"+i+".png");
+			Player.slashing[i-1] = g.loadImage("Slashing" + tempPathHelp + "slashing"+i+".png");
 		}
 
 
