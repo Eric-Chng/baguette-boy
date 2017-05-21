@@ -1,6 +1,7 @@
 import java.awt.event.KeyEvent;
 
 import processing.core.PApplet;
+import processing.core.PImage;
 
 //import entities.*;
 
@@ -18,7 +19,7 @@ public class Manager implements DestroyListener{
 	{
 		gObjects = new GObjectManager(this);
 		platforms = new PlatformManager(this);
-		player = new Player(100, 50, 10, 100, 100, this);
+		player = new Player(100, 50, 10, 140*3/4, 260*3/4, this);
 		combat = new CombatManager(this);
 		tutorial = new Tutorial(this);
 		
@@ -38,6 +39,27 @@ public class Manager implements DestroyListener{
 		Potion.hpPotion = g.loadImage("Potion Life.png");
 		MeleeWeapon.sword = g.loadImage("rusty sword.png");
 		RangedWeapon.gun = g.loadImage("gun.png");
+		Player.idle = new PImage[12];
+		Player.running = new PImage[5];
+		Player.slashing = new PImage[3];
+		for(int i=1;i<13;i++)
+		{
+			Player.idle[i-1] = g.loadImage("Idle\\idle"+i+".png");
+		}
+		for(int i=1;i<6;i++)
+		{
+			Player.running[i-1] = g.loadImage("Running\\running"+i+".png");
+		}
+		for(int i=1;i<4;i++)
+		{
+			Player.slashing[i-1] = g.loadImage("Slashing\\slashing"+i+".png");
+		}
+
+
+		
+		//Player.idle = g.createImage("idle.gif");
+		//Player.running = g.loadImage("running.gif");
+		//Player.slashing = g.loadImage("slashing.gif");
 	}
 
 	/**

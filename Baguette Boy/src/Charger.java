@@ -14,7 +14,7 @@ public class Charger extends Enemy{
 	private final int AttTmr = 25;
 
 	public Charger(int x, int y, int mass, int width, int height, Manager m) {
-		super(x, y, 6, width, height, m, 100);
+		super(x, y, 6, width, height, m, 2000);
 		this.m=m;
 		stunned = true;
 	}

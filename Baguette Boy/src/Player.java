@@ -5,9 +5,12 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 import processing.core.PApplet;
+import processing.core.PImage;
+import processing.event.Event;
 
 public class Player extends GravitisedObj implements Damagable{
 
+	
 	public static final int MAX_HP = 100;
 	private final int ATT_DELAY = 20;
 	private final int ATT_DMG = 18;
@@ -19,6 +22,14 @@ public class Player extends GravitisedObj implements Damagable{
 	private boolean spacePressed;
 	private boolean rightFacing;
 	private int attTmr;
+	public static PImage[] idle;
+	public static PImage[] running;
+	public static PImage[] slashing;
+	private int slashTimer;
+	private int animationTimer;
+	private int state; //1=idle, 2=running, 3=slashing
+	
+
 
 	private Inventory inventory;
 
@@ -34,14 +45,25 @@ public class Player extends GravitisedObj implements Damagable{
 		spacePressed = false;
 		rightFacing = true;
 		attTmr = 0;
+		state=1;
 
 		inventory = new Inventory();
 	}
 
 	public void act(double ratio)
 	{
-		System.out.println("Grounded: " + grounded);
-		System.out.println("hasJumped: " + hasJumped);
+		if(slashTimer>0)
+		{
+			slashTimer--;
+		}
+		else
+		{
+			state=1;
+			if(state!=1)
+			animationTimer=0;
+		}
+		//System.out.println("Grounded: " + grounded);
+		//System.out.println("hasJumped: " + hasJumped);
 		if(grounded)
 		{
 			hasJumped = false;
@@ -58,11 +80,18 @@ public class Player extends GravitisedObj implements Damagable{
 				xSpeed+=2;
 			}
 		}
+		else
+		{
+			state=2;
+			if(state!=2)
+			animationTimer=0;
+		}
 
 		if(!rightWalkCode||!leftWalkCode)
 		{
 			if(rightWalkCode&&(xSpeed<10))
 			{
+				rightFacing=true;
 				if(onCurve)
 				{
 					xSpeed+=2;
@@ -71,6 +100,7 @@ public class Player extends GravitisedObj implements Damagable{
 			}
 			else if(leftWalkCode&&(xSpeed>-10))
 			{
+				rightFacing=false;
 				xSpeed-=2;
 				if(onCurve)
 				{
@@ -109,6 +139,9 @@ public class Player extends GravitisedObj implements Damagable{
 
 				test.addDestroyListener(super.getManager().getCombat());
 				super.getManager().getCombat().addHitbox(test);
+				slashTimer=20;
+				animationTimer=0;
+				state=3;
 			} else if (inventory.rangedWeapon(this)) {
 				((RangedWeapon)inventory.getItem()).rangeAttack(this);
 			}
@@ -121,7 +154,7 @@ public class Player extends GravitisedObj implements Damagable{
 				}
 			}
 			
-			System.out.println(hp);
+			//System.out.println(hp);
 		}
 		//attTmr--;
 
@@ -132,11 +165,74 @@ public class Player extends GravitisedObj implements Damagable{
 
 	public void draw(PApplet g)
 	{
+		g.pushMatrix();
 		g.pushStyle();
 		g.fill(255,0,0);
-		g.rect(x, y, width, height);
+		//g.rect(x, y, width, height);
 		//g.text(""+currentInvSpot, x, y-20);
 		g.popStyle();
+		if(!rightFacing)
+		{
+			g.scale(-1,1);
+		}
+			
+			
+		if(slashTimer>0)
+		{
+			if(animationTimer==36)
+			{
+				
+				animationTimer=0;
+			}
+			if(animationTimer<3)
+			{
+				//System.out.println(slashing[0]);
+				if(rightFacing)
+				g.image(slashing[0], x, y, width,height);
+				else
+					g.image(slashing[0], -x, y, -width,height);
+
+			}
+			else if(animationTimer<6)
+			{
+				width+=15;
+
+				if(rightFacing)
+					g.image(slashing[1], x, y, width,height);
+					else
+						g.image(slashing[1], -x+15, y, -width,height);
+				width-=15;
+			}
+			else
+			{
+				width+=15;
+
+				if(rightFacing)
+					g.image(slashing[2], x, y, width,height);
+					else
+						g.image(slashing[2],-x+15,y, -width,height);
+				width-=15;
+
+			}
+			//g.image(slashing, x, y,100,100);
+		}
+		else if(state==2)
+		{
+			
+			if(rightFacing)
+				g.image(running[(animationTimer%20)/4], x, y, width,height);
+				else
+					g.image(running[(animationTimer%20)/4],-x,y, -width,height);
+		}
+		else
+		{
+			if(rightFacing)
+				g.image(idle[(animationTimer%60)/6], x, y, width,height);
+				else
+					g.image(idle[(animationTimer%60)/6],-x,y, -width,height);
+		}
+		g.popMatrix();
+		animationTimer++;
 	}
 
 	public void sendKeyCode(char e)

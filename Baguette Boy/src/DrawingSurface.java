@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import processing.core.PApplet;
 import processing.core.PFont;
+import processing.core.PImage;
 
 
 public class DrawingSurface extends PApplet implements MouseWheelListener{
@@ -20,6 +21,7 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 	//private GObjectManager objM;
 	private long lastTime = 0;
 	private Camera cam;
+	private static PImage sky;
 	//private Player donkey;
 	private Manager m;
 	private int targetHP;
@@ -35,7 +37,6 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		//dooder = new BoxPlatform(300, 0, 600, 20);
 		//objM = new GObjectManager();
 		//donkey = new Player(250, 300, 5, 100, 100);
-
 		m= new Manager();
 		currentHP=100;
 		targetHP=100;
@@ -58,16 +59,22 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 	public void setup()
 	{
 		m.setUpSprites(this);
+		sky=this.loadImage("sky.jpg");
+
 	}
 
 	private void drawSky()
 	{
-		for(int i=0;i<48;i++)
+		for(int i=0;i<52;i++)
 		{
+			fill(96+3*i,46+i,146-2*i);
+			//96,46,146
+			//244,98,36
+			//image(sky,0,0,1920,1080);
 			//fill(i*15,255-i*5,255-i*4);
-			fill(100,100,255);
+			//fill(100,100,255);
 			//tint(50,50);
-			rect(0,i*25,2000,25);
+			rect(0,i*27,2400,27);
 		}
 
 
@@ -185,12 +192,12 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		//System.out.println("hi");
 		if(e.getWheelRotation()<0)
 		{
-			m.mouseWheelMoved(1);
+			m.mouseWheelMoved(-1);
 			//cam.changeZoom(1);
 		}
 		else
 		{
-			m.mouseWheelMoved(-1);
+			m.mouseWheelMoved(1);
 			//cam.changeZoom(-1);
 		}
 
