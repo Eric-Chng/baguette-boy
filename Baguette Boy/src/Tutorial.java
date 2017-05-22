@@ -39,6 +39,11 @@ public class Tutorial {
 			tutorialNumber=4;
 			displayTimer=300;
 		}
+		else if(m.getPlayerX()>9000&&tutorialNumber!=5)
+		{
+			tutorialNumber=5;
+			displayTimer=500;
+		}
 
 
 
@@ -74,6 +79,10 @@ public class Tutorial {
 			else if(tutorialNumber==4)
 			{
 				g.text("Now set forth and prove yourself in battle!", 6000, 100);
+			}
+			else if(tutorialNumber==5)
+			{
+				g.text("Good luck!", 9800, 800);
 			}
 		}
 		g.popStyle();

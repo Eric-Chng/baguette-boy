@@ -6,6 +6,7 @@ public class PlatformManager implements DestroyListener{
 
 	private ArrayList<BoxPlatform> platforms;
 	private Manager manager;
+	private boolean finalPlatforms;
 
 	
 	/**
@@ -14,6 +15,7 @@ public class PlatformManager implements DestroyListener{
 	 */
 	public PlatformManager(Manager m)
 	{
+		finalPlatforms = false;
 		platforms = new ArrayList<BoxPlatform>();
 		manager = m;
 		platforms.add(new BoxPlatform(-200, 450, 1170, 300));
@@ -80,6 +82,13 @@ public class PlatformManager implements DestroyListener{
 	 */
 	public int checkCollision(int x, int y, int side,boolean isPlayer)
 	{
+		if(!this.finalPlatforms&&manager.getPlayerX()>9000)
+		{
+			finalPlatforms=true;
+			platforms.add(new BoxPlatform(8500, 0, 500,1500,0,0,0,true));
+			platforms.add(new BoxPlatform(10590, 0, 500,1600,0,0,0,true));
+
+		}
 		boolean collides = false;
 		int min = 20000;
 		for(BoxPlatform obj: platforms)

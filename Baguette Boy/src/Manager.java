@@ -14,7 +14,7 @@ public class Manager implements DestroyListener{
 	private Player player;
 	private int platformY;
 	private Tutorial tutorial;
-	private FinalBoss finalBoss;
+	//private FinalBoss finalBoss;
 	
 	public Manager() 
 	{
@@ -23,7 +23,7 @@ public class Manager implements DestroyListener{
 		player = new Player(100, 50, 10, 140*3/4, 260*3/4, this);
 		combat = new CombatManager(this);
 		tutorial = new Tutorial(this);
-		finalBoss = new FinalBoss(10000, 0, 10,140*3/4, 260*3/4, this);
+		//finalBoss = new FinalBoss(10000, 0, 10,140*3/4, 260*3/4, this);
 		
 	}
 	
@@ -59,7 +59,7 @@ public class Manager implements DestroyListener{
 		}
 		for(int i=1;i<4;i++)
 		{
-			//finalBoss.slashing[i-1] = g.loadImage("Slashing" + tempPathHelp + "slashing"+i+".png");
+			Player.slashing[i-1] = g.loadImage("Slashing" + tempPathHelp + "slashing"+i+".png");
 		}
 
 
@@ -123,7 +123,7 @@ public class Manager implements DestroyListener{
 		platforms.draw(g);
 		combat.drawObjects(g);
 		tutorial.draw(g);
-		finalBoss.draw(g);
+		//finalBoss.draw(g);
 	}
 	
 	/**
@@ -230,5 +230,16 @@ public class Manager implements DestroyListener{
 		platformY=y;
 		//System.out.println(y);
 	}
+	
+	public int getPlayerHealth()
+	{
+		return player.getHP();
+	}
+	
+	public int getBossHealth()
+	{
+		return gObjects.getBossHealth();
+	}
+	
 	
 }

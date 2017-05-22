@@ -18,6 +18,7 @@ public class GObjectManager implements DestroyListener{
 		manager = m;
 		objects.add(new Charger(3000,100,10,100,100, manager));
 		objects.add(new Turret(5700, 0, 10, 100, 100, manager));
+		objects.add(new FinalBoss(10000, -800, 10,100, 100, manager));
 		//objects.add(new FinalBoss(m));
 
 	}
@@ -71,6 +72,20 @@ public class GObjectManager implements DestroyListener{
 		return min;
 
 	}
+	
+	public int getBossHealth()
+	{
+		for(GravitisedObj obj:objects)
+		{
+			if(obj instanceof FinalBoss)
+			{
+				//System.out.println("Health: "+((FinalBoss)obj).getHealth());
+				return ((FinalBoss)obj).getHealth();
+			}
+		}
+		return 0;
+	}
+	
 	
 	public ArrayList<Damagable> getDmg() {
 		ArrayList<Damagable> d = new ArrayList<Damagable>();

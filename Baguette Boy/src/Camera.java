@@ -8,13 +8,14 @@ public class Camera {
 	private boolean rightFlag,leftFlag,upFlag,downFlag;
 	private boolean cameraLocked;
 	private boolean frameCounter;
+	private Manager m;
 
 	/**
 	 * Constructs a new camera that sets a level of zoom based on the window width and height
 	 * @param windowWidth
 	 * @param windowHeight
 	 */
-	public Camera(int windowWidth, int windowHeight)
+	public Camera(int windowWidth, int windowHeight, Manager m)
 	{
 		//zoom = (float)((double)windowHeight/1080.0);
 		//System.out.println((float)((double)windowHeight/1080.0));
@@ -23,6 +24,7 @@ public class Camera {
 		this.windowWidth=windowWidth;
 		cameraLocked=true;
 		//System.out.println(windowHeight);
+		this.m=m;
 		frameCounter = false;
 		x=-20;
 		y=200;
@@ -103,6 +105,10 @@ public class Camera {
 		
 		if(!cameraLocked)
 		{
+			if(x>8900)
+			{
+				x=9500;
+			}
 			//int difference = x-this.x;
 			//x+=difference/2;
 			//System.out.println(difference);

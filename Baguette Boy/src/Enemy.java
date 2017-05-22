@@ -3,7 +3,7 @@ import java.awt.Rectangle;
 import processing.core.PApplet;
 
 public class Enemy extends GravitisedObj implements Damagable{
-	private int hp;
+	protected int hp;
 	protected int attackDelay;
 
 	public Enemy(int x, int y, int mass, int width, int height, Manager m, int hp) {

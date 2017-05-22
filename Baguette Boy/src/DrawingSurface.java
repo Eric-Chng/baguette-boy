@@ -28,8 +28,9 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 	private int currentHP;
 	private Main mainClass;
 	private boolean playerStatus;
-
+	private int temp;
 	private boolean reset;
+	
 
 
 	public DrawingSurface(Main mainClass) {
@@ -40,10 +41,10 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		m= new Manager();
 		currentHP=100;
 		targetHP=100;
-		cam = new Camera(width, height);
+		cam = new Camera(width, height,m);
 		playerStatus = true;
 		reset = false;
-
+		temp=0;
 
 		this.mainClass = mainClass;
 		runSketch();
@@ -88,7 +89,7 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 			m= new Manager();
 			currentHP=100;
 			targetHP=100;
-			cam = new Camera(width, height);
+			cam = new Camera(width, height,m);
 			playerStatus = true;
 			reset = false;
 			m.setUpSprites(this);
@@ -99,11 +100,8 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		this.background(30);
 		noStroke();
 		drawSky();
-
-
-		fill(210);
-
-
+		//System.out.println("Health: " +m.getBossHealth());
+		
 		scale(cam.getZoom());
 		cam.sendPlayerPos(m.getPlayerX(), m.getPlatformY());
 		this.translate(cam.getX(), cam.getY());
@@ -157,6 +155,7 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 
 		//text(""+60.0/ratio,m.getPlayerX()-450, m.getPlatformY()-550);
 		//popMatrix();
+		//translate(-cam.getX(),-cam.getY())
 		m.act(ratio);
 		cam.act(ratio);
 		//demo.act(time);
@@ -166,6 +165,32 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		//demo.draw(this);
 		stroke(0);
 		noFill();
+		
+		if(m.getBossHealth()<1)
+		{
+			temp++;
+		}
+		//System.out.println("Temp: " + temp);
+		if(temp<255)
+		{
+		fill(0,temp);
+		}
+		else
+		{
+			fill(0,255);
+			
+		}
+		
+		rect(0,0,2500,2000);
+
+		fill(255,temp-255);
+		if(temp>255)
+		{
+			this.textAlign(this.CENTER);
+			//this.textAlign();
+
+			text("thank you",760,420);
+		}
 		//geoff = new RegularPolygon(300,300,5,50);
 
 		//geoff.draw(this);

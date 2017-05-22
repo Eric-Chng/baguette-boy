@@ -6,6 +6,7 @@ public class BoxPlatform implements Comparable{
 	private int x, y;
 	private int width, height;
 	private int r,g,b;
+	private boolean transparent;
 
 	/*
 	 * x and y is upper left corner
@@ -20,6 +21,7 @@ public class BoxPlatform implements Comparable{
 		r=0;
 		g=255;
 		b=0;
+		transparent=false;
 	}
 	
 	public BoxPlatform(int x, int y, int width, int height, int r, int g, int b) {
@@ -30,6 +32,19 @@ public class BoxPlatform implements Comparable{
 		this.r=r;
 		this.g=g;
 		this.b=b;
+		transparent=false;
+	}
+	
+	public BoxPlatform(int x, int y, int width, int height, int r, int g, int b, boolean transparent) {
+		this.x = x;
+		this.y = y;
+		this.width = width;
+		this.height = height;
+		this.r=r;
+		this.g=g;
+		this.b=b;
+		this.transparent=transparent;
+		
 	}
 	
 	public int getMiddleX()
@@ -85,6 +100,8 @@ public class BoxPlatform implements Comparable{
 
 	public void draw(PApplet g)
 	{
+		if(!transparent)
+		{
 		g.pushStyle();
 		g.fill(r,this.g,b);
 		if(width<40)
@@ -101,6 +118,7 @@ public class BoxPlatform implements Comparable{
 
 		}
 		g.popStyle();
+		}
 	}
 
 	public int compareTo(BoxPlatform other) {
