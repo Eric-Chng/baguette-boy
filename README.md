@@ -66,3 +66,8 @@ Damagable(I) - Implemented by classes with health
 RESPONSIBILITIES:
 Eric: Player abilities and (hopefully) inventory system. Enemy design.
 David: Environment attributes. Physics and collision systems.
+
+CREDITS:
+Player Sprites - Created by David
+Potion Sprite - Created by wrxember.tumblr.com
+Sword and Gun Sprite - Created by https://tubular-toasts.tumblr.com/
