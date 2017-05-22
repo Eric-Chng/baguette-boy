@@ -10,7 +10,7 @@ public class FinalBoss extends Enemy{
 	private int stunTimer;
 	public static PImage baguette;
 
-	public static final double bulletSpd = 30;
+	public static final double bulletSpd = 3;
 	public static final int ATT_DMG = 10;
 	public static final int ATT_DELAY = 1000;
 	private long lastHit;
@@ -38,7 +38,7 @@ public class FinalBoss extends Enemy{
 			double yV = (playerY-super.y)/(hyp/bulletSpd);
 
 
-			Hitbox test = new Hitbox(false, ATT_DMG, (float)super.getX(), (float)super.getY(), width, height, 70, (float) xV, (float)yV);
+			Bullet test = new Bullet(false, ATT_DMG, (float)super.getX(), (float)super.getY()+20f, 10f, 10f, 1000, (float) xV, (float)yV,m);
 			test.addDestroyListener(super.getManager().getCombat());
 			super.getManager().getCombat().addHitbox(test);
 			

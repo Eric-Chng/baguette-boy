@@ -38,7 +38,7 @@ public class FinalBoss extends Enemy{
 			double yV = (playerY-super.y)/(hyp/bulletSpd);
 
 
-			Hitbox test = new Hitbox(false, ATT_DMG, (float)super.getX(), (float)super.getY(), width, height, 70, (float) xV, (float)yV);
+			Hitbox test = new Hitbox(false, ATT_DMG, (float)super.getX(), (float)super.getY(), width, height, 100, (float) xV, (float)yV);
 			test.addDestroyListener(super.getManager().getCombat());
 			super.getManager().getCombat().addHitbox(test);
 			

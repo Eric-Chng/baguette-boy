@@ -28,14 +28,15 @@ public class MeleeWeapon extends Item{
 			g.rect(x, y, (ratio)*width * cooldown,(ratio)* height);
 		}
 		g.popStyle();
+		
+		
+		g.text(type, x, y+40*ratio);
 	}
 	
 	public void draw(PApplet g) { 
 		if(!pickedUp) {
 			sword.resize(width, height);
 			g.image(sword, x, y + (float)(15*Math.sin(System.currentTimeMillis()/250.0)));
-			g.text("Damage: " + ATT_DMG, x, y + (float)(15*Math.sin(System.currentTimeMillis()/250.0) - 20));
-			g.text("Reload: " + ATT_DELAY/1000., x, y + (float)(15*Math.sin(System.currentTimeMillis()/250.0)));
 		}
 	}
 	

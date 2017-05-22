@@ -29,14 +29,13 @@ public class Potion extends Item{
 		g.popStyle();
 		
 		
-		g.text(amt, x + 29*ratio, y+90*ratio);
+		g.text(type, x, y+40*ratio);
 	}
 	
 	public void draw(PApplet g) { 
 		if(!pickedUp) {
 			self.resize(width, height);
 			g.image(self, x, y + (float)(15*Math.sin(System.currentTimeMillis()/250.0)));
-			g.text("Heals: " + amt, x, y + (float)(15*Math.sin(System.currentTimeMillis()/250.0)));
 		}
 	}
 

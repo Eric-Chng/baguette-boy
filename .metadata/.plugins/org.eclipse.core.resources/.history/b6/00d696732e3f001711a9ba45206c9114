@@ -29,7 +29,7 @@ public class Potion extends Item{
 		g.popStyle();
 		
 		
-		g.text(amt, x + 29*ratio, y+90*ratio);
+		g.text(amt, x + 30*ratio, y+70*ratio);
 	}
 	
 	public void draw(PApplet g) { 
