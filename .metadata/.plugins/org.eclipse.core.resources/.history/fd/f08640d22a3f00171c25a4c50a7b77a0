@@ -17,22 +17,21 @@ public class CombatManager implements DestroyListener{
 		hitboxes = new ArrayList<Hitbox>();
 		items = new ArrayList<Item>();
 		manager = m;
-	}
-	
-	public void addItems() {
 		
-		System.out.println("items");
 		MeleeWeapon temp = new MeleeWeapon(4660, 170, "sword");
 		items.add(temp);
 		
-		Potion temp1 = new Potion(1200, 300, 25);
+		Potion temp1 = new Potion(1200, 300, 25, m.getDrawing());
 		items.add(temp1);
 		
 		RangedWeapon temp2 = new RangedWeapon(800, 300, "gun");
 		items.add(temp2);
 		
-		Potion potion2 = new Potion(6800, 350, 100);
+		Potion potion2 = new Potion(6800, 350, 100, m.getDrawing());
 		items.add(potion2);
+		
+		
+
 	}
 	
 	public void actObjects()

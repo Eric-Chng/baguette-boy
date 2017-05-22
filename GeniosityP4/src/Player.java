@@ -283,7 +283,7 @@ public class Player extends GravitisedObj implements Damagable{
 
 	public void sendSpecialKeyCode(int code) {
 		if (code == PApplet.SHIFT) {
-			inventory.moveInventory();
+			inventory.moveInventory(1);
 		} else {
 			System.out.println(code);
 			code += 32;
@@ -322,7 +322,7 @@ public class Player extends GravitisedObj implements Damagable{
 	public void getWheelMove(int move)
 	{
 		//currentInvSpot+=move;
-		inventory.moveInventory();
+		inventory.moveInventory(move);
 	}
 
 	public int getInvSpot() {

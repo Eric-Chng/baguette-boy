@@ -4,16 +4,13 @@ import processing.core.PImage;
 public class Potion extends Item{
 
 	private int amt;
-	public static PImage imagePath;
-	private PImage self;
+	public static PImage hpPotion;
 	
 	public Potion(int x, int y, int healAmt) {
 		super("hp", x, y);
 		amt = healAmt;
 		width = 60;
 		height = 105;
-		
-		self = imagePath.copy();
 		
 	}
 	
@@ -24,8 +21,8 @@ public class Potion extends Item{
 	public void display(PApplet g, int x, int y, float ratio, int fill) {
 		g.pushStyle();
 		g.tint(255, fill);
-		self.resize((int)(ratio*80), (int)(ratio*140));
-		g.image(self, x, y);
+		hpPotion.resize((int)(ratio*80), (int)(ratio*140));
+		g.image(hpPotion, x, y);
 		g.popStyle();
 		
 		
@@ -34,8 +31,8 @@ public class Potion extends Item{
 	
 	public void draw(PApplet g) { 
 		if(!pickedUp) {
-			self.resize(width, height);
-			g.image(self, x, y + (float)(15*Math.sin(System.currentTimeMillis()/250.0)));
+			hpPotion.resize(width, height);
+			g.image(hpPotion, x, y + (float)(15*Math.sin(System.currentTimeMillis()/250.0)));
 		}
 	}
 

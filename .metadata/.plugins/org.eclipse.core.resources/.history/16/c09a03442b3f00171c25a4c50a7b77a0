@@ -20,8 +20,6 @@ public class CombatManager implements DestroyListener{
 	}
 	
 	public void addItems() {
-		
-		System.out.println("items");
 		MeleeWeapon temp = new MeleeWeapon(4660, 170, "sword");
 		items.add(temp);
 		

@@ -17,9 +17,9 @@ public class Manager implements DestroyListener{
 	
 	//private FinalBoss finalBoss;
 	
-	public Manager() 
+	public Manager(PApplet g) 
 	{
-		
+		setUpSprites(g);
 		
 		gObjects = new GObjectManager(this);
 		platforms = new PlatformManager(this);

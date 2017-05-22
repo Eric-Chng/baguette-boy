@@ -42,7 +42,7 @@ public class Manager implements DestroyListener{
 		
 		
 		Charger.star = g.loadImage("star.png");
-		Potion.imagePath = g.loadImage("Potion Life.png");
+		Potion.imagePath = "Potion Life.png";
 		MeleeWeapon.sword = g.loadImage("rusty sword.png");
 		RangedWeapon.gun = g.loadImage("gun.png");
 		Player.idle = new PImage[12];

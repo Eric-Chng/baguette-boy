@@ -15,10 +15,12 @@ public class Manager implements DestroyListener{
 	private int platformY;
 	private Tutorial tutorial;
 	
+	private PApplet surface;
 	//private FinalBoss finalBoss;
 	
-	public Manager() 
+	public Manager(PApplet g) 
 	{
+		surface = g;
 		
 		
 		gObjects = new GObjectManager(this);
@@ -28,7 +30,11 @@ public class Manager implements DestroyListener{
 		tutorial = new Tutorial(this);
 		//finalBoss = new FinalBoss(10000, 0, 10,140*3/4, 260*3/4, this);
 	}
-
+	
+	public PApplet getDrawing() {
+		return surface;
+	}
+	
 	/**
 	 * Returns all gravitised objects
 	 * @return
@@ -42,7 +48,7 @@ public class Manager implements DestroyListener{
 		
 		
 		Charger.star = g.loadImage("star.png");
-		Potion.imagePath = g.loadImage("Potion Life.png");
+		Potion.imagePath = "Potion Life.png";
 		MeleeWeapon.sword = g.loadImage("rusty sword.png");
 		RangedWeapon.gun = g.loadImage("gun.png");
 		Player.idle = new PImage[12];

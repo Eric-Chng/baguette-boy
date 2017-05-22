@@ -24,10 +24,10 @@ public class Inventory {
 		invPos %= inventory.size();
 	}
 
-	public void moveInventory(int amount) {
-		invPos+= amount;
+	public void moveInventory() {
+		invPos++;
 		if (!inventory.isEmpty())
-			invPos = (invPos + inventory.size()) % inventory.size();
+			invPos %= inventory.size();
 	}
 	
 	public int useItem() {

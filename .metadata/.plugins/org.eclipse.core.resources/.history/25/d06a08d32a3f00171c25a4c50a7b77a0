@@ -4,16 +4,16 @@ import processing.core.PImage;
 public class Potion extends Item{
 
 	private int amt;
-	public static PImage imagePath;
+	public static String imagePath;
 	private PImage self;
 	
-	public Potion(int x, int y, int healAmt) {
+	public Potion(int x, int y, int healAmt, PApplet g) {
 		super("hp", x, y);
 		amt = healAmt;
 		width = 60;
 		height = 105;
 		
-		self = imagePath.copy();
+		self = g.loadImage(imagePath);
 		
 	}
 	
