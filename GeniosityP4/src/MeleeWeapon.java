@@ -9,7 +9,7 @@ import processing.core.PImage;
 public class MeleeWeapon extends Item{
 	public static PImage sword;
 	
-	public static final int ATT_DMG = 18;
+	public static final int ATT_DMG = 38;
 	public static final int ATT_DELAY = 500;
 	private long lastHit;
 	

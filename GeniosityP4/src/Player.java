@@ -349,6 +349,28 @@ public class Player extends GravitisedObj implements Damagable{
 		}
 
 	}
+	
+	public void releaseSpecialKeyCode(int code) {
+		if (code == PApplet.SHIFT) {
+			inventory.moveInventory(1);
+		} else {
+			code += 32;
+			if(code=='a')
+			{
+				this.leftWalkCode = false;
+				//rightFacing = false;
+			}
+			else if(code=='d')
+			{
+				this.rightWalkCode = false;
+				//rightFacing = false;
+			}
+			else if (code == ' ' + 32) {
+				this.spacePressed = false;
+			}
+		}
+
+	}
 
 
 	/**

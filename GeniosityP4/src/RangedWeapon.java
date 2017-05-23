@@ -6,7 +6,7 @@ import processing.core.PImage;
 public class RangedWeapon extends Item{
 	public static PImage gun;
 
-	public static final int ATT_DMG = 10;
+	public static final int ATT_DMG = 20;
 	public static final int ATT_DELAY = 1500;
 	public static final int BULLET_SPD = 20;
 	private long lastHit;

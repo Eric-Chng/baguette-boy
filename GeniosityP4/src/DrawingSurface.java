@@ -289,7 +289,8 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 	@Override
 	public void keyReleased() {
 		// TODO Auto-generated method stub
-		m.releaseKeyCode(key);
+		m.releaseSpecialKeyCode(keyCode);
+		
 		if(key=='j')
 		{
 			cam.leftMove(false);;
@@ -302,10 +303,12 @@ public class DrawingSurface extends PApplet implements MouseWheelListener{
 		{
 			cam.upMove(false);
 		}
+		
 		if(key=='k')
 		{
 			cam.downMove(false);
 		}
+		
 	}
 
 

@@ -177,6 +177,10 @@ public class Manager implements DestroyListener{
 		player.sendSpecialKeyCode(code);
 	}
 	
+	public void releaseSpecialKeyCode(int code) {
+		player.releaseSpecialKeyCode(code);
+	}
+	
 	/**
 	 * Returns the HP of the player
 	 * @return
