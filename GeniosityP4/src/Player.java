@@ -148,9 +148,9 @@ public class Player extends GravitisedObj implements Damagable{
 					tempProjxV = -1f * (float)Math.sqrt(-xSpeed);
 				}
 				if (rightFacing)
-					test = new Hitbox(true, ATT_DMG, super.getX() + width, super.getY()+super.height/4, 40, super.height/2, 250, tempProjxV, 0);
+					test = new Hitbox(true, ATT_DMG, super.getX() + width, super.getY()+super.height/4, 40, super.height/2, 250, tempProjxV, 0, null);
 				else
-					test = new Hitbox(true, ATT_DMG, super.getX() -80, super.getY()+super.height/4, 40, super.height/2, 250, tempProjxV, 0);
+					test = new Hitbox(true, ATT_DMG, super.getX() -80, super.getY()+super.height/4, 40, super.height/2, 250, tempProjxV, 0, null);
 
 
 				test.addDestroyListener(super.getManager().getCombat());
@@ -319,7 +319,6 @@ public class Player extends GravitisedObj implements Damagable{
 		if (code == PApplet.SHIFT) {
 			inventory.moveInventory(1);
 		} else {
-			System.out.println(code);
 			code += 32;
 			if(code =='w')
 			{
@@ -394,8 +393,6 @@ public class Player extends GravitisedObj implements Damagable{
 	@Override
 	public void takeDamage(int damage) {
 		hp-= damage;
-		System.out.println("takes damage");
-
 	}
 
 	/**

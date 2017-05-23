@@ -33,10 +33,13 @@ public class GObjectManager implements DestroyListener{
 	 */
 	public void actObjects(double ratio)
 	{
-		for(GravitisedObj obj: objects)
-		{
-			obj.act(ratio);
+		for (int i = objects.size()-1; i >= 0; i--) {
+			objects.get(i).act(ratio);
 		}
+	}
+	
+	public void addObj(GravitisedObj obj) {
+		objects.add(obj);
 	}
 	
 	/**

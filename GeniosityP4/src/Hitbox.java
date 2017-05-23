@@ -158,7 +158,7 @@ public class Hitbox {
 			return;
 
 		g.fill(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha());
-		//g.rect(x, y, width, height);
+		g.rect(x, y, width, height);
 	}
 
 	/**
