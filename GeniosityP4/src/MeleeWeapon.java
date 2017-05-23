@@ -1,6 +1,11 @@
 import processing.core.PApplet;
 import processing.core.PImage;
 
+/**
+ * 
+ * @author Eric Cheng
+ *
+ */
 public class MeleeWeapon extends Item{
 	public static PImage sword;
 	
@@ -8,6 +13,12 @@ public class MeleeWeapon extends Item{
 	public static final int ATT_DELAY = 500;
 	private long lastHit;
 	
+	/**
+	 * Creates a new MeleeWeapon object
+	 * @param x Pickup location x
+	 * @param y Pickup location y
+	 * @param type Type of melee weapon
+	 */
 	public MeleeWeapon(int x, int y, String type) {
 		super(type, x, y);
 		width = 60;
@@ -16,6 +27,14 @@ public class MeleeWeapon extends Item{
 		
 	}
 	
+	/**
+	 * Draws the melee weapon for an inventory display
+	 * @param g Initialized PApplet
+	 * @param x X to draw at
+	 * @param y Y to draw at
+	 * @param ratio Opacity ratio
+	 * @param fill Fill greyscale
+	 */
 	public void display(PApplet g, int x, int y, float ratio, int fill) {
 		g.pushStyle();
 		g.tint(255, fill);
@@ -30,6 +49,10 @@ public class MeleeWeapon extends Item{
 		g.popStyle();
 	}
 	
+	/**
+	 * Draws the melee weapon in the environment
+	 * @param g Initialized PApplet
+	 */
 	public void draw(PApplet g) { 
 		if(!pickedUp) {
 			sword.resize(width, height);
@@ -39,6 +62,10 @@ public class MeleeWeapon extends Item{
 		}
 	}
 	
+	/**
+	 * Specifies whether the melee weapon is able to attack again
+	 * @return True if it can attack, false otherwise
+	 */
 	public boolean attack() {
 		if (lastHit + ATT_DELAY <= System.currentTimeMillis()) {
 			lastHit = System.currentTimeMillis();

@@ -3,12 +3,23 @@ import java.awt.Rectangle;
 
 import processing.core.PApplet;
 
+/**
+ * 
+ * @author Eric Cheng
+ *
+ */
 public class Item {
 	public final String type;
 	protected int x, y;
 	protected boolean pickedUp;
 	protected int width, height;
 
+	/**
+	 * Creates a new item object
+	 * @param property Type of item
+	 * @param x X value of item
+	 * @param y Y value of item
+	 */
 	public Item(String property, int x, int y) {
 		type = property;
 		pickedUp = false;
@@ -18,6 +29,10 @@ public class Item {
 		height = 50;
 	}
 
+	/**
+	 * Draws the item object
+	 * @param g Initialized PApplet
+	 */
 	public void draw(PApplet g) { //TURN DRAW INTO AN IMAGE LATER
 		if(!pickedUp) {
 			g.fill(128, 60, 60, 100);
@@ -25,6 +40,14 @@ public class Item {
 		}
 	}
 	
+	/**
+	 * Displays the item for an inventory system
+	 * @param g Initialized PApplet
+	 * @param x X to draw at
+	 * @param y Y to draw at
+	 * @param ratio Opacity ratio
+	 * @param fill Fill greyscale
+	 */
 	public void display(PApplet g, int x, int y, float ratio, int fill) {
 		g.fill(fill);
 		g.rect(x, y, ratio * 80, ratio * 80);
@@ -33,6 +56,11 @@ public class Item {
 		g.text(type, x, y+40*ratio);
 	}
 
+	/**
+	 * Checks collision of the item with the player
+	 * @param a Player to check
+	 * @return True if the player picks up the object
+	 */
 	public boolean collide(Player a) {
 		if (!pickedUp) {
 			Rectangle myself = new Rectangle(x, y, width, height);

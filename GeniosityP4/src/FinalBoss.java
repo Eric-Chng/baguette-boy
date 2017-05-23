@@ -3,6 +3,11 @@ import java.awt.Color;
 import processing.core.PApplet;
 import processing.core.PImage;
 
+/**
+ * 
+ * @author David McAllister, Eric Cheng
+ *
+ */
 public class FinalBoss extends Enemy{
 
 	private int jumpCounter;
@@ -17,6 +22,15 @@ public class FinalBoss extends Enemy{
 
 	//private Player player;
 
+	/**
+	 * Creates a new FinalBoss object
+	 * @param x X of boss
+	 * @param y Y of boss
+	 * @param mass Mass value of boss(affects falling physics)
+	 * @param width Pixel width of boss
+	 * @param height Pixel height of boss
+	 * @param m Manager object
+	 */
 	public FinalBoss(int x, int y, int mass, int width, int height, Manager m)
 	{
 		super(x, y, 2, width, height, m, 360);
@@ -27,7 +41,10 @@ public class FinalBoss extends Enemy{
 	}
 
 
-
+	/**
+	 * Acts the FinalBoss
+	 * @param ratio Frame ratio (Based on 60 FPS)
+	 */
 	public void act(double ratio)
 	{
 		if (lastHit + ATT_DELAY < System.currentTimeMillis()) {
@@ -143,6 +160,10 @@ public class FinalBoss extends Enemy{
 	//System.out.println("acting");
 
 
+	/**
+	 * Draws the boss
+	 * @param g Initialized PApplet
+	 */
 	public void draw(PApplet g)
 	{
 
@@ -153,6 +174,11 @@ public class FinalBoss extends Enemy{
 		g.image(baguette, x, y,width,height);
 
 	}
+	
+	/**
+	 * Gets the current health of the boss
+	 * @return Integer representation of health
+	 */
 	public int getHealth()
 	{
 		return hp;

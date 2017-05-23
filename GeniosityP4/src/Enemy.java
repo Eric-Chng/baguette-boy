@@ -2,16 +2,36 @@ import java.awt.Rectangle;
 
 import processing.core.PApplet;
 
+/**
+ * 
+ * @author Eric Cheng
+ *
+ */
 public class Enemy extends GravitisedObj implements Damagable{
 	protected int hp;
 	protected int attackDelay;
 
+	/**
+	 * Creates a new Enemy object
+	 * @param x X of the enemy
+	 * @param y Y of the enemy
+	 * @param mass Mass value of the enemy(affects falling physics)
+	 * @param width Pixel width of the enemy
+	 * @param height Pixel height of the enemy
+	 * @param m Manager object
+	 * @param hp Max health of the enemy
+	 */
 	public Enemy(int x, int y, int mass, int width, int height, Manager m, int hp) {
 		super(x, y, mass, width, height, m);
 		this.hp = hp;
 
 
 	}
+	
+	/**
+	 * Draws the enemy if no submethod is provided
+	 * @param g Initialized PApplet
+	 */
 	public void draw(PApplet g) {
 		g.pushStyle();
 
@@ -23,6 +43,10 @@ public class Enemy extends GravitisedObj implements Damagable{
 
 	}
 
+	/**
+	 * Acts the enemy
+	 * @param ratio Frame ratio (based on 60 FPS)
+	 */
 	@Override
 	public void act(double ratio) {
 		
@@ -45,10 +69,18 @@ public class Enemy extends GravitisedObj implements Damagable{
 	}
 
 
+	/**
+	 * Returns a rectangle representation of the enemy's dimensions
+	 * @return Rectangle object
+	 */
 	public Rectangle getRect() {
 		return new Rectangle(getX(),getY(), getWidth(),getHeight());
 	}
 
+	/**
+	 * Makes the enemy take the given amount of damage
+	 * @param damage Damage to be taken
+	 */
 	@Override
 	public void takeDamage(int damage) {
 		hp-= damage;

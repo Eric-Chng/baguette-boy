@@ -2,6 +2,11 @@ import java.util.ArrayList;
 
 import processing.core.PApplet;
 
+/**
+ * 
+ * @author Eric Cheng
+ *
+ */
 public class CombatManager implements DestroyListener{
 	private ArrayList<Hitbox> hitboxes;
 	private ArrayList<Item> items;
@@ -11,7 +16,10 @@ public class CombatManager implements DestroyListener{
 	
 	
 
-	
+	/**
+	 * Creates a new CombatManager to manage combat interactions
+	 * @param m General Manager that holds the CombatManager
+	 */
 	public CombatManager(Manager m)
 	{
 		hitboxes = new ArrayList<Hitbox>();
@@ -19,9 +27,12 @@ public class CombatManager implements DestroyListener{
 		manager = m;
 	}
 	
+	/**
+	 * Adds items to the CombatManager
+	 */
 	public void addItems() {
 		
-		System.out.println("items");
+		//System.out.println("items");
 		MeleeWeapon temp = new MeleeWeapon(4660, 170, "sword");
 		items.add(temp);
 		
@@ -35,6 +46,9 @@ public class CombatManager implements DestroyListener{
 		items.add(potion2);
 	}
 	
+	/**
+	 * Calls the act method of all objects regulated by the CombatManager
+	 */
 	public void actObjects()
 	{	
 		for (int i = hitboxes.size()-1; i>= 0; i--) {
@@ -42,6 +56,10 @@ public class CombatManager implements DestroyListener{
 		}
 	}
 	
+	/**
+	 * Draws all objects held by the CombatManager
+	 * @param g Initialized PApplet drawing surface
+	 */
 	public void drawObjects(PApplet g)
 	{
 		
@@ -54,6 +72,9 @@ public class CombatManager implements DestroyListener{
 		}
 	}
 	
+	/**
+	 * Checks collision for all hitboxes
+	 */
 	public void checkHits() {
 		ArrayList<Damagable> list = manager.getgObjects().getDmg();
 		
@@ -78,6 +99,9 @@ public class CombatManager implements DestroyListener{
 	}
 
 	
+	/**
+	 * Destroys a given hitbox object
+	 */
 	public void destroy(Object a) {
 		for (int i = hitboxes.size()-1; i >= 0; i--) {
 			if (a == hitboxes.get(i))
@@ -85,6 +109,10 @@ public class CombatManager implements DestroyListener{
 		}
 	}
 	
+	/**
+	 * Adds a new hitbox to the CombatManager
+	 * @param a Hitbox to add
+	 */
 	public void addHitbox(Hitbox a) {
 		hitboxes.add(a);
 	}

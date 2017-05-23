@@ -1,4 +1,9 @@
 
+/**
+ * 
+ * @author David McAllister, Eric Cheng
+ *
+ */
 public class Camera {
 
 	private float zoom;
@@ -161,6 +166,10 @@ public class Camera {
 		cameraLocked=false;
 	}
 
+	/**
+	 * Updates the camera's position based on game details
+	 * @param ratio Frame ratio (compared to 60 FPS)
+	 */
 	public void act(double ratio)
 	{
 		if(x>2260&&x<2860)
@@ -191,6 +200,11 @@ public class Camera {
 		}
 	}
 
+	/**
+	 * Moves the camera by a given amount
+	 * @param xChange X amount of change
+	 * @param yChange Y amount of change
+	 */
 	public void moveCamera(int xChange, int yChange)
 	{
 		x+=xChange;

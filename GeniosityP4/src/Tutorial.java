@@ -1,12 +1,21 @@
 import processing.core.PApplet;
 import processing.core.PFont;
 
+/**
+ * 
+ * @author David McAllister
+ *
+ */
 public class Tutorial {
 
 	private Manager m;
 	private int displayTimer;
 	private int tutorialNumber;
 
+	/**
+	 * Constructs a new tutorial manager for level 1
+	 * @param man Manager to handle interactions
+	 */
 	public Tutorial(Manager man)
 	{
 		m=man;
@@ -14,6 +23,9 @@ public class Tutorial {
 		tutorialNumber =0;
 	}
 
+	/**
+	 * Makes the tutorial act based on game variables
+	 */
 	public void act()
 	{
 		displayTimer--;
@@ -49,6 +61,10 @@ public class Tutorial {
 
 	}
 
+	/**
+	 * Draws tutorial reminders on screen
+	 * @param g Initialized PApplet
+	 */
 	public void draw(PApplet g)
 	{
 		g.pushStyle();

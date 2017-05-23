@@ -11,6 +11,12 @@ public class RangedWeapon extends Item{
 	public static final int BULLET_SPD = 20;
 	private long lastHit;
 
+	/**
+	 * Creates a new RangedWeapon object
+	 * @param x Pickup location x
+	 * @param y Pickup location y
+	 * @param type Type of ranged weapon
+	 */
 	public RangedWeapon(int x, int y, String type) {
 		super(type, x, y);
 		width = 80;
@@ -19,6 +25,14 @@ public class RangedWeapon extends Item{
 
 	}
 
+	/**
+	 * Draws the ranged weapon for an inventory display
+	 * @param g Initialized PApplet
+	 * @param x X to draw at
+	 * @param y Y to draw at
+	 * @param ratio Opacity ratio
+	 * @param fill Fill greyscale
+	 */
 	public void display(PApplet g, int x, int y, float ratio, int fill) {
 		g.pushStyle();
 		g.tint(255, fill);
@@ -42,6 +56,10 @@ public class RangedWeapon extends Item{
 		}
 	}
 
+	/**
+	 * Draws the ranged weapon in the environment
+	 * @param g Initialized PApplet
+	 */
 	public boolean rangeAttack(Player p) {
 		if (lastHit + ATT_DELAY <= System.currentTimeMillis()) {
 			lastHit = System.currentTimeMillis();

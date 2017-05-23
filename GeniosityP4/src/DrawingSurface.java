@@ -12,7 +12,11 @@ import processing.core.PApplet;
 import processing.core.PFont;
 import processing.core.PImage;
 
-
+/**
+ * 
+ * @author David McAllister, Eric Cheng
+ *
+ */
 public class DrawingSurface extends PApplet implements MouseWheelListener{
 
 	//private	RegularPolygon geoff;

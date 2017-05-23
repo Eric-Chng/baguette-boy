@@ -1,0 +1,109 @@
+import java.awt.Color;
+import java.awt.Rectangle;
+
+import processing.core.PApplet;
+
+public class Hitbox {
+
+	private boolean friendly;
+	private int damage;
+	protected float x,y;
+	protected float width, height;
+	private float xV, yV;
+	private long lastForMs;
+	private long startMS;
+	protected DestroyListener destruction;
+
+	protected Color c;
+
+	public Hitbox(boolean fromPlayer, int damage, float x, float y, float width, float height, long DurationInMS, float xVelocity, float yVelocity) {
+		this.friendly = fromPlayer;
+		this.damage = damage;
+		this.x = x;
+		this.y = y;
+		this. width = width;
+		this.height = height;
+		xV = xVelocity;
+		yV = yVelocity;
+		lastForMs = DurationInMS;
+		startMS = System.currentTimeMillis();
+
+		c = new Color(240, 128, 128, 100);
+	}
+
+	public Hitbox(boolean fromPlayer, int damage, float x, float y, float width, float height, long DurationInMS, Color c) {
+		this.friendly = fromPlayer;
+		this.damage = damage;
+		this.x = x;
+		this.y = y;
+		this. width = width;
+		this.height = height;
+		xV = 0;
+		yV = 0;
+		lastForMs = DurationInMS;
+		startMS = System.currentTimeMillis();
+
+		c = c;
+	}
+	
+	public Hitbox(boolean fromPlayer, int damage, float x, float y, float width, float height, long DurationInMS) {
+		this.friendly = fromPlayer;
+		this.damage = damage;
+		this.x = x;
+		this.y = y;
+		this. width = width;
+		this.height = height;
+		xV = 0;
+		yV = 0;
+		lastForMs = DurationInMS;
+		startMS = System.currentTimeMillis();
+
+		c = new Color( 240, 128, 128, 100);
+	}
+	public Hitbox(boolean fromPlayer, int damage, float x, float y, float width, float height, long DurationInMS, float xVelocity, float yVelocity, Color color) {
+		this.friendly = fromPlayer;
+		this.damage = damage;
+		this.x = x;
+		this.y = y;
+		this. width = width;
+		this.height = height;
+		xV = xVelocity;
+		yV = yVelocity;
+		lastForMs = DurationInMS;
+		c = color;
+		startMS = System.currentTimeMillis();
+	}
+
+	public void addDestroyListener(DestroyListener a) {
+		destruction = a;
+	}
+
+	public void act() {
+		if (System.currentTimeMillis() - startMS > lastForMs) {
+			System.out.println("test");
+			destruction.destroy(this);
+		}
+		x+= xV;
+		y+= yV;
+	}
+
+	public void draw(PApplet g) {
+		if(c == null)
+			return;
+
+		g.fill(c.getRed(), c.getGreen(), c.getBlue(), c.getAlpha());
+		g.rect(x, y, width, height);
+	}
+
+	public boolean getFriendly() {
+		return friendly;
+	}
+
+	public void collide(Damagable d) {
+		if (d.getRect().intersects(new Rectangle((int)x,(int)y,(int)width,(int)height))) {
+			d.takeDamage(damage);
+			destruction.destroy(this);
+		}
+	}
+
+}

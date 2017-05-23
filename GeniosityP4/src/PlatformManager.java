@@ -2,6 +2,11 @@ import java.util.ArrayList;
 
 import processing.core.PApplet;
 
+/**
+ * 
+ * @author David McAllister
+ *
+ */
 public class PlatformManager implements DestroyListener{
 
 	private ArrayList<BoxPlatform> platforms;

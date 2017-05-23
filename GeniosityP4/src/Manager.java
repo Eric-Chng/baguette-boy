@@ -6,6 +6,11 @@ import processing.core.PImage;
 
 //import entities.*;
 
+/**
+ * 
+ * @author David McAllister, Eric Cheng
+ *
+ */
 public class Manager implements DestroyListener{
 
 	private GObjectManager gObjects;
@@ -17,6 +22,9 @@ public class Manager implements DestroyListener{
 	
 	//private FinalBoss finalBoss;
 	
+	/**
+	 * Creates a new manager object
+	 */
 	public Manager() 
 	{
 		
@@ -37,6 +45,10 @@ public class Manager implements DestroyListener{
 		return gObjects;
 	}
 	
+	/**
+	 * Initializes all sprites for game objects
+	 * @param g Initialize PApplet
+	 */
 	public void setUpSprites(PApplet g) {
 		String tempPathHelp = File.separator + File.separator;
 		

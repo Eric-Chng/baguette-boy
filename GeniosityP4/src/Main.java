@@ -9,6 +9,11 @@ import javax.swing.JPanel;
 
 import processing.awt.PSurfaceAWT;
 
+/**
+ * 
+ * @author David McAllister, Eric Cheng
+ *
+ */
 public class Main {
 
 	DrawingSurface drawing;
@@ -27,6 +32,9 @@ public class Main {
 
 	}
 
+	/**
+	 * Creates a new Main object
+	 */
 	public Main()
 	{
 		drawing = new DrawingSurface(this);		
@@ -61,25 +69,43 @@ public class Main {
 
 	}
 	
+	/**
+	 * Gets the window's starting width
+	 * @return Pixel width
+	 */
 	public int getWindowWidth() {
 		return window.getWidth();
 	}
 
-	
+	/**
+	 * Gets the window's starting height
+	 * @return Pixel height
+	 */
 	public int getWindowHeight() {
 		return window.getHeight();
 	}
 
+	/**
+	 * Changes the card layout panel
+	 */
 	public void changePanel() {
 		((CardLayout)cardPanel.getLayout()).next(cardPanel);
 		canvas.requestFocus();
 	}
 	
+	/**
+	 * Changes the panel to one of a specified name
+	 * @param name Name of panel to change to
+	 */
 	public void changePanelTo(String name) {
 		((CardLayout)cardPanel.getLayout()).show(cardPanel, name);
 		canvas.requestFocus();
 	}
 	
+	/**
+	 * Gets the drawing surface
+	 * @return DrawingSurface on which the game is drawn
+	 */
 	public DrawingSurface getGamePanel() {
 		return drawing;
 	}

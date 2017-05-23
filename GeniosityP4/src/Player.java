@@ -8,6 +8,11 @@ import processing.core.PApplet;
 import processing.core.PImage;
 import processing.event.Event;
 
+/**
+ * 
+ * @author David McAllister
+ *
+ */
 public class Player extends GravitisedObj implements Damagable{
 
 
@@ -35,6 +40,15 @@ public class Player extends GravitisedObj implements Damagable{
 
 
 
+	/**
+	 * Creates a new player, Rick the Robot
+	  * @param x X of the player
+	 * @param y Y of the player
+	 * @param mass Mass value of the player(affects falling physics)
+	 * @param width Pixel width of the player
+	 * @param height Pixel height of the player
+	 * @param m Manager object
+	 */
 	public Player(int x, int y, int mass, int width, int height, Manager m) {
 		super(x, y, mass, width, height,m);
 		hp = MAX_HP;
@@ -50,6 +64,10 @@ public class Player extends GravitisedObj implements Damagable{
 		inventory = new Inventory();
 	}
 
+	/**
+	 * Performs an action based on user inputs
+	 * @param ratio Frame ratio (based on 60 FPS)
+	 */
 	public void act(double ratio)
 	{
 		if(slashTimer>0)
@@ -161,6 +179,10 @@ public class Player extends GravitisedObj implements Damagable{
 
 	}
 
+	/**
+	 * Draws the player, Rick the Robot
+	 * @param g Initialized PApplet
+	 */
 	public void draw(PApplet g)
 	{
 		g.pushMatrix();
@@ -233,6 +255,10 @@ public class Player extends GravitisedObj implements Damagable{
 		animationTimer++;
 	}
 
+	/**
+	 * Provides the player object with keyboard presses
+	 * @param e Character pressed
+	 */
 	public void sendKeyCode(char e)
 	{
 		if(e=='w')
@@ -263,6 +289,10 @@ public class Player extends GravitisedObj implements Damagable{
 		}
 	}
 
+	/**
+	 * Provides the player object with keyboard releases
+	 * @param e Character released
+	 */
 	public void releaseKeyCode(char e)
 	{
 		if(e=='d')
@@ -281,6 +311,10 @@ public class Player extends GravitisedObj implements Damagable{
 
 	}
 
+	/**
+	 * Provides the player object with special keyboard presses
+	 * @param code Code sent
+	 */
 	public void sendSpecialKeyCode(int code) {
 		if (code == PApplet.SHIFT) {
 			inventory.moveInventory(1);
@@ -318,26 +352,45 @@ public class Player extends GravitisedObj implements Damagable{
 	}
 
 
-
+	/**
+	 * Provides the player object with mouse wheel movements
+	 * @param move Amount the wheel moved
+	 */
 	public void getWheelMove(int move)
 	{
 		//currentInvSpot+=move;
 		inventory.moveInventory(move);
 	}
 
+	/**
+	 * Returns the currently selected inventory spot
+	 * @return Current spot
+	 */
 	public int getInvSpot() {
 		return inventory.getCurrentPos();
 	}
 
+	/**
+	 * Returns the player's inventory
+	 * @return An ArrayList of items held by the player
+	 */
 	public ArrayList<Item> getInv() {
 		return inventory.getInventory();
 	}
 
+	/**
+	 * Returns a rectangular representation of the player
+	 * @return Java AWT rectange object
+	 */
 	@Override
 	public Rectangle getRect() {
 		return new Rectangle(getX(),getY(), getWidth(),getHeight());
 	}
 
+	/**
+	 * Makes the player take the specified amount of damage
+	 * @param damage Amount of damage to take
+	 */
 	@Override
 	public void takeDamage(int damage) {
 		hp-= damage;
@@ -345,14 +398,26 @@ public class Player extends GravitisedObj implements Damagable{
 
 	}
 
+	/**
+	 * Returns the current player health
+	 * @return Integer representation of health
+	 */
 	public int getHP() {
 		return hp;
 	}
 
+	/**
+	 * Specifies whether the player is facing right or left
+	 * @return True if facing right, false otherwise
+	 */
 	public boolean getRightFacing() {
 		return rightFacing;
 	}
 
+	/**
+	 * Adds an item to the player inventory
+	 * @param a Item to add
+	 */
 	public void addItem (Item a) {
 		inventory.addItem(a);
 	}

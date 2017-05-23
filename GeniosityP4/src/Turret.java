@@ -1,5 +1,10 @@
 import java.awt.Color;
 
+/**
+ * 
+ * @author Eric Cheng
+ *
+ */
 public class Turret extends Enemy{
 
 	private final int AttTmr = 10;
@@ -8,13 +13,25 @@ public class Turret extends Enemy{
 	private Manager m;
 	private final int range = 1000;
 	
-	
+	/**
+	 * Creates a new turret object
+	 * @param x X of turret
+	 * @param y Y of turret
+	 * @param mass Mass value of turret(affects falling physics)
+	 * @param width Pixel width of turret
+	 * @param height Pixel height of turret
+	 * @param m Manager object
+	 */
 	public Turret(int x, int y, int mass, int width, int height, Manager m) {
 		super(x, y, mass, width, height, m, 60);
 		this.m=m;
 		// TODO Auto-generated constructor stub
 	}
 	
+	/**
+	 * Performs an action based on the turret AI
+	 * @param ratio Frame ratio (based on 60 FPS)
+	 */
 	public void act(double ratio){
 		int playerX = super.getManager().getPlayerX();
 		int playerY = super.getManager().getPlayerY();

@@ -2,10 +2,10 @@
 
 import processing.core.PApplet;
 
-/*
- * Properties of this object:
- *   -affected by gravity
- *   -collides with all platforms
+/**
+ * 
+ * @author David McAllister
+ *
  */
 public abstract class GravitisedObj {
 	public static final int GRAVITY_POWER = 2;
@@ -19,10 +19,14 @@ public abstract class GravitisedObj {
 	protected boolean onCurve;
 	private int curveTimer;
 
-	/*
-	 * x and y from top left corner of box
-	 * width is left side to right side
-	 * height is top to bottom
+	/**
+	 * Constructs a new GravitisedObj
+	 * @param x X of gObject
+	 * @param y Y of gObject
+	 * @param mass Mass value of gObject(affects falling physics)
+	 * @param width Pixel width of gObject
+	 * @param height Pixel height of gObject
+	 * @param m Manager object
 	 */
 	public GravitisedObj(int x, int y, int mass, int width, int height, Manager m) {
 		this.x = x;

@@ -1,6 +1,11 @@
 import processing.core.PApplet;
 import processing.core.PImage;
 
+/**
+ * 
+ * @author David McAllister
+ *
+ */
 public class Charger extends Enemy{
 
 	private Manager m;
@@ -13,6 +18,15 @@ public class Charger extends Enemy{
 
 	private final int AttTmr = 25;
 
+	/**
+	 * Creates new Charger object
+	 * @param x X of charger
+	 * @param y Y of charger
+	 * @param mass Mass value of charger(affects falling physics)
+	 * @param width Pixel width of charger
+	 * @param height Pixel height of charger
+	 * @param m Manager object
+	 */
 	public Charger(int x, int y, int mass, int width, int height, Manager m) {
 		super(x, y, 6, width, height, m, 2000);
 		this.m=m;
@@ -21,6 +35,7 @@ public class Charger extends Enemy{
 
 	/**
 	 * Performs an action based on the charger AI
+	 * @param ratio Frame ratio (based on 60 FPS)
 	 */
 	public void act(double ratio)
 	{
@@ -98,6 +113,7 @@ public class Charger extends Enemy{
 
 	}
 
+	
 	private void stun(int time)
 	{
 		stunned = true;
@@ -105,6 +121,10 @@ public class Charger extends Enemy{
 
 	}
 
+	/**
+	 * Draws the charger object
+	 * @param g Initialized PApplet
+	 */
 	public void draw(PApplet g)
 	{
 		g.pushStyle();

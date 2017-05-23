@@ -2,11 +2,19 @@ import java.awt.*;
 import javax.swing.*;
 import java.awt.event.*;
 
-
+/**
+ * 
+ * @author Eric Cheng
+ *
+ */
 public class DeathPanel extends JPanel implements ActionListener {
 
 	Main w;
 
+	/**
+	 * Creates a new DeathPanelObject
+	 * @param w Main class with main method
+	 */
 	public DeathPanel(Main w) {
 		super();
 
@@ -18,6 +26,9 @@ public class DeathPanel extends JPanel implements ActionListener {
 		add(button);
 	}
 
+	/**
+	 * Called when the DeathPanel detects an ActionEvent
+	 */
 	public void actionPerformed(ActionEvent e) {
 		System.out.println(e.getActionCommand());
 		if (e.getActionCommand().equals("feels bad")) {
@@ -27,6 +38,9 @@ public class DeathPanel extends JPanel implements ActionListener {
 			w.changePanel();
 	}
 
+	/**
+	 * Paints a death screen if the Rick the Robot Dies
+	 */
 	public void paintComponent(Graphics g) {
 		super.paintComponent(g);
 		String text = "You have died.";

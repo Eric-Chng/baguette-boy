@@ -2,7 +2,12 @@
 
 import processing.core.PApplet;
 
-public class BoxPlatform implements Comparable{
+/**
+ * 
+ * @author David McAllister
+ *
+ */
+public class BoxPlatform{
 	private int x, y;
 	private int width, height;
 	private int r,g,b;
@@ -12,6 +17,13 @@ public class BoxPlatform implements Comparable{
 	 * x and y is upper left corner
 	 * width is width from left side to right
 	 * height is from top to bottom
+	 */
+	/**
+	 * Constructs a new BoxPlatform object
+	 * @param x Top left x
+	 * @param y Top left y
+	 * @param width Pixel width
+	 * @param height Pixel height
 	 */
 	public BoxPlatform(int x, int y, int width, int height) {
 		this.x = x;
@@ -24,6 +36,16 @@ public class BoxPlatform implements Comparable{
 		transparent=false;
 	}
 	
+	/**
+	 * Constructs a new BoxPlatform object
+	 * @param x Top left x
+	 * @param y Top left y
+	 * @param width Pixel width
+	 * @param height Pixel height
+	 * @param r Red value for drawing (0-255)
+	 * @param g Green value for drawing (0-255)
+	 * @param b Blue value for drawing (0-255)
+	 */
 	public BoxPlatform(int x, int y, int width, int height, int r, int g, int b) {
 		this.x = x;
 		this.y = y;
@@ -35,6 +57,17 @@ public class BoxPlatform implements Comparable{
 		transparent=false;
 	}
 	
+	/**
+	 * Constructs a new BoxPlatform object
+	 * @param x Top left x
+	 * @param y Top left y
+	 * @param width Pixel width
+	 * @param height Pixel height
+	 * @param r Red value for drawing (0-255)
+	 * @param g Green value for drawing (0-255)
+	 * @param b Blue value for drawing (0-255)
+	 * @param transparent Whether the platform should be drawn
+	 */
 	public BoxPlatform(int x, int y, int width, int height, int r, int g, int b, boolean transparent) {
 		this.x = x;
 		this.y = y;
@@ -47,6 +80,10 @@ public class BoxPlatform implements Comparable{
 		
 	}
 	
+	/**
+	 * Returns the x midpoint of the platform
+	 * @return Midpoint
+	 */
 	public int getMiddleX()
 	{
 		return x+width/2;
@@ -56,6 +93,13 @@ public class BoxPlatform implements Comparable{
 	/*
 	 * in collision checking, have bool change to true if obj collides with any platform (given by this method)
 	 * if bool stays false, grounded turns off and gravity re-enabled
+	 */
+	/**
+	 * Checks the collision of the given point with the BoxPlatform Object
+	 * @param otherX X Value to check
+	 * @param otherY Y Value to check
+	 * @param side Whether collision is vertical or horizontal (1 for horizontal, 2 for vertical)
+	 * @return Distance to this platform (negative if within platform)
 	 */
 	public int collideTest(int otherX, int otherY, int side) {
 		//check collision
@@ -98,6 +142,10 @@ public class BoxPlatform implements Comparable{
 	}
 
 
+	/**
+	 * Draws the platform
+	 * @param g Initialized PApplet
+	 */
 	public void draw(PApplet g)
 	{
 		if(!transparent)
@@ -121,22 +169,18 @@ public class BoxPlatform implements Comparable{
 		}
 	}
 
-	public int compareTo(BoxPlatform other) {
-		// TODO Auto-generated method stub
-		
-		return 0;
-	}
 	
+	
+	/**
+	 * Gets the width of the platform
+	 * @return width
+	 */
 	public int getWidth()
 	{
 		return width;
 	}
 
-	@Override
-	public int compareTo(Object o) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
 
 
 }

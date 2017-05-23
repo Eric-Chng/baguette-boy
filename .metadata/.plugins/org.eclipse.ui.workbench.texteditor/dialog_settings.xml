@@ -2,22 +2,27 @@
 <section name="Workbench">
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
 		<item value="false" key="isRegEx"/>
-		<item value="attackDelay" key="selection"/>
+		<item value="the player" key="selection"/>
 		<item value="false" key="casesensitive"/>
 		<item value="false" key="incremental"/>
 		<item value="true" key="wrap"/>
 		<item value="false" key="wholeword"/>
 		<list key="findhistory">
+			<item value="charger"/>
+			<item value="bullet"/>
+			<item value="side"/>
 			<item value="attackDelay"/>
 			<item value="PApplet"/>
 			<item value="wheel"/>
 			<item value="system"/>
 			<item value="&quot;hi&quot;"/>
-			<item value="hi"/>
-			<item value="m."/>
-			<item value="hasJumped"/>
 		</list>
 		<list key="replacehistory">
+			<item value="the player"/>
+			<item value="turret"/>
+			<item value="hitbox"/>
+			<item value="gObject"/>
+			<item value="boss"/>
 		</list>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog_dialogBounds">
